@@ -9,6 +9,13 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
+    
     font-family: system-ui;
+  }
+
+  main {
+    margin: 0 auto;
+    max-width: 368px;
+    padding: 0.5em 1em;
   }
 `;
