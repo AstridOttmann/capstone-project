@@ -4,7 +4,8 @@ const StyledHeader = styled.header`
   width: 368px;
   margin: 0 auto;
   padding: 0.5em 1em;
-  background: lightgrey;
+  background: #494fbf;
+  color: whitesmoke;
   text-align: center;
 `;
 

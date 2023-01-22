@@ -1,8 +1,8 @@
-import Header from "./components/Header";
-import Form from "./components/Form";
-import { startTransition, useState } from "react";
+import Header from "../components/Header";
+import Form from "../components/Form";
+import { useState } from "react";
 import { nanoid } from "nanoid";
-import styled from "styled-components";
+import ListEntry from "@/components/ListEntry";
 
 const initialTranslations = [
   { id: 1, word: "verjaardag", translated: "Geburtstag" },
@@ -12,16 +12,8 @@ const initialTranslations = [
   { id: 5, word: "moe", translated: "müde" },
 ];
 
-const StyledEntry = styled.div`
-  border: 1px dashed black;
-  border-radius: 10px;
-  margin: 1em;
-  padding: 0.5em;
-`;
-
 export default function HomePage() {
   const [translations, setTranslations] = useState(initialTranslations);
-  console.log("hier", translations);
 
   initialTranslations.sort((a, b) => {
     const wordA = a.word.toLowerCase();
@@ -50,7 +42,7 @@ export default function HomePage() {
         }
         return 0;
       });
-    console.log("sort", newTranslations);
+
     setTranslations([{ id: nanoid(), ...newTranslation }, ...newTranslations]);
   }
 
@@ -61,10 +53,10 @@ export default function HomePage() {
         <h1>Add word</h1>
         <Form onAddTranslations={handleAddTranslations} />
         {translations.map((translation) => (
-          <StyledEntry key={translation.id}>
+          <ListEntry key={translation.id}>
             <p>{translation.word}</p>
             <small>{translation.translated}</small>
-          </StyledEntry>
+          </ListEntry>
         ))}
       </main>
     </>

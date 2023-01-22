@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import StyledButton from "../Button/StyledButton";
 
 const StyledForm = styled.form`
   display: flex;
@@ -12,7 +13,6 @@ export default function Form({ onAddTranslations }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("Form", data);
 
     onAddTranslations({ word: data.word, translated: data.translated });
 
@@ -27,7 +27,7 @@ export default function Form({ onAddTranslations }) {
         <input id="word" name="word" />
         <label htmlFor="translated">Enter translation</label>
         <input id="translated" name="translated" />
-        <button type="submit">Submit</button>
+        <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     </>
   );
