@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import ListEntry from "@/components/ListEntry";
 import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
+import MainNavigation from "@/components/MainNavigation";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -47,8 +48,8 @@ export default function HomePage() {
       <main>
         <h1>Add word</h1>
         <Form onAddTranslations={handleAddTranslations} />
-        {isFound === "true" && <p>Wort bereits vorhanden</p>}
-        {isFound === "false" && <p>neues Wort hinzugefügt</p>}
+        {isFound === "true" && <p>word already exists</p>}
+        {isFound === "false" && <p>added new word</p>}
 
         {translationList.map((translation) => (
           <ListEntry key={translation.id}>
@@ -58,6 +59,7 @@ export default function HomePage() {
           </ListEntry>
         ))}
       </main>
+      <MainNavigation />
     </>
   );
 }
