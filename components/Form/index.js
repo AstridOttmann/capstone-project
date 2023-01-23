@@ -13,8 +13,13 @@ export default function Form({ onAddTranslations }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+    console.log("submitted", data);
 
-    onAddTranslations({ word: data.word, translated: data.translated });
+    onAddTranslations({
+      word: data.word,
+      language: data.language,
+      translated: data.translated,
+    });
 
     event.target.reset();
     event.target.elements.word.focus();
@@ -24,9 +29,11 @@ export default function Form({ onAddTranslations }) {
     <>
       <StyledForm onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="word">Enter word</label>
-        <input id="word" name="word" />
+        <input id="word" name="word" required />
+        <label htmlFor="language">Enter source language</label>
+        <input id="translated" name="language" required />
         <label htmlFor="translated">Enter translation</label>
-        <input id="translated" name="translated" />
+        <input id="translated" name="translated" required />
         <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     </>
