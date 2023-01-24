@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
-  const [isFound, setIsFound] = useState();
+  const [isFound, setIsFound] = useState(false);
 
   function handleAddTranslations(newTranslation) {
     const checkNewEntry = translationList
@@ -51,8 +51,9 @@ export default function HomePage() {
 
         <Form onAddTranslations={handleAddTranslations} />
         <StyledSection>
-          {isFound && <p>word already exists</p>}
-          {isFound === false && (
+          {isFound ? (
+            <p>word already exists</p>
+          ) : (
             <>
               <p>added new word</p>
               <Link href="/words">show entry {``}</Link>
