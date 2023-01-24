@@ -12,6 +12,10 @@ export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isFound, setIsFound] = useState();
 
+  function handleFirstInput() {
+    setIsFound("");
+  }
+
   function handleAddTranslations(newTranslation) {
     const checkNewEntry = translationList
       .slice()
@@ -49,11 +53,13 @@ export default function HomePage() {
       <main>
         <h1>Add word</h1>
 
-        <Form onAddTranslations={handleAddTranslations} />
+        <Form
+          onAddTranslations={handleAddTranslations}
+          onFirstInput={handleFirstInput}
+        />
         <StyledSection>
-          {isFound ? (
-            <p>word already exists</p>
-          ) : (
+          {isFound && <p>word already exists</p>}
+          {isFound === false && (
             <>
               <p>added new word</p>
               <Link href="/words">show entry {``}</Link>

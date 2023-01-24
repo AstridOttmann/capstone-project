@@ -7,7 +7,7 @@ const StyledForm = styled.form`
   gap: 0.5em;
 `;
 
-export default function Form({ onAddTranslations }) {
+export default function Form({ onAddTranslations, onFirstInput }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -28,7 +28,12 @@ export default function Form({ onAddTranslations }) {
     <>
       <StyledForm onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="word">Enter word</label>
-        <input id="word" name="word" required />
+        <input
+          id="word"
+          name="word"
+          required
+          onChange={(event) => onFirstInput(event)}
+        />
         <label htmlFor="language">Enter source language</label>
         <input id="translated" name="language" required />
         <label htmlFor="translated">Enter translation</label>
