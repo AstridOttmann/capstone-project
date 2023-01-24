@@ -1,6 +1,6 @@
 import Link from "next/link";
-import HomeIcon from "../Icons/HomeIcon";
-import WordsIcon from "../Icons/WordsIcon";
+import { HomeIconEmpty } from "../Icons/HomeIcon";
+import { WordsIconEmpty } from "../Icons/WordsIcon";
 import StyledNav from "./StyledNavigation";
 
 export default function MainNavigation() {
@@ -8,10 +8,10 @@ export default function MainNavigation() {
     <>
       <StyledNav>
         <Link href="/">
-          <HomeIcon />
+          <HomeIconEmpty />
         </Link>
         <Link href="/words">
-          <WordsIcon />
+          <WordsIconEmpty />
         </Link>
       </StyledNav>
     </>

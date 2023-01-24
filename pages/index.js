@@ -1,10 +1,8 @@
-import Header from "../components/Header";
 import Form from "../components/Form";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
-import MainNavigation from "@/components/MainNavigation";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -49,7 +47,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
       <main>
         <h1>Add word</h1>
 
@@ -67,7 +64,6 @@ export default function HomePage() {
           )}
         </StyledSection>
       </main>
-      <MainNavigation />
     </>
   );
 }

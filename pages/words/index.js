@@ -1,8 +1,6 @@
 import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
-import MainNavigation from "@/components/MainNavigation";
-import Header from "@/components/Header";
 import StyledList from "@/components/List/StyledList";
 
 export default function WordsPage() {
@@ -10,7 +8,6 @@ export default function WordsPage() {
 
   return (
     <>
-      <Header />
       <main>
         <StyledList>
           {translationList.map((translation) => (
@@ -22,7 +19,6 @@ export default function WordsPage() {
           ))}
         </StyledList>
       </main>
-      <MainNavigation />
     </>
   );
 }
