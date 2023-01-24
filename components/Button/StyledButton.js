@@ -6,8 +6,6 @@ const StyledButton = styled.button`
   padding: 0.7em;
   border-radius: 5px;
   border: none;
-  _background: #04bf45;
-  _color: whitesmoke;
 
   ${({ type }) => {
     if (type === "submit") {
@@ -17,6 +15,11 @@ const StyledButton = styled.button`
       `;
     } else if (type === "delete") {
       return css`
+        position: absolute;
+        right: 1rem;
+        bottom: 0.5rem;
+        z-index: 0;
+        overflow: hidden;
         background: whitesmoke;
         color: red;
         padding: 0.2em 0;

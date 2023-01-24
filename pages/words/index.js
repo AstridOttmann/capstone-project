@@ -3,7 +3,7 @@ import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
 import StyledButton from "@/components/Button/StyledButton";
-import BinIcon from "@/components/Icons/Bin";
+
 import SVGIcon from "@/components/Icons/SVGIcon";
 
 export default function WordsPage() {
@@ -16,6 +16,7 @@ export default function WordsPage() {
   return (
     <>
       <main>
+        <h1>My words</h1>
         <StyledList>
           {translationList.map((translation) => (
             <ListEntry key={translation.id}>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledEntry = styled.li`
+  position: relative;
   border: 1px dashed black;
   border-radius: 10px;
   margin: 1em;
