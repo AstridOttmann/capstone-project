@@ -2,9 +2,15 @@ import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
+import StyledButton from "@/components/Button/StyledButton";
+import BinIcon from "@/components/Icons/Bin";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
+
+  function handleDeleteEntry(id) {
+    setTranslationList(translationList.filter((entry) => entry.id !== id));
+  }
 
   return (
     <>
@@ -15,6 +21,12 @@ export default function WordsPage() {
               <p>{translation.word}</p>
               <small>({translation.language})</small>
               <p>{translation.translated}</p>
+              <StyledButton
+                type="delete"
+                onClick={() => handleDeleteEntry(translation.id)}
+              >
+                <BinIcon />
+              </StyledButton>
             </ListEntry>
           ))}
         </StyledList>

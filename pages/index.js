@@ -14,7 +14,7 @@ export default function HomePage() {
     setIsFound("");
   }
 
-  function handleAddTranslations(newTranslation) {
+  function handleAddTranslation(newTranslation) {
     const checkNewEntry = translationList
       .slice()
       .filter(
@@ -51,7 +51,7 @@ export default function HomePage() {
         <h1>Add word</h1>
 
         <Form
-          onAddTranslations={handleAddTranslations}
+          onAddTranslations={handleAddTranslation}
           onFirstInput={handleFirstInput}
         />
         <StyledSection>

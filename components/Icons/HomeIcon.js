@@ -2,7 +2,11 @@ import { StyledSvg } from "./StyledSvg";
 
 export function HomeIconEmpty() {
   return (
-    <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <StyledSvg
+      variant="nav"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
       <title>home-outline</title>
       <path
         fill="currentColor"
@@ -14,7 +18,11 @@ export function HomeIconEmpty() {
 
 export function HomeIconFilled() {
   return (
-    <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <StyledSvg
+      variant="nav"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
       <title>book-open-page-variant</title>
       <path
         fill="currentColor"

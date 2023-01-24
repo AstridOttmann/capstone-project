@@ -2,7 +2,11 @@ import { StyledSvg } from "./StyledSvg";
 
 export function WordsIconEmpty() {
   return (
-    <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <StyledSvg
+      variant="nav"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
       <title>book-open-page-variant-outline</title>
       <path
         fill="currentColor"
@@ -14,7 +18,11 @@ export function WordsIconEmpty() {
 
 export function WordsIconFilled() {
   return (
-    <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <StyledSvg
+      variant="nav"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
       <title>home</title>
       <path
         fill="currentColor"
