@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
-  const [isFound, setIsFound] = useState(false);
+  const [isFound, setIsFound] = useState();
 
   function handleAddTranslations(newTranslation) {
     const checkNewEntry = translationList
