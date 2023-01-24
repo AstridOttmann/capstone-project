@@ -13,7 +13,6 @@ export default function Form({ onAddTranslations }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("submitted", data);
 
     onAddTranslations({
       word: data.word,

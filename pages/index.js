@@ -2,10 +2,11 @@ import Header from "../components/Header";
 import Form from "../components/Form";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import ListEntry from "@/components/ListEntry";
 import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
 import MainNavigation from "@/components/MainNavigation";
+import styled from "styled-components";
+import Link from "next/link";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -47,19 +48,25 @@ export default function HomePage() {
       <Header />
       <main>
         <h1>Add word</h1>
-        <Form onAddTranslations={handleAddTranslations} />
-        {isFound === "true" && <p>word already exists</p>}
-        {isFound === "false" && <p>added new word</p>}
 
-        {translationList.map((translation) => (
-          <ListEntry key={translation.id}>
-            <p>{translation.word}</p>
-            <small>({translation.language})</small>
-            <p>{translation.translated}</p>
-          </ListEntry>
-        ))}
+        <Form onAddTranslations={handleAddTranslations} />
+        <StyledSection>
+          {isFound === "true" && <p>word already exists</p>}
+          {isFound === "false" && (
+            <>
+              <p>added new word</p>
+              <Link href="/words">show entry {`>>`}</Link>
+            </>
+          )}
+        </StyledSection>
       </main>
       <MainNavigation />
     </>
   );
 }
+
+const StyledSection = styled.section`
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2em;
+`;
