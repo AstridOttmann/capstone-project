@@ -1,11 +1,11 @@
 import { atom, useAtom } from "jotai";
 
 const initialTranslations = [
-  { id: 1, word: "verjaardag", translated: "Geburtstag" },
-  { id: 2, word: "uitnodigen", translated: "einladen" },
-  { id: 3, word: "verrassing", translated: "Überraschung" },
-  { id: 4, word: "schattig", translated: "niedlich" },
-  { id: 5, word: "moe", translated: "müde" },
+  { id: 1, word: "verjaardag", language: "Dutch", translated: "Geburtstag" },
+  { id: 2, word: "uitnodigen", language: "Dutch", translated: "einladen" },
+  { id: 3, word: "verrassing", language: "Dutch", translated: "Überraschung" },
+  { id: 4, word: "schattig", language: "Dutch", translated: "niedlich" },
+  { id: 5, word: "moe", language: "Dutch", translated: "müde" },
 ];
 
 const sortedList = initialTranslations.slice().sort((a, b) => {

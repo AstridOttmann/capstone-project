@@ -2,13 +2,15 @@ import Header from "../components/Header";
 import Form from "../components/Form";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import ListEntry from "@/components/ListEntry";
 import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
+import MainNavigation from "@/components/MainNavigation";
+import styled from "styled-components";
+import Link from "next/link";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
-  const [isFound, setIsFound] = useState();
+  const [isFound, setIsFound] = useState(false);
 
   function handleAddTranslations(newTranslation) {
     const checkNewEntry = translationList
@@ -34,10 +36,10 @@ export default function HomePage() {
         { id: nanoid(), ...newTranslation },
         ...translationList,
       ]);
-      setIsFound("false");
+      setIsFound(false);
     } else {
       setTranslationList([...translationList]);
-      setIsFound("true");
+      setIsFound(true);
     }
   }
 
@@ -46,18 +48,26 @@ export default function HomePage() {
       <Header />
       <main>
         <h1>Add word</h1>
-        <Form onAddTranslations={handleAddTranslations} />
-        {isFound === "true" && <p>Wort bereits vorhanden</p>}
-        {isFound === "false" && <p>neues Wort hinzugefügt</p>}
 
-        {translationList.map((translation) => (
-          <ListEntry key={translation.id}>
-            <p>{translation.word}</p>
-            <small>({translation.language})</small>
-            <p>{translation.translated}</p>
-          </ListEntry>
-        ))}
+        <Form onAddTranslations={handleAddTranslations} />
+        <StyledSection>
+          {isFound ? (
+            <p>word already exists</p>
+          ) : (
+            <>
+              <p>added new word</p>
+              <Link href="/words">show entry {``}</Link>
+            </>
+          )}
+        </StyledSection>
       </main>
+      <MainNavigation />
     </>
   );
 }
+
+const StyledSection = styled.section`
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2em;
+`;
