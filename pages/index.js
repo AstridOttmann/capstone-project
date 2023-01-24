@@ -36,10 +36,10 @@ export default function HomePage() {
         { id: nanoid(), ...newTranslation },
         ...translationList,
       ]);
-      setIsFound("false");
+      setIsFound(false);
     } else {
       setTranslationList([...translationList]);
-      setIsFound("true");
+      setIsFound(true);
     }
   }
 
@@ -51,8 +51,8 @@ export default function HomePage() {
 
         <Form onAddTranslations={handleAddTranslations} />
         <StyledSection>
-          {isFound === "true" && <p>word already exists</p>}
-          {isFound === "false" && (
+          {isFound && <p>word already exists</p>}
+          {isFound === false && (
             <>
               <p>added new word</p>
               <Link href="/words">show entry {``}</Link>
