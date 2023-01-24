@@ -4,6 +4,7 @@ import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
 import StyledButton from "@/components/Button/StyledButton";
 import BinIcon from "@/components/Icons/Bin";
+import SVGIcon from "@/components/Icons/SVGIcon";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -25,7 +26,7 @@ export default function WordsPage() {
                 type="delete"
                 onClick={() => handleDeleteEntry(translation.id)}
               >
-                <BinIcon />
+                <SVGIcon variant="bin" width="1.5rem" color="red" />
               </StyledButton>
             </ListEntry>
           ))}

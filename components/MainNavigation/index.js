@@ -1,17 +1,16 @@
 import Link from "next/link";
-import { HomeIconEmpty } from "../Icons/HomeIcon";
-import { WordsIconEmpty } from "../Icons/WordsIcon";
 import StyledNav from "./StyledNavigation";
+import SVGIcon from "../Icons/SVGIcon";
 
 export default function MainNavigation() {
   return (
     <>
       <StyledNav>
         <Link href="/">
-          <HomeIconEmpty />
+          <SVGIcon variant="home" width="3rem" color="whitesmoke" />
         </Link>
         <Link href="/words">
-          <WordsIconEmpty />
+          <SVGIcon variant="words" width="3rem" color="whitesmoke" />
         </Link>
       </StyledNav>
     </>
