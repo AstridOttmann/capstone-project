@@ -12,14 +12,14 @@ const MainNavigation = () => {
       <StyledNav>
         <Link href="/">
           {currentRoute === "/" ? (
-            <SVGIcon variant="home" width="3rem" color="#F27405" />
+            <SVGIcon variant="homefilled" width="3rem" color="#F27405" />
           ) : (
             <SVGIcon variant="home" width="3rem" color="whitesmoke" />
           )}
         </Link>
         <Link href="/words">
           {currentRoute === "/words" ? (
-            <SVGIcon variant="words" width="3rem" color="#F27405" />
+            <SVGIcon variant="wordsfilled" width="3rem" color="#F27405" />
           ) : (
             <SVGIcon variant="words" width="3rem" color="whitesmoke" />
           )}
