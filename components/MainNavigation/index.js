@@ -9,7 +9,7 @@ const MainNavigation = () => {
 
   return (
     <>
-      <StyledNav>
+      <StyledNav variant="main">
         <Link href="/">
           {currentRoute === "/" ? (
             <SVGIcon variant="homefilled" width="3rem" color="#F27405" />

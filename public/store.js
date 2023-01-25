@@ -47,3 +47,8 @@ const sortedList = initialTranslations.slice().sort((a, b) => {
 
 const globalTranslations = atom(sortedList);
 export default globalTranslations;
+
+const allLanguages = initialTranslations.map(
+  (translation) => translation.language
+);
+export const languageAtom = atom(allLanguages);

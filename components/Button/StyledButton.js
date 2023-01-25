@@ -26,6 +26,22 @@ const StyledButton = styled.button`
         width: 50px;
         border: 2px solid red;
       `;
+    } else if (type === "language") {
+      return css`
+        background: whitesmoke;
+        color: #f27405;
+        margin: 0;
+        width: 5em;
+        border: 2px solid #f27405;
+      `;
+    } else if (type === "language-selected") {
+      return css`
+        background: #f27405;
+        color: whitesmoke;
+        margin: 0;
+        width: 5em;
+        border: 2px solid #f27405;
+      `;
     }
   }}
 `;
