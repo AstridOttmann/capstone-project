@@ -24,11 +24,11 @@ const initialTranslations = [
   { id: 11, word: "dimmi", language: "Italian", translated: "sag mir" },
   { id: 12, word: "gisteren", language: "Dutch", translated: "gestern" },
   { id: 13, word: "slapen", language: "Dutch", translated: "schlafen" },
-  { id: 14, word: "dormire", language: "Wolof", translated: "schlafen" },
+  { id: 14, word: "dormire", language: "Italian", translated: "schlafen" },
   {
     id: 15,
     word: "nopp nala",
-    language: "Italian",
+    language: "Wolof",
     translated: "ich liebe dich",
   },
 ];

@@ -29,15 +29,29 @@ export default function Form({ onAddTranslations, onFirstInput }) {
       <StyledForm onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="word">Enter word</label>
         <input
+          type="text"
           id="word"
           name="word"
           required
+          pattern="^.[^0-9]{1,30}"
           onChange={(event) => onFirstInput(event)}
         />
         <label htmlFor="language">Enter source language</label>
-        <input id="translated" name="language" required />
+        <input
+          type="text"
+          id="language"
+          name="language"
+          required
+          pattern="^.[^0-9]{1,30}"
+        />
         <label htmlFor="translated">Enter translation</label>
-        <input id="translated" name="translated" required />
+        <input
+          type="text"
+          id="translated"
+          name="translated"
+          required
+          pattern="^.[^0-9]{1,30}"
+        />
         <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     </>
