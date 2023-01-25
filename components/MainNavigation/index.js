@@ -1,19 +1,32 @@
 import Link from "next/link";
-import HomeIcon from "../Icons/HomeIcon";
-import WordsIcon from "../Icons/WordsIcon";
 import StyledNav from "./StyledNavigation";
+import SVGIcon from "../Icons/SVGIcon";
+import { useRouter } from "next/router";
 
-export default function MainNavigation() {
+const MainNavigation = () => {
+  const router = useRouter();
+  const currentRoute = router.pathname;
+
   return (
     <>
       <StyledNav>
         <Link href="/">
-          <HomeIcon />
+          {currentRoute === "/" ? (
+            <SVGIcon variant="homefilled" width="3rem" color="#F27405" />
+          ) : (
+            <SVGIcon variant="home" width="3rem" color="whitesmoke" />
+          )}
         </Link>
         <Link href="/words">
-          <WordsIcon />
+          {currentRoute === "/words" ? (
+            <SVGIcon variant="wordsfilled" width="3rem" color="#F27405" />
+          ) : (
+            <SVGIcon variant="words" width="3rem" color="whitesmoke" />
+          )}
         </Link>
       </StyledNav>
     </>
   );
-}
+};
+
+export default MainNavigation;

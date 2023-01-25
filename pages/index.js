@@ -1,10 +1,8 @@
-import Header from "../components/Header";
 import Form from "../components/Form";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
-import MainNavigation from "@/components/MainNavigation";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -12,7 +10,11 @@ export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isFound, setIsFound] = useState();
 
-  function handleAddTranslations(newTranslation) {
+  function handleFirstInput() {
+    setIsFound("");
+  }
+
+  function handleAddTranslation(newTranslation) {
     const checkNewEntry = translationList
       .slice()
       .filter(
@@ -45,15 +47,16 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
       <main>
         <h1>Add word</h1>
 
-        <Form onAddTranslations={handleAddTranslations} />
+        <Form
+          onAddTranslations={handleAddTranslation}
+          onFirstInput={handleFirstInput}
+        />
         <StyledSection>
-          {isFound ? (
-            <p>word already exists</p>
-          ) : (
+          {isFound && <p>word already exists</p>}
+          {isFound === false && (
             <>
               <p>added new word</p>
               <Link href="/words">show entry {``}</Link>
@@ -61,7 +64,6 @@ export default function HomePage() {
           )}
         </StyledSection>
       </main>
-      <MainNavigation />
     </>
   );
 }
