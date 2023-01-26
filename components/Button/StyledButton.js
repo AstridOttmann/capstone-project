@@ -31,7 +31,7 @@ const StyledButton = styled.button`
         background: whitesmoke;
         color: #f27405;
         margin: 0;
-        width: 5em;
+        width: fit-content;
         border: 2px solid #f27405;
       `;
     } else if (type === "language-selected") {
@@ -39,7 +39,7 @@ const StyledButton = styled.button`
         background: #f27405;
         color: whitesmoke;
         margin: 0;
-        width: 5em;
+        width: fit-content;
         border: 2px solid #f27405;
       `;
     }

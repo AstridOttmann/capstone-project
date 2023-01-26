@@ -44,7 +44,7 @@ export default function Form({ onAddTranslations, onFirstInput }) {
           name="language"
           required
           pattern="^[^\sa0-9].*$"
-          maxLength="30"
+          maxLength="17"
         />
         <label htmlFor="translated">Enter translation</label>
         <input
