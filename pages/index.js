@@ -59,7 +59,7 @@ export default function HomePage() {
           {isFound === false && (
             <>
               <p>added new word</p>
-              <Link href="/words">show entry {``}</Link>
+              <Link href="/words">show entry {`>>`}</Link>
             </>
           )}
         </StyledSection>

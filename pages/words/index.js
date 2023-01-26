@@ -10,31 +10,35 @@ import LanguageSelection from "@/components/LanguageSelection";
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
-
-  const usedLanguagesDoublicates = translationList.map((language) => {
+  //
+  const usedLanguagesWithDublicates = translationList.map((language) => {
     return language.language;
   });
   //removing duplicates
-  const usedLanguages = [...new Set(usedLanguagesDoublicates)]; // https://dev.to/soyleninjs/3-ways-to-remove-duplicates-in-an-array-in-javascript-259o
+  const usedLanguages = [...new Set(usedLanguagesWithDublicates)]; // https://dev.to/soyleninjs/3-ways-to-remove-duplicates-in-an-array-in-javascript-259o
+  console.log("usedLanguages", usedLanguages);
 
-  console.log(usedLanguages);
   function handleLanguageSelection(language) {
+    // toggles the button & sets the language
     if (selectedLanguage !== language) {
       setSelectedLanguage(language);
     } else {
       setSelectedLanguage("");
     }
   }
+
   function handleDeleteEntry(id) {
     setTranslationList(translationList.filter((entry) => entry.id !== id));
   }
 
+  // displays the list with the entries in the selected language
   const filteredTranslations = translationList.filter((translation) => {
     if (selectedLanguage) {
       return translation.language === selectedLanguage;
     }
     return true;
   });
+  console.log("filtered", filteredTranslations);
 
   return (
     <>
