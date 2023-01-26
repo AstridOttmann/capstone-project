@@ -3,11 +3,11 @@ export const paths = {
     path: "M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22",
     viewbox: "0 0 24 24",
   },
-  homefilled: {
+  homeActive: {
     path: "M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z",
     viewbox: "0 0 24 24",
   },
-  wordsfilled: {
+  wordsActive: {
     path: "M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z",
     viewbox: "0 0 24 24",
   },
@@ -19,11 +19,20 @@ export const paths = {
     path: "M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z",
     viewbox: "0 0 24 24",
   },
+  arrow: {
+    path: "M17,12L12,17V14H8V10H12V7L17,12M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12Z",
+    viewbox: "0 0 24 24",
+  },
 };
 
 export default function SVGIcon({ variant, width, color = "currentColor" }) {
   return (
-    <svg viewBox={paths[variant].viewbox} width={width} fill={color}>
+    <svg
+      viewBox={paths[variant].viewbox}
+      width={width}
+      fill={color}
+      aria-label={variant}
+    >
       <title>{variant}</title>
       <path d={paths[variant].path} />
     </svg>

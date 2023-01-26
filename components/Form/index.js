@@ -33,7 +33,7 @@ export default function Form({ onAddTranslations, onFirstInput }) {
           id="word"
           name="word"
           required
-          pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-!'/]*"
+          pattern="^[^\sa0-9].*$"
           maxLength="30"
           onChange={(event) => onFirstInput(event)}
         />
@@ -43,7 +43,7 @@ export default function Form({ onAddTranslations, onFirstInput }) {
           id="language"
           name="language"
           required
-          pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-/]*"
+          pattern="^[^\sa0-9].*$"
           maxLength="30"
         />
         <label htmlFor="translated">Enter translation</label>
@@ -52,7 +52,7 @@ export default function Form({ onAddTranslations, onFirstInput }) {
           id="translated"
           name="translated"
           required
-          pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-!'/]*"
+          pattern="^[^\sa0-9].*$"
           maxLength="30"
         />
         <StyledButton type="submit">Submit</StyledButton>
@@ -60,3 +60,5 @@ export default function Form({ onAddTranslations, onFirstInput }) {
     </>
   );
 }
+
+// pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-/]*"

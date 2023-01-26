@@ -5,6 +5,7 @@ import globalTranslations from "@/public/store";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
+import SVGIcon from "@/components/Icons/SVGIcon";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -59,7 +60,15 @@ export default function HomePage() {
           {isFound === false && (
             <>
               <p>added new word</p>
-              <Link href="/words">show entry {`>>`}</Link>
+              <Link href="/words">
+                show entry
+                <SVGIcon
+                  variant="arrow"
+                  width="2rem"
+                  color="#04BF45"
+                  aria-label="variant"
+                />
+              </Link>
             </>
           )}
         </StyledSection>
@@ -69,7 +78,10 @@ export default function HomePage() {
 }
 
 const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   text-align: center;
   padding: 2rem;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 `;
