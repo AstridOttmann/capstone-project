@@ -17,14 +17,27 @@ const StyledButton = styled.button`
       return css`
         position: absolute;
         right: 1rem;
-        bottom: 0.5rem;
+        bottom: 0.2rem;
         z-index: 0;
         overflow: hidden;
         background: whitesmoke;
         color: red;
         padding: 0.2em 0;
-        width: 50px;
+        width: 30px;
         border: 2px solid red;
+      `;
+    } else if (type === "edit") {
+      return css`
+        position: absolute;
+        right: 1rem;
+        top: 0.2rem;
+        z-index: 0;
+        overflow: hidden;
+        background: whitesmoke;
+        color: #04bf45;
+        padding: 0.2em 0;
+        width: 30px;
+        border: 2px solid #04bf45;
       `;
     } else if (type === "language") {
       return css`

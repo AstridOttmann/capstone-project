@@ -50,7 +50,6 @@ export default function HomePage() {
     <>
       <main>
         <h1>Add word</h1>
-
         <Form
           onAddTranslations={handleAddTranslation}
           onFirstInput={handleFirstInput}

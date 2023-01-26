@@ -18,6 +18,7 @@ const StyledNav = styled.nav`
       `;
     } else if (variant === "language") {
       return css`
+        _position: fixed;
         display: flex;
         justify-content: flex-start;
         gap: 1em;

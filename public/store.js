@@ -28,7 +28,7 @@ const initialTranslations = [
   {
     id: 15,
     word: "nopp nala",
-    language: "Wolof",
+    language: "Wolof/Gambia",
     translated: "ich liebe dich",
   },
 ];

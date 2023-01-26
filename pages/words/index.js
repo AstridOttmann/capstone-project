@@ -6,6 +6,7 @@ import StyledButton from "@/components/Button/StyledButton";
 import { useState } from "react";
 import SVGIcon from "@/components/Icons/SVGIcon";
 import LanguageSelection from "@/components/LanguageSelection";
+import { router } from "next/router";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -27,10 +28,6 @@ export default function WordsPage() {
     }
   }
 
-  function handleDeleteEntry(id) {
-    setTranslationList(translationList.filter((entry) => entry.id !== id));
-  }
-
   // displays the list with the entries in the selected language
   const filteredTranslations = translationList.filter((translation) => {
     if (selectedLanguage) {
@@ -38,6 +35,17 @@ export default function WordsPage() {
     }
     return true;
   });
+
+  function handleDeleteEntry(id) {
+    if (filteredTranslations.length === 1) {
+      setSelectedLanguage("");
+      setTranslationList(translationList.filter((entry) => entry.id !== id));
+    }
+    setTranslationList(translationList.filter((entry) => entry.id !== id));
+  }
+  // function handleDeleteEntry(id) {
+  //   setTranslationList(translationList.filter((entry) => entry.id !== id));
+  // }
 
   return (
     <main>
@@ -51,17 +59,25 @@ export default function WordsPage() {
         {filteredTranslations.map((translation) => (
           <ListEntry key={translation.id}>
             <p>{translation.word}</p>
-            <small>({translation.language})</small>
+            {!selectedLanguage ? <small>({translation.language})</small> : ""}
+
             <p>{translation.translated}</p>
+            <StyledButton type="edit">
+              <SVGIcon
+                variant="pencil"
+                width="1.1rem"
+                aria-label="pencil"
+              ></SVGIcon>
+            </StyledButton>
             <StyledButton
               type="delete"
               onClick={() => handleDeleteEntry(translation.id)}
             >
               <SVGIcon
                 variant="bin"
-                width="1.5rem"
+                width="1.1rem"
                 color="red"
-                aria-label="variant"
+                aria-label="bin"
               />
             </StyledButton>
           </ListEntry>
