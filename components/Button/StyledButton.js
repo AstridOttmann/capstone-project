@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const StyledButton = styled.button`
-  width: 200px;
+  width: fit-content;
   margin: 1em auto;
   padding: 0.7em;
   border-radius: 5px;
@@ -12,6 +12,7 @@ const StyledButton = styled.button`
       return css`
         background: #04bf45;
         color: whitesmoke;
+        width: 10rem;
       `;
     } else if (type === "delete") {
       return css`
@@ -22,7 +23,7 @@ const StyledButton = styled.button`
         overflow: hidden;
         background: whitesmoke;
         color: red;
-        padding: 0.2em 0;
+        padding: 0.2rem 0.2rem 0 0.2rem;
         width: 30px;
         border: 2px solid red;
       `;
@@ -35,7 +36,7 @@ const StyledButton = styled.button`
         overflow: hidden;
         background: whitesmoke;
         color: #04bf45;
-        padding: 0.2em 0;
+        padding: 0.2rem 0.2rem 0 0.2rem;
         width: 30px;
         border: 2px solid #04bf45;
       `;
@@ -52,6 +53,16 @@ const StyledButton = styled.button`
         background: #f27405;
         color: whitesmoke;
         margin: 0;
+        width: fit-content;
+        border: 2px solid #f27405;
+      `;
+    } else if (type === "discard") {
+      return css`
+        position: absolute;
+        top: 1.7rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.4rem 0 0.4rem;
+        color: #f27405
         width: fit-content;
         border: 2px solid #f27405;
       `;

@@ -6,11 +6,13 @@ import StyledButton from "@/components/Button/StyledButton";
 import { useState } from "react";
 import SVGIcon from "@/components/Icons/SVGIcon";
 import LanguageSelection from "@/components/LanguageSelection";
-import { router } from "next/router";
+import Form from "@/components/Form";
+import { useRouter } from "next/router";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const router = useRouter();
 
   // filter for array only selected languages
   const usedLanguagesWithDublicates = translationList.map((language) => {
@@ -39,13 +41,10 @@ export default function WordsPage() {
   function handleDeleteEntry(id) {
     if (filteredTranslations.length === 1) {
       setSelectedLanguage("");
-      setTranslationList(translationList.filter((entry) => entry.id !== id));
+      //setTranslationList(translationList.filter((entry) => entry.id !== id));
     }
     setTranslationList(translationList.filter((entry) => entry.id !== id));
   }
-  // function handleDeleteEntry(id) {
-  //   setTranslationList(translationList.filter((entry) => entry.id !== id));
-  // }
 
   return (
     <main>
@@ -55,6 +54,7 @@ export default function WordsPage() {
         onLanguageSelection={handleLanguageSelection}
       />
       <h1>My words</h1>
+
       <StyledList>
         {filteredTranslations.map((translation) => (
           <ListEntry key={translation.id}>
@@ -62,7 +62,12 @@ export default function WordsPage() {
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
 
             <p>{translation.translated}</p>
-            <StyledButton type="edit">
+            <StyledButton
+              type="edit"
+              onClick={() => {
+                router.push(`/words/${translation.id}`);
+              }}
+            >
               <SVGIcon
                 variant="pencil"
                 width="1.1rem"
