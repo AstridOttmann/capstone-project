@@ -9,6 +9,7 @@ import LanguageSelection from "@/components/LanguageSelection";
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
+import styled from "styled-components";
 
 export default function WordsPage() {
   const [toast, setToast] = useState("");
@@ -63,7 +64,7 @@ export default function WordsPage() {
         selectedLanguage={selectedLanguage}
         onLanguageSelection={handleLanguageSelection}
       />
-      <h1>My words</h1>
+      <StyledTitle>My words</StyledTitle>
       <ToastMessage toast={toast} />
       <StyledList>
         {filteredTranslations.map((translation) => (
@@ -100,3 +101,7 @@ export default function WordsPage() {
     </main>
   );
 }
+
+const StyledTitle = styled.h1`
+  margin-top: 3rem;
+`;

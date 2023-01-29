@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 export default function ToastMessage({ toast }) {
   return <StyledToast action={toast}>entry has been deleted</StyledToast>;
 }
@@ -22,7 +23,7 @@ const StyledToast = styled.div`
       `;
     } else if (action === "enter") {
       return css`
-        transform: translate(20%, 50%);
+        transform: translate(-80%, 20%);
         transition: transform 1s cubic-bezier(0, 0.79, 1, 1.02);
         z-index: 1;
       `;
