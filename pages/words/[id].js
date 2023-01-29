@@ -49,7 +49,13 @@ export default function SingleEntry() {
             aria-label="cancel"
           ></SVGIcon>
         </StyledButton>
-        <Form entry={entry} isEditMode={true} onSubmitEvent={handleEditEntry} />
+        {!entry ? null : (
+          <Form
+            entry={entry}
+            isEditMode={true}
+            onSubmitEvent={handleEditEntry}
+          />
+        )}
       </main>
     </>
   );
