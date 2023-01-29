@@ -32,9 +32,9 @@ const initialTranslations = [
   { id: "14", word: "dormire", language: "Italian", translated: "schlafen" },
   {
     id: "15",
-    word: "nopp nala",
-    language: "Wolof/Gambia",
-    translated: "ich liebe dich",
+    word: "skön",
+    language: "Swedish",
+    translated: "schön",
   },
 ];
 

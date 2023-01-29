@@ -8,8 +8,11 @@ import SVGIcon from "@/components/Icons/SVGIcon";
 import LanguageSelection from "@/components/LanguageSelection";
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
+import ToastMessage from "@/components/ToastMessage";
 
 export default function WordsPage() {
+  const [toast, setToast] = useState("");
+
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
@@ -41,11 +44,18 @@ export default function WordsPage() {
   function handleDeleteEntry(id) {
     if (filteredTranslations.length === 1) {
       setSelectedLanguage("");
+
       //setTranslationList(translationList.filter((entry) => entry.id !== id));
     }
+    setToast("enter");
+    setTimeout(exitToast, 2000);
+
     setTranslationList(translationList.filter((entry) => entry.id !== id));
   }
 
+  function exitToast() {
+    setToast("exit");
+  }
   return (
     <main>
       <LanguageSelection
@@ -54,13 +64,12 @@ export default function WordsPage() {
         onLanguageSelection={handleLanguageSelection}
       />
       <h1>My words</h1>
-
+      <ToastMessage toast={toast} />
       <StyledList>
         {filteredTranslations.map((translation) => (
           <ListEntry key={translation.id}>
             <p>{translation.word}</p>
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
-
             <p>{translation.translated}</p>
             <StyledButton
               type="edit"
