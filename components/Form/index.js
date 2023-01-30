@@ -59,7 +59,7 @@ export default function Form({
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
-          pattern="^[^\sa0-9].*$"
+          pattern="^[^\s0-9].*$"
           maxLength="17"
         />
         <label htmlFor="translated">
@@ -71,7 +71,7 @@ export default function Form({
           name="translated"
           required
           defaultValue={isEditMode ? entry.translated : ""}
-          pattern="^[^\sa0-9].*$"
+          pattern="^[^\s0-9].*$"
           maxLength="30"
         />
         <StyledButton type="submit">Save</StyledButton>
