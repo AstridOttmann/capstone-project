@@ -17,9 +17,9 @@ export default function SingleEntry() {
   console.log("entry", entry);
   console.log("id", id);
 
-  function handleCancelEdit() {
-    router.back();
-  }
+  // function handleCancelEdit() {
+  //   router.back();
+  // }
 
   function handleEditEntry(editedEntry) {
     setTranslationList(
@@ -41,7 +41,7 @@ export default function SingleEntry() {
     <>
       <main>
         <h1>Edit word</h1>
-        <StyledButton type="discard" onClick={handleCancelEdit}>
+        <StyledButton type="discard" onClick={() => router.back()}>
           <SVGIcon
             variant="cancel"
             width="2.5rem"

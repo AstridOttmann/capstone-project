@@ -7,7 +7,6 @@ export default function ToastMessage({ toast }) {
 const StyledToast = styled.div`
   position: fixed;
   top: 9rem;
-  _bottom: 10rem;
   right: 5rem;
   background: whitesmoke;
   color: red;
@@ -23,7 +22,7 @@ const StyledToast = styled.div`
       `;
     } else if (action === "enter") {
       return css`
-        transform: translate(-80%, 20%);
+        transform: translate(-10%, 20%);
         transition: transform 1s cubic-bezier(0, 0.79, 1, 1.02);
         z-index: 1;
       `;
