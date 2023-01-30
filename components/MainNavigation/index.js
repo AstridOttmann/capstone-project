@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 const MainNavigation = () => {
   const router = useRouter();
+  const { id } = router.query;
   const currentRoute = router.pathname;
 
   return (
@@ -28,7 +29,7 @@ const MainNavigation = () => {
           )}
         </Link>
         <Link href="/words">
-          {currentRoute === "/words" ? (
+          {currentRoute === "/words" || currentRoute === `/words/${id}` ? (
             <SVGIcon
               variant="wordsActive"
               width="3rem"

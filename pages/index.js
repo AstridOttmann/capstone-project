@@ -41,7 +41,7 @@ export default function HomePage() {
       ]);
       setIsFound(false);
     } else {
-      setTranslationList([...translationList]);
+      //setTranslationList([...translationList]);
       setIsFound(true);
     }
   }
@@ -50,9 +50,9 @@ export default function HomePage() {
     <>
       <main>
         <h1>Add word</h1>
-
         <Form
-          onAddTranslations={handleAddTranslation}
+          isEditMode={false}
+          onSubmitEvent={handleAddTranslation}
           onFirstInput={handleFirstInput}
         />
         <StyledSection>

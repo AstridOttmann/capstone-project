@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
   transform: translateX(-50%);
   width: 368px;
   margin: 0 auto;
-  padding: 0.2em;
+  padding: 0.3em;
   background: #494fbf;
   color: whitesmoke;
   text-align: center;
