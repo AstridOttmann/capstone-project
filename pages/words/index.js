@@ -10,13 +10,46 @@ import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
 import styled from "styled-components";
+import FavoriteButton from "@/components/Button/FavoriteButton";
+import EditButton from "@/components/Button/EditButton";
+import DeleteButton from "@/components/Button/DeleteButton";
 
-export default function WordsPage() {
-  const [toast, setToast] = useState("");
-
+export default function WordsPage({ isFavorite }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
+  const { id } = router.query;
+
+  const [toast, setToast] = useState("");
+
+  const [favoriteFilter, setFavoriteFilter] = useState("all");
+
+  function handleToggleFavorite(id) {
+    setTranslationList(
+      translationList.map((translation) =>
+        translation.id === id
+          ? { ...translation, isFavorite: !translation.isFavorite }
+          : translation
+      )
+    );
+  }
+
+  // function checkFavorites(favorites, id) {
+  //   return favorites.filter((favorite) => favorite.id === id);
+  // }
+  // console.log("id", id);
+  // const isFaved = checkFavorites(favorites, id);
+  // console.log("isFav", isFaved);
+
+  // function handleFavorites(id) {
+  //   if (isFaved) {
+  //     setFavorites(favorites.filter((favorite) => favorite.id !== id));
+  //   } else {
+  //     setFavorites([...favorites, id]);
+  //   }
+  // }
+  // console.log("Fav", favorites);
+  // console.log("favorites.id", favorites.id);
 
   // filter for array only selected languages
   const usedLanguagesWithDublicates = translationList.map((language) => {
@@ -65,36 +98,31 @@ export default function WordsPage() {
         onLanguageSelection={handleLanguageSelection}
       />
       <StyledTitle>My words</StyledTitle>
+      <StyledButton type="nav-favorite">
+        <SVGIcon variant="likeActive" width="1.5rem"></SVGIcon>
+      </StyledButton>
       <ToastMessage toast={toast} />
       <StyledList>
         {filteredTranslations.map((translation) => (
-          <ListEntry key={translation.id}>
+          <ListEntry
+            key={translation.id}
+            id={translation.id}
+            isFavorite={translation.isFavorite}
+          >
+            <FavoriteButton
+              id={translation.id}
+              isFavorite={translation.isFavorite}
+              onToggleFavorite={handleToggleFavorite}
+            />
             <p>{translation.word}</p>
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
             <p>{translation.translated}</p>
-            <StyledButton
-              type="edit"
-              onClick={() => {
-                router.push(`/words/${translation.id}`);
-              }}
-            >
-              <SVGIcon
-                variant="pencil"
-                width="1.1rem"
-                aria-label="pencil"
-              ></SVGIcon>
-            </StyledButton>
-            <StyledButton
-              type="delete"
-              onClick={() => handleDeleteEntry(translation.id)}
-            >
-              <SVGIcon
-                variant="bin"
-                width="1.1rem"
-                color="red"
-                aria-label="bin"
-              />
-            </StyledButton>
+            <EditButton
+              onClick={() => router.push(`/words/${translation.id}`)}
+            />
+            <DeleteButton
+              onDeleteEntry={() => handleDeleteEntry(translation.id)}
+            />
           </ListEntry>
         ))}
       </StyledList>
@@ -105,3 +133,12 @@ export default function WordsPage() {
 const StyledTitle = styled.h1`
   margin-top: 3rem;
 `;
+
+{
+  /* <StyledButton type="favorite" onClick={() => handleToggleFavorite}>
+              <SVGIcon
+                variant={isFavorite ? "likeActive" : "like"}
+                width="1.5rem"
+              ></SVGIcon>
+            </StyledButton> */
+}

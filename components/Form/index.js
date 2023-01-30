@@ -46,7 +46,7 @@ export default function Form({
           name="word"
           required
           defaultValue={isEditMode ? entry.word : ""}
-          pattern="^[^\sa0-9].*$"
+          pattern="^[^\s0-9].*$"
           maxLength="30"
           onChange={!isEditMode ? onFirstInput : () => {}}
         />
