@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledButton from "../Button/StyledButton";
+import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 
 const StyledForm = styled.form`

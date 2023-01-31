@@ -2,19 +2,17 @@ import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
-import StyledButton from "@/components/Button/StyledButton";
 import { useState } from "react";
-import SVGIcon from "@/components/Icons/SVGIcon";
 import LanguageSelection from "@/components/LanguageSelection";
-import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
 import styled from "styled-components";
-import FavoriteButton from "@/components/Button/FavoriteButton";
-import EditButton from "@/components/Button/EditButton";
-import DeleteButton from "@/components/Button/DeleteButton";
+import FavoriteButton from "@/components/Buttons/FavoriteButton";
+import EditButton from "@/components/Buttons/EditButton";
+import DeleteButton from "@/components/Buttons/DeleteButton";
+import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 
-export default function WordsPage({ isFavorite }) {
+export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
@@ -22,8 +20,9 @@ export default function WordsPage({ isFavorite }) {
 
   const [toast, setToast] = useState("");
 
-  const [favoriteFilter, setFavoriteFilter] = useState("all");
+  const [favoriteFilter, setFavoriteFilter] = useState(false);
 
+  // toggles the button
   function handleToggleFavorite(id) {
     setTranslationList(
       translationList.map((translation) =>
@@ -33,23 +32,14 @@ export default function WordsPage({ isFavorite }) {
       )
     );
   }
-
-  // function checkFavorites(favorites, id) {
-  //   return favorites.filter((favorite) => favorite.id === id);
-  // }
-  // console.log("id", id);
-  // const isFaved = checkFavorites(favorites, id);
-  // console.log("isFav", isFaved);
-
-  // function handleFavorites(id) {
-  //   if (isFaved) {
-  //     setFavorites(favorites.filter((favorite) => favorite.id !== id));
-  //   } else {
-  //     setFavorites([...favorites, id]);
-  //   }
-  // }
-  // console.log("Fav", favorites);
-  // console.log("favorites.id", favorites.id);
+  // sets the filter
+  function handleShowFavorites() {
+    if (!favoriteFilter) {
+      setFavoriteFilter(true);
+    } else {
+      setFavoriteFilter(false);
+    }
+  }
 
   // filter for array only selected languages
   const usedLanguagesWithDublicates = translationList.map((language) => {
@@ -58,8 +48,8 @@ export default function WordsPage({ isFavorite }) {
   //removing duplicates
   const usedLanguages = [...new Set(usedLanguagesWithDublicates)]; // https://dev.to/soyleninjs/3-ways-to-remove-duplicates-in-an-array-in-javascript-259o
 
+  // toggles the button & sets the language
   function handleLanguageSelection(language) {
-    // toggles the button & sets the language
     if (selectedLanguage !== language) {
       setSelectedLanguage(language);
     } else {
@@ -67,18 +57,24 @@ export default function WordsPage({ isFavorite }) {
     }
   }
 
-  // displays the list with the entries in the selected language
-  const filteredTranslations = translationList.filter((translation) => {
-    if (selectedLanguage) {
-      return translation.language === selectedLanguage;
-    }
-    return true;
-  });
+  // filters the list with the entries by the selected language and favorites and displays it
+  const filteredTranslations = translationList
+    .filter((translation) => {
+      if (selectedLanguage) {
+        return translation.language === selectedLanguage;
+      }
+      return true;
+    })
+    .filter((translation) => {
+      if (favoriteFilter) {
+        return translation.isFavorite;
+      }
+      return true;
+    });
 
   function handleDeleteEntry(id) {
     if (filteredTranslations.length === 1) {
       setSelectedLanguage("");
-
       //setTranslationList(translationList.filter((entry) => entry.id !== id));
     }
     setToast("enter");
@@ -86,7 +82,6 @@ export default function WordsPage({ isFavorite }) {
 
     setTranslationList(translationList.filter((entry) => entry.id !== id));
   }
-
   function exitToast() {
     setToast("exit");
   }
@@ -98,9 +93,11 @@ export default function WordsPage({ isFavorite }) {
         onLanguageSelection={handleLanguageSelection}
       />
       <StyledTitle>My words</StyledTitle>
-      <StyledButton type="nav-favorite">
-        <SVGIcon variant="likeActive" width="1.5rem"></SVGIcon>
-      </StyledButton>
+      <ShowFavoritesButton
+        favoriteFilter={favoriteFilter}
+        isActive={favoriteFilter === true}
+        onShowFavorites={handleShowFavorites}
+      />
       <ToastMessage toast={toast} />
       <StyledList>
         {filteredTranslations.map((translation) => (
@@ -133,12 +130,3 @@ export default function WordsPage({ isFavorite }) {
 const StyledTitle = styled.h1`
   margin-top: 3rem;
 `;
-
-{
-  /* <StyledButton type="favorite" onClick={() => handleToggleFavorite}>
-              <SVGIcon
-                variant={isFavorite ? "likeActive" : "like"}
-                width="1.5rem"
-              ></SVGIcon>
-            </StyledButton> */
-}
