@@ -22,6 +22,7 @@ export default function WordsPage() {
 
   const [favoriteFilter, setFavoriteFilter] = useState(false);
 
+  //custom <ClientOnly> wrapper : https://www.joshwcomeau.com/react/the-perils-of-rehydration/#abstractions
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
     setHasMounted(true);
@@ -136,5 +137,6 @@ export default function WordsPage() {
 }
 
 const StyledTitle = styled.h1`
-  margin-top: 3rem;
+  margin-top: 3.2rem;
+  font-size: 1.8rem;
 `;

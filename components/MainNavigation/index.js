@@ -17,14 +17,14 @@ const MainNavigation = () => {
               variant="homeActive"
               width="3rem"
               color="#F27405"
-              aria-label="variant"
+              aria-label="homeActive"
             />
           ) : (
             <SVGIcon
               variant="home"
               width="3rem"
               color="whitesmoke"
-              aria-label="variant"
+              aria-label="home"
             />
           )}
         </Link>
@@ -34,14 +34,14 @@ const MainNavigation = () => {
               variant="wordsActive"
               width="3rem"
               color="#F27405"
-              aria-label="variant"
+              aria-label="wordsActive"
             />
           ) : (
             <SVGIcon
               variant="words"
               width="3rem"
               color="whitesmoke"
-              aria-label="variant"
+              aria-label="words"
             />
           )}
         </Link>

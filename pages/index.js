@@ -6,6 +6,7 @@ import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
 import SVGIcon from "@/components/Icons/SVGIcon";
+import SearchForm from "@/components/SearchForm";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -49,7 +50,7 @@ export default function HomePage() {
   return (
     <>
       <main>
-        <h1>Add word</h1>
+        <StyledTitle>Add word</StyledTitle>
         <StyledSection>
           {isFound && <StyledMessage>word already exists</StyledMessage>}
           {isFound === false && (
@@ -72,6 +73,8 @@ export default function HomePage() {
           onSubmitEvent={handleAddTranslation}
           onFirstInput={handleFirstInput}
         />
+        <StyledTitle>Search word</StyledTitle>
+        <SearchForm />
       </main>
     </>
   );
@@ -99,4 +102,8 @@ const StyledLink = styled(Link)`
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
+`;
+const StyledTitle = styled.h1`
+  _margin-top: 3.2rem;
+  font-size: 1.8rem;
 `;

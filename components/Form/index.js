@@ -1,13 +1,6 @@
-import styled from "styled-components";
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
-
-const StyledForm = styled.form`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-`;
+import StyledForm from "./StyledForm";
 
 export default function Form({
   onSubmitEvent,
@@ -79,5 +72,3 @@ export default function Form({
     </>
   );
 }
-
-// pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-/]*"
