@@ -50,17 +50,12 @@ export default function HomePage() {
     <>
       <main>
         <h1>Add word</h1>
-        <Form
-          isEditMode={false}
-          onSubmitEvent={handleAddTranslation}
-          onFirstInput={handleFirstInput}
-        />
         <StyledSection>
-          {isFound && <p>word already exists</p>}
+          {isFound && <StyledMessage>word already exists</StyledMessage>}
           {isFound === false && (
             <>
-              <p>added new word</p>
-              <Link href="/words">
+              <StyledMessage>added new word</StyledMessage>
+              <StyledLink href="/words">
                 show entry
                 <SVGIcon
                   variant="arrow"
@@ -68,10 +63,15 @@ export default function HomePage() {
                   color="#04BF45"
                   aria-label="variant"
                 />
-              </Link>
+              </StyledLink>
             </>
           )}
         </StyledSection>
+        <Form
+          isEditMode={false}
+          onSubmitEvent={handleAddTranslation}
+          onFirstInput={handleFirstInput}
+        />
       </main>
     </>
   );
@@ -80,8 +80,23 @@ export default function HomePage() {
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-around;
   text-align: center;
-  padding: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.2rem;
+  background: whitesmoke;
+  _border: 1px dashed lightgrey;
+  border-radius: 5px;
+`;
+
+const StyledMessage = styled.p`
+  font-size: 1rem;
+  margin: 0.5rem;
+`;
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
 `;

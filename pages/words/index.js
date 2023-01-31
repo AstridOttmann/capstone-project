@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LanguageSelection from "@/components/LanguageSelection";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
@@ -21,6 +21,14 @@ export default function WordsPage() {
   const [toast, setToast] = useState("");
 
   const [favoriteFilter, setFavoriteFilter] = useState(false);
+
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  if (!hasMounted) {
+    return null;
+  }
 
   // toggles the button
   function handleToggleFavorite(id) {
