@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledButton from "../Button/StyledButton";
+import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 
 const StyledForm = styled.form`
@@ -46,7 +46,7 @@ export default function Form({
           name="word"
           required
           defaultValue={isEditMode ? entry.word : ""}
-          pattern="^[^\sa0-9].*$"
+          pattern="^[^\s0-9].*$"
           maxLength="30"
           onChange={!isEditMode ? onFirstInput : () => {}}
         />

@@ -1,4 +1,4 @@
-import StyledButton from "../Button/StyledButton";
+import StyledButton from "../Buttons/StyledButton";
 import StyledNav from "../MainNavigation/StyledNavigation";
 
 export default function LanguageSelection({
