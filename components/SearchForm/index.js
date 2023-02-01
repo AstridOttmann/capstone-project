@@ -3,12 +3,12 @@ import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
-import ListEntry from "../ListEntry";
 import SVGIcon from "../Icons/SVGIcon";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
 import StyledButton from "../Buttons/StyledButton";
+import StyledMessage from "../List/Message/StyledMessage";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(globalTranslations);
@@ -37,7 +37,7 @@ export default function SearchForm({ selectedLanguage }) {
           />
         </StyledInputWrapper>
         <StyledButton onClick={() => setSearchInput("")}>
-          <SVGIcon variant="refresh" width="1.5rem" />
+          <SVGIcon variant="refresh" width="1.5rem" aria-label="refresh" />
         </StyledButton>
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
@@ -105,13 +105,7 @@ const StyledSection = styled.section`
   border-radius: 5px;
 `;
 
-const StyledMessage = styled.p`
-  font-size: 1rem;
-  margin: 0.5rem;
-`;
-
 const StyledInputWrapper = styled.div`
-  width: 80%;
   flex-grow: 4;
 `;
 const StyledInput = styled.input`

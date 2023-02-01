@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import LanguageSelection from "@/components/LanguageSelection";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
-import styled from "styled-components";
 import FavoriteButton from "@/components/Buttons/FavoriteButton";
 import EditButton from "@/components/Buttons/EditButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
+import StyledTitle from "@/components/Header/StyledTitle";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -102,7 +102,7 @@ export default function WordsPage() {
         selectedLanguage={selectedLanguage}
         onLanguageSelection={handleLanguageSelection}
       />
-      <StyledTitle>My words</StyledTitle>
+      <StyledTitle page="words">My words</StyledTitle>
       <ShowFavoritesButton
         favoriteFilter={favoriteFilter}
         isActive={favoriteFilter === true}
@@ -140,8 +140,3 @@ export default function WordsPage() {
     </main>
   );
 }
-
-const StyledTitle = styled.h1`
-  margin-top: 3.2rem;
-  font-size: 1.8rem;
-`;

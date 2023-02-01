@@ -7,6 +7,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import SVGIcon from "@/components/Icons/SVGIcon";
 import SearchForm from "@/components/SearchForm";
+import StyledMessage from "@/components/List/Message/StyledMessage";
+import StyledTitle from "@/components/Header/StyledTitle";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -92,18 +94,10 @@ const StyledSection = styled.section`
   border-radius: 5px;
 `;
 
-const StyledMessage = styled.p`
-  font-size: 1rem;
-  margin: 0.5rem;
-`;
 const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
-`;
-const StyledTitle = styled.h1`
-  _margin-top: 3.2rem;
-  font-size: 1.8rem;
 `;

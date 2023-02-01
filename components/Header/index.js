@@ -1,5 +1,6 @@
 import StyledHeader from "./StyledHeader";
 import styled from "styled-components";
+import StyledTitle from "./StyledTitle";
 
 export default function Header() {
   return (
@@ -10,7 +11,3 @@ export default function Header() {
     </>
   );
 }
-const StyledTitle = styled.h1`
-  _margin-top: 3.2rem;
-  font-size: 1.8rem;
-`;
