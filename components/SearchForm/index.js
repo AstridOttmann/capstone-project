@@ -1,44 +1,34 @@
 import { useState } from "react";
-import StyledButton from "../Buttons/StyledButton";
 import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "../ListEntry";
+//import { useRouter } from "next/router";
+import SVGIcon from "../Icons/SVGIcon";
+import styled from "styled-components";
+import Link from "next/link";
 
-export default function SearchForm() {
-  const [translationList, setTranslationList] = useAtom(globalTranslations);
+export default function SearchForm({ selectedLanguage }) {
+  const [translationList] = useAtom(globalTranslations);
   const [searchInput, setSearchInput] = useState("");
-  const [searchWords, setSearchWords] = useState([]);
+  //const [selectedLanguage] = useState("");
 
-  const filteredEntries = translationList.filter(
-    (translation) => translation.word.indexOf(searchInput) === 0
-  );
+  //const router = useRouter();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    setSearchInput(data.searchValue);
-    setSearchInput("");
-
-    const searchResult = filteredEntries.find(
-      (translation) => translation.word === data.searchValue
-    );
-    console.log("searchWords", searchWords);
-    console.log("search", searchResult);
-
-    setSearchWords(searchResult);
-    console.log("searchWords2", searchWords);
-
-    setTranslationList(searchResult);
-    setSearchWords([]);
-  }
+  const filteredEntries = translationList
+    // .filter((translation) => {
+    //   if (selectedLanguage) {
+    //     return translation.language === selectedLanguage;
+    //   }
+    //   return true;
+    // })
+    .filter((translation) => translation.word.indexOf(searchInput) === 0);
+  //console.log("filterd", filteredEntries);
 
   return (
     <>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm>
         <label htmlFor="searchValue"></label>
         <input
           id="searchValue"
@@ -47,8 +37,6 @@ export default function SearchForm() {
           value={searchInput}
           onChange={(event) => setSearchInput(event.target.value)}
         />
-        {/* <p>Searching for: {searchInput}</p> */}
-        <StyledButton type="submit">Show</StyledButton>
       </StyledForm>
       {filteredEntries.length === 0 && searchInput.length > 0 ? (
         <p>Not found</p>
@@ -59,39 +47,60 @@ export default function SearchForm() {
             .filter((translation) => translation.word.includes(searchInput))
             .map((translation) => {
               return (
-                <div
+                <StyledSection
                   key={translation.word}
                   onClick={() => {
                     setSearchInput(translation.word);
                   }}
                 >
-                  <StyledList>
-                    <ListEntry>
-                      <p>{translation.word}</p>
-                      <small>({translation.language})</small>
-                      <p>{translation.translated}</p>
-                    </ListEntry>
-                  </StyledList>
-                </div>
+                  <StyledMessage>
+                    {translation.word} -{" "}
+                    {!selectedLanguage ? (
+                      <small>({translation.language}) - </small>
+                    ) : (
+                      ""
+                    )}
+                    {translation.translated}{" "}
+                    <StyledLink href={`/words/${translation.id}`}>
+                      edit entry
+                      <SVGIcon
+                        variant="arrow"
+                        width="2rem"
+                        color="#04BF45"
+                        aria-label="variant"
+                      />
+                    </StyledLink>
+                  </StyledMessage>
+                </StyledSection>
               );
             })}
-        </StyledList>
-      )}
-      {searchWords.length > 0 && (
-        <StyledList>
-          <ListEntry translationList={translationList}></ListEntry>
         </StyledList>
       )}
     </>
   );
 }
 
-{
-  /* {searchWords.map((searchWord, word) => {
-          return <ListEntry key={word}>{search}</ListEntry>;
-        })} */
-}
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+`;
 
-// translationList.filter((translation) => {
-//     return translation === searchResult;
-//   })
+const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  _text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  background: whitesmoke;
+  _border: 1px dashed lightgrey;
+  border-radius: 5px;
+`;
+
+const StyledMessage = styled.p`
+  font-size: 1rem;
+  margin: 0.5rem;
+`;

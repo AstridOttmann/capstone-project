@@ -11,6 +11,7 @@ import FavoriteButton from "@/components/Buttons/FavoriteButton";
 import EditButton from "@/components/Buttons/EditButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
+import SearchForm from "@/components/SearchForm";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -108,6 +109,7 @@ export default function WordsPage() {
         onShowFavorites={handleShowFavorites}
       />
       <ToastMessage toast={toast} />
+      <SearchForm translationList={filteredTranslations} />
       <StyledList>
         {filteredTranslations.map((translation) => (
           <ListEntry
