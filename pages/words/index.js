@@ -109,7 +109,10 @@ export default function WordsPage() {
         onShowFavorites={handleShowFavorites}
       />
       <ToastMessage toast={toast} />
-      <SearchForm translationList={filteredTranslations} />
+      <SearchForm
+        // filteredEntries={filteredTranslations}
+        selectedLanguage={selectedLanguage}
+      />
       <StyledList>
         {filteredTranslations.map((translation) => (
           <ListEntry

@@ -4,27 +4,25 @@ import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import ListEntry from "../ListEntry";
-//import { useRouter } from "next/router";
 import SVGIcon from "../Icons/SVGIcon";
 import styled from "styled-components";
 import Link from "next/link";
+import Divider from "../Divider";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(globalTranslations);
   const [searchInput, setSearchInput] = useState("");
-  //const [selectedLanguage] = useState("");
 
-  //const router = useRouter();
-
-  const filteredEntries = translationList
-    // .filter((translation) => {
-    //   if (selectedLanguage) {
-    //     return translation.language === selectedLanguage;
-    //   }
-    //   return true;
-    // })
+  const searchResults = translationList
+    .filter((translation) => {
+      if (selectedLanguage) {
+        return translation.language === selectedLanguage;
+      }
+      return true;
+    })
     .filter((translation) => translation.word.indexOf(searchInput) === 0);
-  //console.log("filterd", filteredEntries);
+
+  console.log("filterd", searchResults);
 
   return (
     <>
@@ -38,12 +36,14 @@ export default function SearchForm({ selectedLanguage }) {
           onChange={(event) => setSearchInput(event.target.value)}
         />
       </StyledForm>
-      {filteredEntries.length === 0 && searchInput.length > 0 ? (
-        <p>Not found</p>
+      {searchResults.length === 0 && searchInput.length > 0 ? (
+        <StyledSection>
+          <StyledMessage>Not found</StyledMessage>
+        </StyledSection>
       ) : null}
       {searchInput.length > 0 && (
         <StyledList>
-          {filteredEntries
+          {searchResults
             .filter((translation) => translation.word.includes(searchInput))
             .map((translation) => {
               return (
@@ -74,6 +74,7 @@ export default function SearchForm({ selectedLanguage }) {
                 </StyledSection>
               );
             })}
+          <Divider />
         </StyledList>
       )}
     </>
