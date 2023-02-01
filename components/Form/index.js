@@ -31,7 +31,7 @@ export default function Form({
 
   return (
     <>
-      <StyledForm onSubmit={(event) => handleSubmit(event)}>
+      <StyledForm type="add-edit" onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
         <input
           type="text"

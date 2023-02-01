@@ -8,6 +8,7 @@ import SVGIcon from "../Icons/SVGIcon";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
+import StyledButton from "../Buttons/StyledButton";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(globalTranslations);
@@ -22,19 +23,22 @@ export default function SearchForm({ selectedLanguage }) {
     })
     .filter((translation) => translation.word.indexOf(searchInput) === 0);
 
-  console.log("filterd", searchResults);
-
   return (
     <>
-      <StyledForm>
-        <label htmlFor="searchValue"></label>
-        <input
-          id="searchValue"
-          name="searchValue"
-          placeholder="🔍"
-          value={searchInput}
-          onChange={(event) => setSearchInput(event.target.value)}
-        />
+      <StyledForm type="search">
+        <StyledInputWrapper>
+          <label htmlFor="searchValue"></label>
+          <StyledInput
+            id="searchValue"
+            name="searchValue"
+            placeholder="🔍"
+            value={searchInput}
+            onChange={(event) => setSearchInput(event.target.value)}
+          />
+        </StyledInputWrapper>
+        <StyledButton onClick={() => setSearchInput("")}>
+          <SVGIcon variant="refresh" width="1.5rem" />
+        </StyledButton>
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
         <StyledSection>
@@ -104,4 +108,12 @@ const StyledSection = styled.section`
 const StyledMessage = styled.p`
   font-size: 1rem;
   margin: 0.5rem;
+`;
+
+const StyledInputWrapper = styled.div`
+  width: 80%;
+  flex-grow: 4;
+`;
+const StyledInput = styled.input`
+  width: 100%;
 `;
