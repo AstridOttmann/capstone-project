@@ -67,6 +67,12 @@ export default function Form({
           pattern="^[^\s0-9].*$"
           maxLength="30"
         />
+        {isEditMode && (
+          <>
+            <label htmlFor="notes">Notes, use case ...</label>
+            <textarea></textarea>
+          </>
+        )}
         <StyledButton type="submit">Save</StyledButton>
       </StyledForm>
     </>

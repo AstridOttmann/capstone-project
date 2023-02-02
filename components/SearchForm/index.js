@@ -25,7 +25,6 @@ export default function SearchForm({ selectedLanguage }) {
       (translation) =>
         translation.word.toLowerCase().indexOf(searchInput.toLowerCase()) === 0
     );
-  console.log("search", searchResults);
 
   return (
     <>

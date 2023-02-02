@@ -19,12 +19,11 @@ export default function HomePage() {
   }
 
   function handleAddTranslation(newTranslation) {
-    const newEntryExists = translationList
-      .slice()
-      .filter(
-        (translation) =>
-          translation.word.toLowerCase() === newTranslation.word.toLowerCase()
-      );
+    const newEntryExists = translationList.filter(
+      (translation) =>
+        translation.word.toLowerCase() === newTranslation.word.toLowerCase()
+    );
+
     translationList.sort((a, b) => {
       const wordA = a.word.toLowerCase();
       const wordB = b.word.toLowerCase();

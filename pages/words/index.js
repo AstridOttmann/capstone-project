@@ -12,6 +12,8 @@ import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
+import Swal from "sweetalert2";
+import { RESET } from "jotai/utils";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -19,7 +21,7 @@ export default function WordsPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [toast, setToast] = useState("");
+  //const [toast, setToast] = useState("");
 
   const [favoriteFilter, setFavoriteFilter] = useState(false);
 
@@ -82,19 +84,24 @@ export default function WordsPage() {
       return true;
     });
 
-  function handleDeleteEntry(id) {
-    if (filteredTranslations.length === 1) {
-      setSelectedLanguage("");
-      //setTranslationList(translationList.filter((entry) => entry.id !== id));
-    }
-    setToast("enter");
-    setTimeout(exitToast, 2000);
+  function handleDeleteEntry() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#04BF45",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No,cancel!",
+    }).then((result) => {
+      if (result.value) {
+        setTranslationList(RESET);
+        Swal.fire("Deleted!", "Your entry has been deleted.", "success");
+      }
+    });
+  }
 
-    setTranslationList(translationList.filter((entry) => entry.id !== id));
-  }
-  function exitToast() {
-    setToast("exit");
-  }
   return (
     <main>
       <LanguageSelection
@@ -108,7 +115,7 @@ export default function WordsPage() {
         isActive={favoriteFilter === true}
         onShowFavorites={handleShowFavorites}
       />
-      <ToastMessage toast={toast} />
+      {/* <ToastMessage toast={toast} /> */}
       <SearchForm
         // filteredEntries={filteredTranslations}
         selectedLanguage={selectedLanguage}
@@ -140,3 +147,17 @@ export default function WordsPage() {
     </main>
   );
 }
+
+// function handleDeleteEntry(id) {
+//   if (filteredTranslations.length === 1) {
+//     setSelectedLanguage("");
+//     //setTranslationList(translationList.filter((entry) => entry.id !== id));
+//   }
+//   setToast("enter");
+//   setTimeout(exitToast, 2000);
+
+//   setTranslationList(translationList.filter((entry) => entry.id !== id));
+// }
+// function exitToast() {
+//   setToast("exit");
+// }
