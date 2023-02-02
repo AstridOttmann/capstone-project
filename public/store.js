@@ -1,4 +1,5 @@
 import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
 const initialTranslations = [
   { id: "1", word: "verjaardag", language: "Dutch", translated: "Geburtstag" },
@@ -50,5 +51,5 @@ const sortedList = initialTranslations.slice().sort((a, b) => {
   return 0;
 });
 
-const globalTranslations = atom(sortedList);
+const globalTranslations = atomWithStorage("translationList", sortedList);
 export default globalTranslations;

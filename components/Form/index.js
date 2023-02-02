@@ -1,13 +1,6 @@
-import styled from "styled-components";
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
-
-const StyledForm = styled.form`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-`;
+import StyledForm from "./StyledForm";
 
 export default function Form({
   onSubmitEvent,
@@ -38,7 +31,7 @@ export default function Form({
 
   return (
     <>
-      <StyledForm onSubmit={(event) => handleSubmit(event)}>
+      <StyledForm type="add-edit" onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
         <input
           type="text"
@@ -74,10 +67,14 @@ export default function Form({
           pattern="^[^\s0-9].*$"
           maxLength="30"
         />
+        {isEditMode && (
+          <>
+            <label htmlFor="notes">Notes, use case ...</label>
+            <textarea></textarea>
+          </>
+        )}
         <StyledButton type="submit">Save</StyledButton>
       </StyledForm>
     </>
   );
 }
-
-// pattern="[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\s,.-/]*"

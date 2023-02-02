@@ -1,10 +1,12 @@
 import StyledHeader from "./StyledHeader";
+import styled from "styled-components";
+import StyledTitle from "./StyledTitle";
 
 export default function Header() {
   return (
     <>
       <StyledHeader>
-        <h1>Language Helper</h1>
+        <StyledTitle>Language Helper</StyledTitle>
       </StyledHeader>
     </>
   );

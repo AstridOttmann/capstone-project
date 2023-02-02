@@ -22,7 +22,7 @@ const StyledNav = styled.nav`
     } else if (variant === "language") {
       return css`
         position: fixed;
-        top: 5.6rem;
+        top: 5.5rem;
         left: 50%;
         transform: translateX(-50%);
         display: flex;

@@ -6,6 +6,9 @@ import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
 import SVGIcon from "@/components/Icons/SVGIcon";
+import SearchForm from "@/components/SearchForm";
+import StyledMessage from "@/components/List/Message/StyledMessage";
+import StyledTitle from "@/components/Header/StyledTitle";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -16,12 +19,11 @@ export default function HomePage() {
   }
 
   function handleAddTranslation(newTranslation) {
-    const checkNewEntry = translationList
-      .slice()
-      .filter(
-        (translation) =>
-          translation.word.toLowerCase() === newTranslation.word.toLowerCase()
-      );
+    const newEntryExists = translationList.filter(
+      (translation) =>
+        translation.word.toLowerCase() === newTranslation.word.toLowerCase()
+    );
+
     translationList.sort((a, b) => {
       const wordA = a.word.toLowerCase();
       const wordB = b.word.toLowerCase();
@@ -34,7 +36,7 @@ export default function HomePage() {
       return 0;
     });
 
-    if (checkNewEntry.length === 0) {
+    if (newEntryExists.length === 0) {
       setTranslationList([
         { id: nanoid(), ...newTranslation },
         ...translationList,
@@ -49,18 +51,13 @@ export default function HomePage() {
   return (
     <>
       <main>
-        <h1>Add word</h1>
-        <Form
-          isEditMode={false}
-          onSubmitEvent={handleAddTranslation}
-          onFirstInput={handleFirstInput}
-        />
+        <StyledTitle>Add word</StyledTitle>
         <StyledSection>
-          {isFound && <p>word already exists</p>}
+          {isFound && <StyledMessage>word already exists</StyledMessage>}
           {isFound === false && (
             <>
-              <p>added new word</p>
-              <Link href="/words">
+              <StyledMessage>added new word</StyledMessage>
+              <StyledLink href="/words">
                 show entry
                 <SVGIcon
                   variant="arrow"
@@ -68,10 +65,17 @@ export default function HomePage() {
                   color="#04BF45"
                   aria-label="variant"
                 />
-              </Link>
+              </StyledLink>
             </>
           )}
         </StyledSection>
+        <Form
+          isEditMode={false}
+          onSubmitEvent={handleAddTranslation}
+          onFirstInput={handleFirstInput}
+        />
+        <StyledTitle>Search word</StyledTitle>
+        <SearchForm />
       </main>
     </>
   );
@@ -80,8 +84,19 @@ export default function HomePage() {
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-around;
   text-align: center;
-  padding: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.2rem;
+  background: whitesmoke;
+  _border: 1px dashed lightgrey;
+  border-radius: 5px;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
 `;

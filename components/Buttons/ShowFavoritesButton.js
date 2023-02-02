@@ -11,6 +11,7 @@ export default function ShowFavoritesButton({ onShowFavorites, isActive }) {
       <SVGIcon
         variant="likeActive"
         width={isActive ? "2rem" : "1.5rem"}
+        aria-label="likeActive"
       ></SVGIcon>
     </StyledButton>
   );
