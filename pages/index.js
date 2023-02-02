@@ -19,7 +19,7 @@ export default function HomePage() {
   }
 
   function handleAddTranslation(newTranslation) {
-    const checkNewEntry = translationList
+    const newEntryExists = translationList
       .slice()
       .filter(
         (translation) =>
@@ -37,7 +37,7 @@ export default function HomePage() {
       return 0;
     });
 
-    if (checkNewEntry.length === 0) {
+    if (newEntryExists.length === 0) {
       setTranslationList([
         { id: nanoid(), ...newTranslation },
         ...translationList,

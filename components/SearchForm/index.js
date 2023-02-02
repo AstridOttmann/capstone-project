@@ -21,7 +21,11 @@ export default function SearchForm({ selectedLanguage }) {
       }
       return true;
     })
-    .filter((translation) => translation.word.indexOf(searchInput) === 0);
+    .filter(
+      (translation) =>
+        translation.word.toLowerCase().indexOf(searchInput.toLowerCase()) === 0
+    );
+  console.log("search", searchResults);
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function SearchForm({ selectedLanguage }) {
       {searchInput.length > 0 && (
         <StyledList>
           {searchResults
-            .filter((translation) => translation.word.includes(searchInput))
+            // .filter((translation) => translation.word.includes(searchInput))
             .map((translation) => {
               return (
                 <StyledSection
