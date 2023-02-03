@@ -7,21 +7,22 @@ import LanguageSelection from "@/components/LanguageSelection";
 import { useRouter } from "next/router";
 import ToastMessage from "@/components/ToastMessage";
 import FavoriteButton from "@/components/Buttons/FavoriteButton";
-import EditButton from "@/components/Buttons/EditButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
-import Swal from "sweetalert2";
-import { RESET } from "jotai/utils";
+//import Swal from "sweetalert2";
+//import { RESET } from "jotai/utils";
+import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
+
   const { id } = router.query;
 
-  //const [toast, setToast] = useState("");
+  const [toast, setToast] = useState("");
 
   const [favoriteFilter, setFavoriteFilter] = useState(false);
 
@@ -44,6 +45,7 @@ export default function WordsPage() {
       )
     );
   }
+
   // sets the filter
   function handleShowFavorites() {
     if (!favoriteFilter) {
@@ -84,22 +86,18 @@ export default function WordsPage() {
       return true;
     });
 
-  function handleDeleteEntry() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#04BF45",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No,cancel!",
-    }).then((result) => {
-      if (result.value) {
-        setTranslationList(RESET);
-        Swal.fire("Deleted!", "Your entry has been deleted.", "success");
-      }
-    });
+  function handleDeleteEntry(id) {
+    if (filteredTranslations.length === 1) {
+      setSelectedLanguage("");
+      //setTranslationList(translationList.filter((entry) => entry.id !== id));
+    }
+    setToast("enter");
+    setTimeout(exitToast, 2000);
+
+    setTranslationList(translationList.filter((entry) => entry.id !== id));
+  }
+  function exitToast() {
+    setToast("exit");
   }
 
   return (
@@ -115,11 +113,8 @@ export default function WordsPage() {
         isActive={favoriteFilter === true}
         onShowFavorites={handleShowFavorites}
       />
-      {/* <ToastMessage toast={toast} /> */}
-      <SearchForm
-        // filteredEntries={filteredTranslations}
-        selectedLanguage={selectedLanguage}
-      />
+      <ToastMessage toast={toast} />
+      <SearchForm selectedLanguage={selectedLanguage} />
       <StyledList>
         {filteredTranslations.map((translation) => (
           <ListEntry
@@ -135,7 +130,7 @@ export default function WordsPage() {
             <p>{translation.word}</p>
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
             <p>{translation.translated}</p>
-            <EditButton
+            <SeeMoreButton
               onClick={() => router.push(`/words/${translation.id}`)}
             />
             <DeleteButton
@@ -148,16 +143,20 @@ export default function WordsPage() {
   );
 }
 
-// function handleDeleteEntry(id) {
-//   if (filteredTranslations.length === 1) {
-//     setSelectedLanguage("");
-//     //setTranslationList(translationList.filter((entry) => entry.id !== id));
-//   }
-//   setToast("enter");
-//   setTimeout(exitToast, 2000);
-
-//   setTranslationList(translationList.filter((entry) => entry.id !== id));
-// }
-// function exitToast() {
-//   setToast("exit");
+// function handleDeleteEntry() {
+//   Swal.fire({
+//     title: "Are you sure?",
+//     text: "You won't be able to revert this!",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#04BF45",
+//     cancelButtonColor: "#d33",
+//     confirmButtonText: "Yes, delete it!",
+//     cancelButtonText: "No,cancel!",
+//   }).then((result) => {
+//     if (result.value) {
+//       setTranslationList(RESET);
+//       Swal.fire("Deleted!", "Your entry has been deleted.", "success");
+//     }
+//   });
 // }

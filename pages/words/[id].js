@@ -3,9 +3,14 @@ import { useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import { useRouter } from "next/router";
 import CancelDeleteButton from "@/components/Buttons/CancelDeleteButton";
+import { useState } from "react";
+import EditButton from "@/components/Buttons/EditButton";
+import SingleEntry from "@/components/SingleEntry";
+import GoBackButton from "@/components/Buttons/GoBackButton";
 
-export default function SingleEntry() {
+export default function SingleWordPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
+  const [isShowMode, setIsShowMode] = useState(true);
   const router = useRouter();
   const { id } = router.query;
 
@@ -22,24 +27,65 @@ export default function SingleEntry() {
             word: editedEntry.word,
             language: editedEntry.language,
             translated: editedEntry.translated,
+            notes: editedEntry.notes,
           };
         }
         return translation;
       })
     );
+    setIsShowMode(true);
   }
 
   return (
     <>
       <main>
-        <h1>Edit word</h1>
-        <CancelDeleteButton onClick={() => router.back()} />
-        {!entry ? null : (
-          <Form
-            entry={entry}
-            isEditMode={true}
-            onSubmitEvent={handleEditEntry}
-          />
+        {isShowMode ? (
+          <>
+            <h1>Word entry </h1>
+            <GoBackButton onClick={() => router.push("/words")} />
+            <EditButton onClick={() => setIsShowMode(false)}></EditButton>
+            {!entry ? null : (
+              <SingleEntry
+                isFavorite={entry.isFavorite}
+                word={entry.word}
+                language={entry.language}
+                translated={entry.translated}
+                notes={entry.notes}
+                onDeleteEntry={() => {
+                  router.push("/words");
+                  setTranslationList(
+                    translationList.filter(
+                      (translation) => translation.id !== id
+                    )
+                  );
+                }}
+                onToggleFavorite={() =>
+                  setTranslationList(
+                    translationList.map((translation) =>
+                      translation.id === id
+                        ? {
+                            ...translation,
+                            isFavorite: !translation.isFavorite,
+                          }
+                        : translation
+                    )
+                  )
+                }
+              ></SingleEntry>
+            )}
+          </>
+        ) : (
+          <>
+            <h1>Edit word</h1>
+            <CancelDeleteButton onClick={() => setIsShowMode(true)} />
+            {!entry ? null : (
+              <Form
+                entry={entry}
+                isEditMode={true}
+                onSubmitEvent={handleEditEntry}
+              />
+            )}
+          </>
         )}
       </main>
     </>

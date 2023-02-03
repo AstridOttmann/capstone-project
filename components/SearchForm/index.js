@@ -67,7 +67,7 @@ export default function SearchForm({ selectedLanguage }) {
                     )}
                     {translation.translated}{" "}
                     <StyledLink href={`/words/${translation.id}`}>
-                      edit entry
+                      show entry
                       <SVGIcon
                         variant="arrow"
                         width="2rem"

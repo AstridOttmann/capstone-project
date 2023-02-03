@@ -1,7 +1,7 @@
 import Form from "../components/Form";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import globalTranslations from "@/public/store";
+import translationListAtom from "@/public/store";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import StyledMessage from "@/components/List/Message/StyledMessage";
 import StyledTitle from "@/components/Header/StyledTitle";
 
 export default function HomePage() {
-  const [translationList, setTranslationList] = useAtom(globalTranslations);
+  const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [isFound, setIsFound] = useState();
 
   function handleFirstInput() {

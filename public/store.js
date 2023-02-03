@@ -37,6 +37,12 @@ const initialTranslations = [
     language: "Swedish",
     translated: "schön",
   },
+  {
+    id: "16",
+    word: "Hoe gaat het?",
+    language: "Dutch",
+    translated: "Wie geht es dir?",
+  },
 ];
 
 const sortedList = initialTranslations.slice().sort((a, b) => {
@@ -51,5 +57,5 @@ const sortedList = initialTranslations.slice().sort((a, b) => {
   return 0;
 });
 
-const globalTranslations = atomWithStorage("translationList", sortedList);
-export default globalTranslations;
+const translationListAtom = atomWithStorage("translationList", sortedList);
+export default translationListAtom;

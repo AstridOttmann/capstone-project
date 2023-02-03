@@ -6,6 +6,7 @@ const StyledEntry = styled.li`
   border-radius: 10px;
   margin: 1em;
   padding: 0.5em;
+  list-style: none;
 `;
 
 export default function ListEntry({ children }) {

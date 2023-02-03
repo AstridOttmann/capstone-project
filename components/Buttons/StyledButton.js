@@ -20,7 +20,7 @@ const StyledButton = styled.button`
         right: 0.7rem;
         bottom: 0.5rem;
         z-index: 0;
-        background: whitesmoke;
+        background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
         margin: 0;
@@ -30,16 +30,11 @@ const StyledButton = styled.button`
     } else if (type === "edit") {
       return css`
         position: absolute;
-        right: 3.5rem;
-        bottom: 0.5rem;
-        z-index: 0;
-        overflow: hidden;
-        background: whitesmoke;
+        top: 1.7rem;
+        right: 2rem;
+        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
         color: #04bf45;
-        padding: 0.2rem 0.2rem 0 0.2rem;
-        margin: 0;
-        width: 2rem;
-        border: 1px solid #04bf45;
+        border: 2px solid #04bf45;
       `;
     } else if (type === "language") {
       return css`
@@ -87,7 +82,41 @@ const StyledButton = styled.button`
         border: 1px solid #f27405;
         color: #f27405;
       `;
+    } else if (type === "seeMore") {
+      return css`
+        position: absolute;
+        right: 3.5rem;
+        bottom: 0.4rem;
+        z-index: 0;
+        overflow: hidden;
+        background: whitesmoke;
+        color: #04bf45;
+        padding: 0.2rem 0.3rem 0 0.3rem;
+        border: 2px solid #04bf45;
+        _border-radius: 50%;
+      `;
+    } else if (type === "goBack") {
+      return css`
+        position: absolute;
+        top: 21rem;
+        left: -2rem;
+        padding: 0.4rem 0.4rem 0 0.4rem;
+        color: #04bf45;
+        border: 2px solid #04bf45;
+      `;
     }
   }}
 `;
 export default StyledButton;
+
+// position: absolute;
+// right: 6.5rem;
+// bottom: 0.5rem;
+// z-index: 0;
+// overflow: hidden;
+// background: whitesmoke;
+// color: #04bf45;
+// padding: 0.2rem 0.2rem 0 0.2rem;
+// margin: 0;
+// width: 2rem;
+// border: 1px solid #04bf45;

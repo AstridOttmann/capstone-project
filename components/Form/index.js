@@ -1,6 +1,7 @@
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
+import styled from "styled-components";
 
 export default function Form({
   onSubmitEvent,
@@ -20,11 +21,12 @@ export default function Form({
       word: data.word,
       language: data.language,
       translated: data.translated,
+      notes: data.notes,
     });
 
-    if (isEditMode) {
-      router.back();
-    }
+    // if (isEditMode) {
+    //   router.back();
+    // }
     event.target.reset();
     event.target.elements.word.focus();
   }
@@ -69,8 +71,14 @@ export default function Form({
         />
         {isEditMode && (
           <>
-            <label htmlFor="notes">Notes, use case ...</label>
-            <textarea></textarea>
+            <label htmlFor="notes">Add notes ...</label>
+            <StyledTextarea
+              type="text"
+              id="notes"
+              name="notes"
+              rows="5"
+              defaultValue={entry.notes}
+            ></StyledTextarea>
           </>
         )}
         <StyledButton type="submit">Save</StyledButton>
@@ -78,3 +86,7 @@ export default function Form({
     </>
   );
 }
+
+const StyledTextarea = styled.textarea`
+  word-wrap: break-word;
+`;
