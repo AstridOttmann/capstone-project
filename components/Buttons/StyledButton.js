@@ -36,6 +36,16 @@ const StyledButton = styled.button`
         color: #04bf45;
         border: 2px solid #04bf45;
       `;
+    } else if (type === "discard") {
+      return css`
+        position: absolute;
+        top: 1.7rem;
+        right: 2rem;
+        _padding: 0.4rem 0.4rem 0 0.4rem;
+        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
+        color: #f27405;
+        border: 2px solid #f27405;
+      `;
     } else if (type === "language") {
       return css`
         background: whitesmoke;
@@ -50,15 +60,6 @@ const StyledButton = styled.button`
         color: whitesmoke;
         margin: 0;
         padding: 0.7em;
-        border: 2px solid #f27405;
-      `;
-    } else if (type === "discard") {
-      return css`
-        position: absolute;
-        top: 1.7rem;
-        right: 0.5rem;
-        padding: 0.4rem 0.4rem 0 0.4rem;
-        color: #f27405;
         border: 2px solid #f27405;
       `;
     } else if (type === "favorite") {
@@ -99,7 +100,7 @@ const StyledButton = styled.button`
       return css`
         position: absolute;
         top: 21rem;
-        left: -2rem;
+        left: -1.5rem;
         padding: 0.4rem 0.4rem 0 0.4rem;
         color: #04bf45;
         border: 2px solid #04bf45;

@@ -2,7 +2,7 @@ import Form from "@/components/Form";
 import { useAtom } from "jotai";
 import globalTranslations from "@/public/store";
 import { useRouter } from "next/router";
-import CancelDeleteButton from "@/components/Buttons/CancelDeleteButton";
+import CancelEditButton from "@/components/Buttons/CancelEditButton";
 import { useState } from "react";
 import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
@@ -37,57 +37,55 @@ export default function SingleWordPage() {
   }
 
   return (
-    <>
-      <main>
+    <main>
+      <>
+        <h1>Word entry {!isShowMode && ": edit"}</h1>
+        {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
         {isShowMode ? (
-          <>
-            <h1>Word entry </h1>
-            <GoBackButton onClick={() => router.push("/words")} />
-            <EditButton onClick={() => setIsShowMode(false)}></EditButton>
-            {!entry ? null : (
-              <SingleEntry
-                isFavorite={entry.isFavorite}
-                word={entry.word}
-                language={entry.language}
-                translated={entry.translated}
-                notes={entry.notes}
-                onDeleteEntry={() => {
-                  router.push("/words");
-                  setTranslationList(
-                    translationList.filter(
-                      (translation) => translation.id !== id
-                    )
-                  );
-                }}
-                onToggleFavorite={() =>
-                  setTranslationList(
-                    translationList.map((translation) =>
-                      translation.id === id
-                        ? {
-                            ...translation,
-                            isFavorite: !translation.isFavorite,
-                          }
-                        : translation
-                    )
-                  )
-                }
-              ></SingleEntry>
-            )}
-          </>
+          <EditButton onClick={() => setIsShowMode(false)}></EditButton>
         ) : (
-          <>
-            <h1>Edit word</h1>
-            <CancelDeleteButton onClick={() => setIsShowMode(true)} />
-            {!entry ? null : (
-              <Form
-                entry={entry}
-                isEditMode={true}
-                onSubmitEvent={handleEditEntry}
-              />
-            )}
-          </>
+          <CancelEditButton onClick={() => setIsShowMode(true)} />
         )}
-      </main>
-    </>
+        {!entry ? null : (
+          <SingleEntry
+            isFavorite={entry.isFavorite}
+            word={entry.word}
+            language={entry.language}
+            translated={entry.translated}
+            notes={entry.notes}
+            onDeleteEntry={() => {
+              router.push("/words");
+              setTranslationList(
+                translationList.filter((translation) => translation.id !== id)
+              );
+            }}
+            onToggleFavorite={() =>
+              setTranslationList(
+                translationList.map((translation) =>
+                  translation.id === id
+                    ? {
+                        ...translation,
+                        isFavorite: !translation.isFavorite,
+                      }
+                    : translation
+                )
+              )
+            }
+          ></SingleEntry>
+        )}
+      </>
+      {!isShowMode && (
+        <>
+          {!entry ? null : (
+            <Form
+              type="edit"
+              entry={entry}
+              isEditMode={true}
+              onSubmitEvent={handleEditEntry}
+            />
+          )}
+        </>
+      )}
+    </main>
   );
 }
