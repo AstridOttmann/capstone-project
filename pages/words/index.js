@@ -11,8 +11,6 @@ import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
-//import Swal from "sweetalert2";
-//import { RESET } from "jotai/utils";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
 
 export default function WordsPage() {
@@ -89,7 +87,6 @@ export default function WordsPage() {
   function handleDeleteEntry(id) {
     if (filteredTranslations.length === 1) {
       setSelectedLanguage("");
-      //setTranslationList(translationList.filter((entry) => entry.id !== id));
     }
     setToast("enter");
     setTimeout(exitToast, 2000);
@@ -142,21 +139,3 @@ export default function WordsPage() {
     </main>
   );
 }
-
-// function handleDeleteEntry() {
-//   Swal.fire({
-//     title: "Are you sure?",
-//     text: "You won't be able to revert this!",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#04BF45",
-//     cancelButtonColor: "#d33",
-//     confirmButtonText: "Yes, delete it!",
-//     cancelButtonText: "No,cancel!",
-//   }).then((result) => {
-//     if (result.value) {
-//       setTranslationList(RESET);
-//       Swal.fire("Deleted!", "Your entry has been deleted.", "success");
-//     }
-//   });
-// }

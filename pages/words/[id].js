@@ -42,11 +42,11 @@ export default function SingleWordPage() {
         <h1>Word entry {!isShowMode && ": edit"}</h1>
         {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
         {isShowMode ? (
-          <EditButton onClick={() => setIsShowMode(false)}></EditButton>
+          <EditButton onClick={() => setIsShowMode(false)} />
         ) : (
           <CancelEditButton onClick={() => setIsShowMode(true)} />
         )}
-        {!entry ? null : (
+        {entry && (
           <SingleEntry
             isFavorite={entry.isFavorite}
             word={entry.word}
@@ -71,12 +71,12 @@ export default function SingleWordPage() {
                 )
               )
             }
-          ></SingleEntry>
+          />
         )}
       </>
       {!isShowMode && (
         <>
-          {!entry ? null : (
+          {entry && (
             <Form
               type="edit"
               entry={entry}

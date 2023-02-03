@@ -22,10 +22,6 @@ export default function Form({
       translated: data.translated,
       notes: data.notes,
     });
-
-    // if (isEditMode) {
-    //   router.back();
-    // }
     event.target.reset();
     event.target.elements.word.focus();
   }
@@ -75,7 +71,6 @@ export default function Form({
           <>
             <label htmlFor="notes">Add notes ...</label>
             <textarea
-              type="text"
               id="notes"
               name="notes"
               rows="5"
