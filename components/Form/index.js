@@ -1,7 +1,7 @@
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
-import styled from "styled-components";
+//import styled from "styled-components";
 
 export default function Form({
   onSubmitEvent,
@@ -72,13 +72,13 @@ export default function Form({
         {isEditMode && (
           <>
             <label htmlFor="notes">Add notes ...</label>
-            <StyledTextarea
+            <textarea
               type="text"
               id="notes"
               name="notes"
               rows="5"
               defaultValue={entry.notes}
-            ></StyledTextarea>
+            ></textarea>
           </>
         )}
         <StyledButton type="submit">Save</StyledButton>
@@ -87,6 +87,7 @@ export default function Form({
   );
 }
 
-const StyledTextarea = styled.textarea`
-  word-wrap: break-word;
-`;
+// const StyledTextarea = styled.textarea`
+//   word-wrap: break-word;
+//   white-space: pre-line;
+// `;

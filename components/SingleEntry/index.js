@@ -3,6 +3,7 @@ import EditButton from "../Buttons/EditButton";
 import FavoriteButton from "../Buttons/FavoriteButton";
 import Divider from "../Divider";
 import ListEntry from "../ListEntry";
+import styled from "styled-components";
 
 export default function SingleEntry({
   word,
@@ -25,9 +26,13 @@ export default function SingleEntry({
         <p>{translated}</p>
         <Divider />
         <p>My notes: </p>
-        <p>{notes}</p>
+        <StyledNotes>{notes}</StyledNotes>
         <DeleteButton onDeleteEntry={onDeleteEntry} />
       </ListEntry>
     </>
   );
 }
+const StyledNotes = styled.article`
+  word-wrap: break-word;
+  white-space: pre-line;
+`;
