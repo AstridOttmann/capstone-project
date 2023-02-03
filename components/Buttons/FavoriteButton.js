@@ -8,7 +8,7 @@ export default function FavoriteButton({ id, isFavorite, onToggleFavorite }) {
         variant={isFavorite ? "likeActive" : "like"}
         width="1.5rem"
         aria-label="like"
-      ></SVGIcon>
+      />
     </StyledButton>
   );
 }

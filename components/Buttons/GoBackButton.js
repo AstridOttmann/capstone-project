@@ -4,7 +4,7 @@ import SVGIcon from "../Icons/SVGIcon";
 export default function GoBackButton({ onClick }) {
   return (
     <StyledButton type="goBack" onClick={onClick}>
-      <SVGIcon variant="goBack" width="2.3rem" aria-label="goBack"></SVGIcon>
+      <SVGIcon variant="goBack" width="2.3rem" aria-label="goBack" />
     </StyledButton>
   );
 }

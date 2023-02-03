@@ -9,7 +9,7 @@ export default function CancelEditButton({ onClick }) {
         width="2rem"
         color="#F27405"
         aria-label="cancel"
-      ></SVGIcon>
+      />
     </StyledButton>
   );
 }

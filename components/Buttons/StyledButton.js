@@ -41,7 +41,6 @@ const StyledButton = styled.button`
         position: absolute;
         top: 1.7rem;
         right: 2rem;
-        _padding: 0.4rem 0.4rem 0 0.4rem;
         padding: 0.6rem 0.6rem 0.2rem 0.6rem;
         color: #f27405;
         border: 2px solid #f27405;
@@ -98,7 +97,7 @@ const StyledButton = styled.button`
       `;
     } else if (type === "goBack") {
       return css`
-        position: absolute;
+        _position: absolute;
         top: 21rem;
         left: -1.5rem;
         padding: 0.4rem 0.4rem 0 0.4rem;

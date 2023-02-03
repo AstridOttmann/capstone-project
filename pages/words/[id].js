@@ -40,7 +40,7 @@ export default function SingleWordPage() {
     <main>
       <>
         <h1>Word entry {!isShowMode && ": edit"}</h1>
-        {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
+
         {isShowMode ? (
           <EditButton onClick={() => setIsShowMode(false)} />
         ) : (
@@ -86,6 +86,7 @@ export default function SingleWordPage() {
           )}
         </>
       )}
+      {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
     </main>
   );
 }
