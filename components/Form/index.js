@@ -1,7 +1,6 @@
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
-//import styled from "styled-components";
 
 export default function Form({
   onSubmitEvent,
@@ -86,8 +85,3 @@ export default function Form({
     </>
   );
 }
-
-// const StyledTextarea = styled.textarea`
-//   word-wrap: break-word;
-//   white-space: pre-line;
-// `;
