@@ -52,8 +52,8 @@ export default function Form({
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
-          pattern="^[^\s0-9].*$"
-          maxLength="17"
+          pattern="^[^\s]\S+$"
+          maxLength="12"
         />
         <label htmlFor="translated">
           {isEditMode ? "Edit translation" : "Enter translation"}

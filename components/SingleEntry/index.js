@@ -21,9 +21,9 @@ export default function SingleEntry({
           isFavorite={isFavorite}
           onToggleFavorite={onToggleFavorite}
         />
-        <p>{word}</p>
+        <StyledWordFields>{word}</StyledWordFields>
         <small>({language})</small>
-        <p>{translated}</p>
+        <StyledWordFields>{translated}</StyledWordFields>
         <Divider />
         <p>My notes: </p>
         <StyledNotes>{notes}</StyledNotes>
@@ -33,6 +33,11 @@ export default function SingleEntry({
   );
 }
 const StyledNotes = styled.article`
+  word-wrap: break-word;
+  white-space: pre-line;
+`;
+
+const StyledWordFields = styled.p`
   word-wrap: break-word;
   white-space: pre-line;
 `;
