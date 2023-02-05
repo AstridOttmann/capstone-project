@@ -20,18 +20,18 @@ export default function Form({
       word: data.word,
       language: data.language,
       translated: data.translated,
+      notes: data.notes,
     });
-
-    if (isEditMode) {
-      router.back();
-    }
     event.target.reset();
     event.target.elements.word.focus();
   }
 
   return (
     <>
-      <StyledForm type="add-edit" onSubmit={(event) => handleSubmit(event)}>
+      <StyledForm
+        type={isEditMode ? "edit" : "add"}
+        onSubmit={(event) => handleSubmit(event)}
+      >
         <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
         <input
           type="text"
@@ -52,8 +52,8 @@ export default function Form({
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
-          pattern="^[^\s0-9].*$"
-          maxLength="17"
+          pattern="^[^\s]\S+$"
+          maxLength="12"
         />
         <label htmlFor="translated">
           {isEditMode ? "Edit translation" : "Enter translation"}
@@ -69,8 +69,13 @@ export default function Form({
         />
         {isEditMode && (
           <>
-            <label htmlFor="notes">Notes, use case ...</label>
-            <textarea></textarea>
+            <label htmlFor="notes">Add notes ...</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="5"
+              defaultValue={entry.notes}
+            ></textarea>
           </>
         )}
         <StyledButton type="submit">Save</StyledButton>

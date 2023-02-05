@@ -12,7 +12,7 @@ export default function ShowFavoritesButton({ onShowFavorites, isActive }) {
         variant="likeActive"
         width={isActive ? "2rem" : "1.5rem"}
         aria-label="likeActive"
-      ></SVGIcon>
+      />
     </StyledButton>
   );
 }
