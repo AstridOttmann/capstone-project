@@ -1,4 +1,5 @@
 import { atom, useAtom } from "jotai";
+import styled from "styled-components";
 import globalTranslations from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
@@ -124,9 +125,9 @@ export default function WordsPage() {
               isFavorite={translation.isFavorite}
               onToggleFavorite={handleToggleFavorite}
             />
-            <p>{translation.word}</p>
+            <StyledWordFields>{translation.word}</StyledWordFields>
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
-            <p>{translation.translated}</p>
+            <StyledWordFields>{translation.translated}</StyledWordFields>
             <SeeMoreButton
               onClick={() => router.push(`/words/${translation.id}`)}
             />
@@ -139,3 +140,7 @@ export default function WordsPage() {
     </main>
   );
 }
+const StyledWordFields = styled.p`
+  word-wrap: break-word;
+  white-space: pre-line;
+`;

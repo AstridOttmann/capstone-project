@@ -17,7 +17,7 @@ const StyledButton = styled.button`
     } else if (type === "delete") {
       return css`
         position: absolute;
-        right: 0.7rem;
+        right: 0.5rem;
         bottom: 0.5rem;
         z-index: 0;
         background: none;
@@ -50,7 +50,7 @@ const StyledButton = styled.button`
         background: whitesmoke;
         color: #f27405;
         margin: 0;
-        padding: 0.7em;
+        padding: 0.6rem;
         border: 2px solid #f27405;
       `;
     } else if (type === "language-selected") {
@@ -58,7 +58,7 @@ const StyledButton = styled.button`
         background: #f27405;
         color: whitesmoke;
         margin: 0;
-        padding: 0.7em;
+        padding: 0.6rem;
         border: 2px solid #f27405;
       `;
     } else if (type === "favorite") {
@@ -97,9 +97,6 @@ const StyledButton = styled.button`
       `;
     } else if (type === "goBack") {
       return css`
-        _position: absolute;
-        top: 21rem;
-        left: -1.5rem;
         padding: 0.4rem 0.4rem 0 0.4rem;
         color: #04bf45;
         border: 2px solid #04bf45;

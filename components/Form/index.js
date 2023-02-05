@@ -40,7 +40,7 @@ export default function Form({
           required
           defaultValue={isEditMode ? entry.word : ""}
           pattern="^[^\s0-9].*$"
-          maxLength="30"
+          maxLength="40"
           onChange={!isEditMode ? onFirstInput : () => {}}
         />
         <label htmlFor="language">
@@ -65,7 +65,7 @@ export default function Form({
           required
           defaultValue={isEditMode ? entry.translated : ""}
           pattern="^[^\s0-9].*$"
-          maxLength="30"
+          maxLength="40"
         />
         {isEditMode && (
           <>
