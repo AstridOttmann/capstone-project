@@ -101,6 +101,15 @@ const StyledButton = styled.button`
         color: #04bf45;
         border: 2px solid #04bf45;
       `;
+    } else if (type === "speaker") {
+      return css`
+        _position: absolute;
+        top: 0.2rem;
+        right: 3.2rem;
+        color: #04bf45;
+        background: none;
+        padding: 0;
+      `;
     }
   }}
 `;

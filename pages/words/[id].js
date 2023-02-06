@@ -8,8 +8,10 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
+import SpeakerButton from "@/components/Buttons/SpeakerButton";
+import SpeechSynthesis from "@/components/SpeechSynthesis";
 
-export default function SingleWordPage() {
+export default function SingleWordPage({ handlePlaySpeech }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
   const router = useRouter();
@@ -41,7 +43,6 @@ export default function SingleWordPage() {
     <main>
       <>
         <h1>Word entry {!isShowMode && ": edit"}</h1>
-
         {isShowMode ? (
           <EditButton onClick={() => setIsShowMode(false)} />
         ) : (
@@ -54,6 +55,8 @@ export default function SingleWordPage() {
             language={entry.language}
             translated={entry.translated}
             notes={entry.notes}
+            voice={entry.voice}
+            handlePlaySpeech={() => handlePlaySpeech(entry.word, entry.voice)}
             onDeleteEntry={() => {
               router.push("/words");
               setTranslationList(
@@ -72,7 +75,13 @@ export default function SingleWordPage() {
                 )
               )
             }
-          />
+          >
+            {/* <SpeechSynthesis
+              word={entry.word}
+              voice={entry.voice}
+              handlePlaySpeech={handlePlaySpeech}
+            /> */}
+          </SingleEntry>
         )}
       </>
       {!isShowMode && (

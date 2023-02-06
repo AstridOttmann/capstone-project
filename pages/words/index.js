@@ -13,6 +13,7 @@ import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
+import SpeakerButton from "@/components/Buttons/SpeakerButton";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
