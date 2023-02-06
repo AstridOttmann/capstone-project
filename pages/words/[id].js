@@ -8,10 +8,12 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
+import useVoices from "@/hooks/useVoices";
 
-export default function SingleWordPage() {
+export default function SingleWordPage({ selectedVoice, availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
+  const [voices, setVoices] = useState(availableVoices);
   const router = useRouter();
   const { id } = router.query;
 
@@ -60,6 +62,8 @@ export default function SingleWordPage() {
             translated={entry.translated}
             notes={entry.notes}
             voice={entry.voice}
+            selectedVoice={selectedVoice}
+            voices={availableVoices}
             onDeleteEntry={handleDeleteEntry}
             onToggleFavorite={() =>
               setTranslationList(

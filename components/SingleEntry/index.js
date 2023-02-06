@@ -4,6 +4,7 @@ import Divider from "../Divider";
 import ListEntry from "../ListEntry";
 import styled from "styled-components";
 import SpeechSynthesis from "../SpeechSynthesis";
+import SpeechSynthLanguageSelector from "../SpeechSynthesis/SpeechSynthLanguageSelector";
 
 export default function SingleEntry({
   word,
@@ -14,11 +15,12 @@ export default function SingleEntry({
   isFavorite,
   onDeleteEntry,
   onToggleFavorite,
+  availableVoices,
 }) {
   return (
     <>
       <ListEntry>
-        <SpeechSynthesis word={word} voice={voice} />
+        <SpeechSynthesis word={word} voice={voice} voices={availableVoices} />
         <FavoriteButton
           isFavorite={isFavorite}
           onToggleFavorite={onToggleFavorite}

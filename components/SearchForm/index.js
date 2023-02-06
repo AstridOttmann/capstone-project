@@ -72,7 +72,7 @@ export default function SearchForm({ selectedLanguage }) {
                         variant="arrow"
                         width="2rem"
                         color="#04BF45"
-                        aria-label="variant"
+                        aria-label="arrow"
                       />
                     </StyledLink>
                   </StyledMessage>
