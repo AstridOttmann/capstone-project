@@ -38,5 +38,5 @@ export default function SpeechSynthesis() {
     handleSpeech(word, selectedVoice);
   }
 
-  return <SpeakerButton onClick={handlePlaySpeech} />;
+  return <SpeakerButton onClick={() => handlePlaySpeech(voice, word)} />;
 }

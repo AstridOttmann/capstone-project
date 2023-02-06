@@ -56,7 +56,7 @@ export default function SingleWordPage({ handlePlaySpeech }) {
             translated={entry.translated}
             notes={entry.notes}
             voice={entry.voice}
-            handlePlaySpeech={() => handlePlaySpeech(entry.word, entry.voice)}
+            handlePlaySpeech={() => handlePlaySpeech(entry.voice, entry.word)}
             onDeleteEntry={() => {
               router.push("/words");
               setTranslationList(
