@@ -8,8 +8,6 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import DeleteButton from "@/components/Buttons/DeleteButton";
-import SpeakerButton from "@/components/Buttons/SpeakerButton";
-import SpeechSynthesis from "@/components/SpeechSynthesis";
 
 export default function SingleWordPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -62,7 +60,6 @@ export default function SingleWordPage() {
             translated={entry.translated}
             notes={entry.notes}
             voice={entry.voice}
-            // handlePlaySpeech={() => handlePlaySpeech(entry.voice, entry.word)}
             onDeleteEntry={handleDeleteEntry}
             onToggleFavorite={() =>
               setTranslationList(

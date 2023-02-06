@@ -1,5 +1,4 @@
 import DeleteButton from "../Buttons/DeleteButton";
-import EditButton from "../Buttons/EditButton";
 import FavoriteButton from "../Buttons/FavoriteButton";
 import Divider from "../Divider";
 import ListEntry from "../ListEntry";
@@ -15,16 +14,11 @@ export default function SingleEntry({
   isFavorite,
   onDeleteEntry,
   onToggleFavorite,
-  handlePlaySpeech,
 }) {
   return (
     <>
       <ListEntry>
-        <SpeechSynthesis
-          word={word}
-          voice={voice}
-          // handlePlaySpeech={() => handlePlaySpeech(voice, word)}
-        />
+        <SpeechSynthesis word={word} voice={voice} />
         <FavoriteButton
           isFavorite={isFavorite}
           onToggleFavorite={onToggleFavorite}
