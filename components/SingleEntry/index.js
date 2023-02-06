@@ -23,7 +23,7 @@ export default function SingleEntry({
         <SpeechSynthesis
           word={word}
           voice={voice}
-          handlePlaySpeech={() => handlePlaySpeech(voice, word)}
+          // handlePlaySpeech={() => handlePlaySpeech(voice, word)}
         />
         <FavoriteButton
           isFavorite={isFavorite}

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 //   speechSynthesis.speak(utterance);
 // }
 
-export default function SpeechSynthesis() {
+export default function SpeechSynthesis({ word, voice }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [availableVoices, setAvailableVoices] = useState([]);
 

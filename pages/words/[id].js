@@ -11,7 +11,7 @@ import DeleteButton from "@/components/Buttons/DeleteButton";
 import SpeakerButton from "@/components/Buttons/SpeakerButton";
 import SpeechSynthesis from "@/components/SpeechSynthesis";
 
-export default function SingleWordPage({ handlePlaySpeech }) {
+export default function SingleWordPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
   const router = useRouter();
@@ -38,6 +38,12 @@ export default function SingleWordPage({ handlePlaySpeech }) {
     );
     setIsShowMode(true);
   }
+  function handleDeleteEntry() {
+    setTranslationList(
+      translationList.filter((translation) => translation.id !== id)
+    );
+    router.push("/words");
+  }
 
   return (
     <main>
@@ -56,13 +62,8 @@ export default function SingleWordPage({ handlePlaySpeech }) {
             translated={entry.translated}
             notes={entry.notes}
             voice={entry.voice}
-            handlePlaySpeech={() => handlePlaySpeech(entry.voice, entry.word)}
-            onDeleteEntry={() => {
-              router.push("/words");
-              setTranslationList(
-                translationList.filter((translation) => translation.id !== id)
-              );
-            }}
+            // handlePlaySpeech={() => handlePlaySpeech(entry.voice, entry.word)}
+            onDeleteEntry={handleDeleteEntry}
             onToggleFavorite={() =>
               setTranslationList(
                 translationList.map((translation) =>
@@ -75,13 +76,7 @@ export default function SingleWordPage({ handlePlaySpeech }) {
                 )
               )
             }
-          >
-            {/* <SpeechSynthesis
-              word={entry.word}
-              voice={entry.voice}
-              handlePlaySpeech={handlePlaySpeech}
-            /> */}
-          </SingleEntry>
+          />
         )}
       </>
       {!isShowMode && (
