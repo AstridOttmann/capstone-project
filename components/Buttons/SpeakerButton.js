@@ -6,7 +6,7 @@ export default function SpeakerButton({ onClick }) {
     <StyledButton type="speaker" onClick={onClick}>
       <SVGIcon
         variant="speaker"
-        width="1.5rem"
+        width="2rem"
         color="#04BF45"
         aria-label="speaker"
       />

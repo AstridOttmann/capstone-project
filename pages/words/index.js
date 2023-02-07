@@ -6,23 +6,17 @@ import StyledList from "@/components/List/StyledList";
 import { useEffect, useState } from "react";
 import LanguageSelection from "@/components/LanguageSelection";
 import { useRouter } from "next/router";
-import ToastMessage from "@/components/ToastMessage";
 import FavoriteButton from "@/components/Buttons/FavoriteButton";
-import DeleteButton from "@/components/Buttons/DeleteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
-import SpeechSynthesis from "@/components/SpeechSynthesis";
 
 export default function WordsPage() {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
-
   const { id } = router.query;
-
-  const [toast, setToast] = useState("");
 
   const [favoriteFilter, setFavoriteFilter] = useState(false);
 
@@ -86,19 +80,6 @@ export default function WordsPage() {
       return true;
     });
 
-  function handleDeleteEntry(id) {
-    if (filteredTranslations.length === 1) {
-      setSelectedLanguage("");
-    }
-    setToast("enter");
-    setTimeout(exitToast, 2000);
-
-    setTranslationList(translationList.filter((entry) => entry.id !== id));
-  }
-  function exitToast() {
-    setToast("exit");
-  }
-
   return (
     <main>
       <LanguageSelection
@@ -112,7 +93,6 @@ export default function WordsPage() {
         isActive={favoriteFilter === true}
         onShowFavorites={handleShowFavorites}
       />
-      <ToastMessage toast={toast} />
       <SearchForm selectedLanguage={selectedLanguage} />
       <StyledList>
         {filteredTranslations.map((translation) => (
@@ -121,10 +101,6 @@ export default function WordsPage() {
             id={translation.id}
             isFavorite={translation.isFavorite}
           >
-            {/* <SpeechSynthesis
-              word={translation.word}
-              voice={translation.voice}
-            /> */}
             <FavoriteButton
               id={translation.id}
               isFavorite={translation.isFavorite}
@@ -135,9 +111,6 @@ export default function WordsPage() {
             <StyledWordFields>{translation.translated}</StyledWordFields>
             <SeeMoreButton
               onClick={() => router.push(`/words/${translation.id}`)}
-            />
-            <DeleteButton
-              onDeleteEntry={() => handleDeleteEntry(translation.id)}
             />
           </ListEntry>
         ))}

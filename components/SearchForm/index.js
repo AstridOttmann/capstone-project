@@ -98,7 +98,6 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  _text-align: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   background: whitesmoke;

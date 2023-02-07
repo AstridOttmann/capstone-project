@@ -16,14 +16,11 @@ const StyledButton = styled.button`
       `;
     } else if (type === "delete") {
       return css`
-        position: absolute;
-        right: 0.5rem;
-        bottom: 0.5rem;
-        z-index: 0;
+        position: relative;
         background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
-        margin: 0;
+        margin-top: 1rem;
         width: 2rem;
         border: 1px solid red;
       `;
@@ -85,7 +82,7 @@ const StyledButton = styled.button`
     } else if (type === "seeMore") {
       return css`
         position: absolute;
-        right: 3.5rem;
+        right: 0.5rem;
         bottom: 0.4rem;
         z-index: 0;
         overflow: hidden;
@@ -100,12 +97,13 @@ const StyledButton = styled.button`
         padding: 0.4rem 0.4rem 0 0.4rem;
         color: #04bf45;
         border: 2px solid #04bf45;
+        margin-bottom: 5rem;
       `;
     } else if (type === "speaker") {
       return css`
-        _position: absolute;
-        top: 0.2rem;
-        right: 3.2rem;
+        position: relative;
+        _top: 0.2rem;
+        _right: 3.2rem;
         color: #04bf45;
         background: none;
         padding: 0;
