@@ -1,6 +1,6 @@
 import StyledButton from "../Buttons/StyledButton";
 
-export default function SpeechSynthLanguageSelector({
+export default function SpeechSynthVoiceSelector({
   availableVoices,
   onSubmit,
 }) {

@@ -12,7 +12,8 @@ export default function LanguageSelection({
         return (
           <StyledButton
             key={language}
-            type={
+            type="button"
+            variant={
               selectedLanguage === language ? "language-selected" : "language"
             }
             onClick={() => onLanguageSelection(language)}

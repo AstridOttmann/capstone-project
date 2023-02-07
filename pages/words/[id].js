@@ -8,7 +8,7 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
-import SpeechSynthesisModul from "@/components/SpeechSynthesisModul";
+import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -19,20 +19,18 @@ export default function SingleWordPage({ availableVoices }) {
   const router = useRouter();
   const { id } = router.query;
 
-  // submits the selected language for speechSynthesis
+  // submits the selected language for SpeechSynthesis
   function handleSelectSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const { voiceURI } = Object.fromEntries(formData);
     setLanguageInput(voiceURI);
-    console.log("data", voiceURI);
   }
-  // sets the language for speechSynth
+  // sets the language for SpeechSynth
   const selectedVoice = availableVoices.find(
     (voice_) => voice_.name === languageInput
   );
-  console.log("sel", selectedVoice);
 
   const entry = translationList.find((translation) => {
     return translation.id === id;
@@ -60,8 +58,6 @@ export default function SingleWordPage({ availableVoices }) {
     setTranslationList(
       translationList.filter((translation) => translation.id !== id)
     );
-    //router.push("/words");
-
     setTimeout(exitToast, 2000);
   }
 
@@ -81,7 +77,7 @@ export default function SingleWordPage({ availableVoices }) {
         )}
         {entry && (
           <>
-            <SpeechSynthesisModul
+            <SpeechSynthesisModule
               word={entry.word}
               selectedVoice={selectedVoice}
               availableVoices={availableVoices}
@@ -94,9 +90,7 @@ export default function SingleWordPage({ availableVoices }) {
               translated={entry.translated}
               notes={entry.notes}
               voice={entry.voice}
-              selectedVoice={availableVoices.find(
-                (voice_) => voice_.name === languageInput
-              )}
+              selectedVoice={selectedVoice}
               availableVoices={availableVoices}
               onDeleteEntry={handleDeleteEntry}
               onToggleFavorite={() =>

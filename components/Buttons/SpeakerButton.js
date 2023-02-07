@@ -3,7 +3,7 @@ import StyledButton from "./StyledButton";
 
 export default function SpeakerButton({ onClick }) {
   return (
-    <StyledButton type="speaker" onClick={onClick}>
+    <StyledButton type="button" variant="speaker" onClick={onClick}>
       <SVGIcon
         variant="speaker"
         width="2rem"

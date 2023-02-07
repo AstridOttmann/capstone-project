@@ -3,7 +3,11 @@ import SVGIcon from "../Icons/SVGIcon";
 
 export default function FavoriteButton({ id, isFavorite, onToggleFavorite }) {
   return (
-    <StyledButton type="favorite" onClick={() => onToggleFavorite(id)}>
+    <StyledButton
+      type="button"
+      variant="favorite"
+      onClick={() => onToggleFavorite(id)}
+    >
       <SVGIcon
         variant={isFavorite ? "likeActive" : "like"}
         width="1.5rem"

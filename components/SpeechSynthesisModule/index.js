@@ -1,8 +1,8 @@
-import SpeechSynthLanguageSelector from "./SpeechSynthLanguageSelector";
+import SpeechSynthVoiceSelector from "./SpeechSynthVoiceSelector";
 import SpeechSynthesis from "./SpeechSynthesis";
 import styled from "styled-components";
 
-export default function SpeechSynthesisModul({
+export default function SpeechSynthesisModule({
   availableVoices,
   onSubmit,
   word,
@@ -11,7 +11,7 @@ export default function SpeechSynthesisModul({
   return (
     <>
       <StyledSpechSynthContainer>
-        <SpeechSynthLanguageSelector
+        <SpeechSynthVoiceSelector
           availableVoices={availableVoices}
           onSubmit={onSubmit}
         />
