@@ -5,6 +5,7 @@ import ListEntry from "../ListEntry";
 import styled from "styled-components";
 
 export default function SingleEntry({
+  entry,
   word,
   language,
   translated,
@@ -17,15 +18,16 @@ export default function SingleEntry({
     <>
       <ListEntry>
         <FavoriteButton
-          isFavorite={isFavorite}
+          voice={entry.voice}
+          isFavorite={entry.isFavorite}
           onToggleFavorite={onToggleFavorite}
         />
-        <StyledWordFields>{word}</StyledWordFields>
-        <small>({language})</small>
-        <StyledWordFields>{translated}</StyledWordFields>
+        <StyledWordFields>{entry.word}</StyledWordFields>
+        <small>({entry.language})</small>
+        <StyledWordFields>{entry.translated}</StyledWordFields>
         <Divider />
         <p>My notes: </p>
-        <StyledNotes>{notes}</StyledNotes>
+        <StyledNotes>{entry.notes}</StyledNotes>
         <DeleteButton onDeleteEntry={onDeleteEntry} />
       </ListEntry>
     </>

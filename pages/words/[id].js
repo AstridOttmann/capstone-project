@@ -13,7 +13,7 @@ import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
-  const [languageInput, setLanguageInput] = useState("");
+  const [voiceInput, setVoiceInput] = useState("");
   const [toast, setToast] = useState("exit");
 
   const router = useRouter();
@@ -25,11 +25,11 @@ export default function SingleWordPage({ availableVoices }) {
 
     const formData = new FormData(event.target);
     const { voiceURI } = Object.fromEntries(formData);
-    setLanguageInput(voiceURI);
+    setVoiceInput(voiceURI);
   }
   // sets the language for SpeechSynth
   const selectedVoice = availableVoices.find(
-    (voice_) => voice_.name === languageInput
+    (voice_) => voice_.name === voiceInput
   );
 
   const entry = translationList.find((translation) => {
@@ -84,12 +84,13 @@ export default function SingleWordPage({ availableVoices }) {
               onSubmit={(event) => handleSelectSubmit(event)}
             />
             <SingleEntry
-              isFavorite={entry.isFavorite}
-              word={entry.word}
-              language={entry.language}
-              translated={entry.translated}
-              notes={entry.notes}
-              voice={entry.voice}
+              entry={entry}
+              // isFavorite={entry.isFavorite}
+              // word={entry.word}
+              // language={entry.language}
+              // translated={entry.translated}
+              // notes={entry.notes}
+              // voice={entry.voice}
               selectedVoice={selectedVoice}
               availableVoices={availableVoices}
               onDeleteEntry={handleDeleteEntry}

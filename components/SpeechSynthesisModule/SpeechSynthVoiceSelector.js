@@ -6,7 +6,7 @@ export default function SpeechSynthVoiceSelector({
 }) {
   return (
     <form onSubmit={onSubmit}>
-      <select name="voiceURI">
+      <select name="voiceURI" aria-label="select-voice">
         {availableVoices.map((voice) => {
           return (
             <option key={voice.name} value={voice.name}>
@@ -16,7 +16,7 @@ export default function SpeechSynthVoiceSelector({
         })}
       </select>
       <StyledButton>
-        <p>set language</p>
+        <p>set voice</p>
       </StyledButton>
     </form>
   );
