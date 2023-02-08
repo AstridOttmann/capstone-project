@@ -78,7 +78,9 @@ export default function Form({
             ></textarea>
           </>
         )}
-        <StyledButton type="submit">Save</StyledButton>
+        <StyledButton type="submit" variant="submit">
+          Save
+        </StyledButton>
       </StyledForm>
     </>
   );

@@ -85,12 +85,6 @@ export default function SingleWordPage({ availableVoices }) {
             />
             <SingleEntry
               entry={entry}
-              // isFavorite={entry.isFavorite}
-              // word={entry.word}
-              // language={entry.language}
-              // translated={entry.translated}
-              // notes={entry.notes}
-              // voice={entry.voice}
               selectedVoice={selectedVoice}
               availableVoices={availableVoices}
               onDeleteEntry={handleDeleteEntry}

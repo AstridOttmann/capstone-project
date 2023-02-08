@@ -6,11 +6,6 @@ import styled from "styled-components";
 
 export default function SingleEntry({
   entry,
-  word,
-  language,
-  translated,
-  notes,
-  isFavorite,
   onDeleteEntry,
   onToggleFavorite,
 }) {
