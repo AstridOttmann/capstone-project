@@ -3,7 +3,7 @@ import StyledButton from "./StyledButton";
 
 export default function CancelEditButton({ onClick }) {
   return (
-    <StyledButton type="discard" onClick={onClick}>
+    <StyledButton type="button" variant="discard" onClick={onClick}>
       <SVGIcon
         variant="cancel"
         width="2rem"

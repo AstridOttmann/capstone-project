@@ -7,7 +7,7 @@ import SVGIcon from "../Icons/SVGIcon";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
-import RefreshButton from "../Buttons/RefreshButton";
+import ResetButton from "../Buttons/ResetButton";
 import StyledMessage from "../List/Message/StyledMessage";
 
 export default function SearchForm({ selectedLanguage }) {
@@ -39,7 +39,7 @@ export default function SearchForm({ selectedLanguage }) {
             onChange={(event) => setSearchInput(event.target.value)}
           />
         </StyledInputWrapper>
-        <RefreshButton onClick={() => setSearchInput("")} />
+        <ResetButton onClick={() => setSearchInput("")} />
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
         <StyledSection>
@@ -72,7 +72,7 @@ export default function SearchForm({ selectedLanguage }) {
                         variant="arrow"
                         width="2rem"
                         color="#04BF45"
-                        aria-label="variant"
+                        aria-label="arrow"
                       />
                     </StyledLink>
                   </StyledMessage>
@@ -98,7 +98,6 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  _text-align: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   background: whitesmoke;

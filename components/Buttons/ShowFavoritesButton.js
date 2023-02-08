@@ -4,7 +4,8 @@ import SVGIcon from "../Icons/SVGIcon";
 export default function ShowFavoritesButton({ onShowFavorites, isActive }) {
   return (
     <StyledButton
-      type="nav-favorite"
+      type="button"
+      variant="nav-favorite"
       onClick={() => onShowFavorites()}
       isActive={isActive}
     >

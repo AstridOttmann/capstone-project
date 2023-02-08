@@ -3,7 +3,7 @@ import StyledButton from "./StyledButton";
 
 export default function SeeMoreButton({ onClick }) {
   return (
-    <StyledButton type="seeMore" onClick={onClick}>
+    <StyledButton type="button" variant="seeMore" onClick={onClick}>
       <SVGIcon
         variant="seeMore"
         width="1.2rem"

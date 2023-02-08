@@ -5,8 +5,8 @@ const StyledButton = styled.button`
   border-radius: 5px;
   border: none;
 
-  ${({ type }) => {
-    if (type === "submit") {
+  ${({ variant }) => {
+    if (variant === "submit") {
       return css`
         margin: 1em auto;
         padding: 0.7em;
@@ -14,20 +14,15 @@ const StyledButton = styled.button`
         color: whitesmoke;
         width: 10rem;
       `;
-    } else if (type === "delete") {
+    } else if (variant === "delete") {
       return css`
-        position: absolute;
-        right: 0.7rem;
-        bottom: 0.5rem;
-        z-index: 0;
+        position: relative;
         background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
-        margin: 0;
-        width: 2rem;
-        border: 1px solid red;
+        margin-top: 1rem;
       `;
-    } else if (type === "edit") {
+    } else if (variant === "edit") {
       return css`
         position: absolute;
         top: 1.7rem;
@@ -36,7 +31,7 @@ const StyledButton = styled.button`
         color: #04bf45;
         border: 2px solid #04bf45;
       `;
-    } else if (type === "discard") {
+    } else if (variant === "discard") {
       return css`
         position: absolute;
         top: 1.7rem;
@@ -45,23 +40,23 @@ const StyledButton = styled.button`
         color: #f27405;
         border: 2px solid #f27405;
       `;
-    } else if (type === "language") {
+    } else if (variant === "language") {
       return css`
         background: whitesmoke;
         color: #f27405;
         margin: 0;
-        padding: 0.7em;
+        padding: 0.6rem;
         border: 2px solid #f27405;
       `;
-    } else if (type === "language-selected") {
+    } else if (variant === "language-selected") {
       return css`
         background: #f27405;
         color: whitesmoke;
         margin: 0;
-        padding: 0.7em;
+        padding: 0.6rem;
         border: 2px solid #f27405;
       `;
-    } else if (type === "favorite") {
+    } else if (variant === "favorite") {
       return css`
         position: absolute;
         color: #f27405;
@@ -72,7 +67,7 @@ const StyledButton = styled.button`
         color: #f27405;
         background: none;
       `;
-    } else if (type === "nav-favorite") {
+    } else if (variant === "nav-favorite") {
       return css`
         position: absolute;
         top: 3.5rem;
@@ -82,10 +77,10 @@ const StyledButton = styled.button`
         border: 1px solid #f27405;
         color: #f27405;
       `;
-    } else if (type === "seeMore") {
+    } else if (variant === "seeMore") {
       return css`
         position: absolute;
-        right: 3.5rem;
+        right: 0.5rem;
         bottom: 0.4rem;
         z-index: 0;
         overflow: hidden;
@@ -95,14 +90,21 @@ const StyledButton = styled.button`
         border: 2px solid #04bf45;
         _border-radius: 50%;
       `;
-    } else if (type === "goBack") {
+    } else if (variant === "goBack") {
       return css`
-        _position: absolute;
-        top: 21rem;
-        left: -1.5rem;
         padding: 0.4rem 0.4rem 0 0.4rem;
         color: #04bf45;
         border: 2px solid #04bf45;
+        margin-bottom: 5rem;
+      `;
+    } else if (variant === "speaker") {
+      return css`
+        position: relative;
+        _top: 0.2rem;
+        _right: 3.2rem;
+        color: #04bf45;
+        background: none;
+        padding: 0;
       `;
     }
   }}
