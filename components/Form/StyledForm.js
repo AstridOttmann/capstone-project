@@ -20,7 +20,7 @@ const StyledForm = styled.form`
     } else if (variant === "edit") {
       return css`
         position: absolute;
-        top: 6rem;
+        top: 5.8rem;
         width: 100%;
         left: 50%;
         transform: translateX(-50%);

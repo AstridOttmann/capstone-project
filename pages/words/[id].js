@@ -8,13 +8,13 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
-import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
+//import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
-  const [voiceInput, setVoiceInput] = useState("");
+  // const [voiceInput, setVoiceInput] = useState("");
   const [toast, setToast] = useState("exit");
 
   const router = useRouter();

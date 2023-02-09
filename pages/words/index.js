@@ -11,8 +11,9 @@ import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
+import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
-export default function WordsPage() {
+export default function WordsPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
@@ -101,6 +102,12 @@ export default function WordsPage() {
             id={translation.id}
             isFavorite={translation.isFavorite}
           >
+            <SpeechSynthesis
+              word={translation.word}
+              selectedVoice={availableVoices.find(
+                (voice_) => voice_.voiceURI === translation.voiceURI
+              )}
+            />
             <FavoriteButton
               id={translation.id}
               isFavorite={translation.isFavorite}

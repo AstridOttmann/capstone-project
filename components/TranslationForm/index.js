@@ -79,7 +79,7 @@ export default function TranslationForm() {
           <StyledLink href="/">
             add to my words
             <SVGIcon
-              variant="arrow"
+              variant="arrow_up"
               width="2rem"
               color="#04BF45"
               aria-label="arrow"

@@ -13,17 +13,17 @@ export default async function handler(request, response) {
     },
   });
 
-  const requestedTranslation = await result.json();
-  response.status(201).json({ requestedTranslation });
+  // const requestedTranslation = await result.json();
+  // response.status(201).json({ requestedTranslation });
 
-  // if (request.method === "POST") {
-  //   try {
-  //     const translation = await result.json();
-  //     response.status(200).json({ translation: translation });
-  //   } catch (error) {
-  //     console.error(error);
-  //     response.status(400).json({ error: error.message });
-  //   }
-  // }
-  // return response.status(405).json({ status: "Method not allowed" });
+  if (request.method === "POST") {
+    try {
+      const requestedTranslation = await result.json();
+      response.status(201).json({ requestedTranslation });
+    } catch (error) {
+      console.error(error);
+      response.status(400).json({ error: error.message });
+    }
+  }
+  return response.status(405).json({ status: "Method not allowed" });
 }
