@@ -26,7 +26,7 @@ export default function SingleEntry({
         <Divider />
         <p>My notes: </p>
         <StyledNotes>{entry.notes}</StyledNotes>
-        <DeleteButton onDeleteEntry={onDeleteEntry} />
+        {/* <DeleteButton onDeleteEntry={onDeleteEntry} /> */}
       </ListEntry>
     </>
   );

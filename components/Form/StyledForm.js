@@ -8,14 +8,14 @@ const StyledForm = styled.form`
         justify-content: space-between;
         align-items: center;
         gap: 0.2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
       `;
     } else if (variant === "add") {
       return css`
         position: relative;
         flex-direction: column;
         gap: 0.5em;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
       `;
     } else if (variant === "edit") {
       return css`
@@ -35,7 +35,7 @@ const StyledForm = styled.form`
         position: relative;
         flex-direction: column;
         gap: 0.5em;
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
       `;
     }
   }}

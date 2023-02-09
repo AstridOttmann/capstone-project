@@ -17,10 +17,14 @@ const StyledButton = styled.button`
     } else if (variant === "delete") {
       return css`
         position: relative;
+        right: rem;
+        z-index: -1;
         background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
         margin-top: 1rem;
+        left: 70%;
+        _transform: translateX(-50%);
       `;
     } else if (variant === "edit") {
       return css`
@@ -105,6 +109,15 @@ const StyledButton = styled.button`
         color: #04bf45;
         background: none;
         padding: 0;
+      `;
+    } else if (variant === "show-hide") {
+      return css`
+        display: block;
+        margin: 1em auto;
+        padding: 0.7em;
+        background: #f2ae30;
+        color: white;
+        width: 10rem;
       `;
     }
   }}

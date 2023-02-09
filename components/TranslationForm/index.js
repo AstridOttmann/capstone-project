@@ -1,6 +1,5 @@
 import StyledForm from "../Form/StyledForm";
 import StyledButton from "../Buttons/StyledButton";
-//import useSWR from "swr";
 import { useState } from "react";
 import StyledMessage from "../List/Message/StyledMessage";
 import styled from "styled-components";
@@ -11,9 +10,6 @@ import targetLanguages from "@/public/targetLanguages";
 export default function TranslationForm() {
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
-
-  //   const { data, mutate } = useSWR("api/deepl");
-  //   console.log("fetchDataSWR", data);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -75,7 +71,7 @@ export default function TranslationForm() {
       {translation && (
         <StyledSection>
           <StyledMessage>{translation}</StyledMessage>
-          <small>detected language: {detectedLanguage}</small>
+          <small>lang: {detectedLanguage}</small>
           <StyledLink href="/">
             add to my words
             <SVGIcon

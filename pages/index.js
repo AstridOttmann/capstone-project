@@ -10,10 +10,14 @@ import SearchForm from "@/components/SearchForm";
 import StyledMessage from "@/components/List/Message/StyledMessage";
 import StyledTitle from "@/components/Header/StyledTitle";
 import TranslationForm from "@/components/TranslationForm";
+import StyledButton from "@/components/Buttons/StyledButton";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [isFound, setIsFound] = useState();
+  const [isAddMode, setIsAddMode] = useState(false);
+  const [isSearchMode, setIsSearchMode] = useState(false);
+  const [isTranslateMode, setIsTranslateMode] = useState(false);
 
   function handleFirstInput() {
     setIsFound("");
@@ -52,33 +56,66 @@ export default function HomePage() {
   return (
     <>
       <main>
-        <StyledTitle>Add word</StyledTitle>
-        <StyledSection>
-          {isFound && <StyledMessage>word already exists</StyledMessage>}
-          {isFound === false && (
-            <>
-              <StyledMessage>added new word</StyledMessage>
-              <StyledLink href="/words">
-                show entry
-                <SVGIcon
-                  variant="arrow"
-                  width="2rem"
-                  color="#04BF45"
-                  aria-label="variant"
-                />
-              </StyledLink>
-            </>
+        <div>
+          <StyledButton
+            type="button"
+            variant="show-hide"
+            onClick={() => {
+              setIsAddMode(!isAddMode);
+              setIsFound("");
+            }}
+          >
+            {isAddMode ? "Close" : "Add word"}
+          </StyledButton>
+          {isAddMode && (
+            <Form
+              isEditMode={false}
+              onSubmitEvent={handleAddTranslation}
+              onFirstInput={handleFirstInput}
+            />
           )}
-        </StyledSection>
-        <Form
-          isEditMode={false}
-          onSubmitEvent={handleAddTranslation}
-          onFirstInput={handleFirstInput}
-        />
-        <StyledTitle>Search word</StyledTitle>
-        <SearchForm />
-        <StyledTitle>Translate word</StyledTitle>
-        <TranslationForm />
+          <StyledSection>
+            {isFound && <StyledMessage>word already exists</StyledMessage>}
+            {isFound === false && (
+              <>
+                <StyledMessage>added new word</StyledMessage>
+                <StyledLink href="/words">
+                  show entry
+                  <SVGIcon
+                    variant="arrow"
+                    width="2rem"
+                    color="#04BF45"
+                    aria-label="variant"
+                  />
+                </StyledLink>
+              </>
+            )}
+          </StyledSection>
+        </div>
+        <div>
+          <StyledButton
+            type="button"
+            variant="show-hide"
+            onClick={() => {
+              setIsSearchMode(!isSearchMode);
+            }}
+          >
+            {isSearchMode ? "Close" : "Search word"}
+          </StyledButton>
+          {isSearchMode && <SearchForm />}
+        </div>
+        <div>
+          <StyledButton
+            type="button"
+            variant="show-hide"
+            onClick={() => {
+              setIsTranslateMode(!isTranslateMode);
+            }}
+          >
+            {isTranslateMode ? "Close" : "Translate word"}
+          </StyledButton>
+          {isTranslateMode && <TranslationForm />}
+        </div>
       </main>
     </>
   );

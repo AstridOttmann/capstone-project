@@ -8,7 +8,7 @@ import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
-//import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
+import DeleteButton from "@/components/Buttons/DeleteButton";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
 export default function SingleWordPage({ availableVoices }) {
@@ -55,6 +55,20 @@ export default function SingleWordPage({ availableVoices }) {
     );
     setIsShowMode(true);
   }
+
+  function handleToggleFavorite(id) {
+    setTranslationList(
+      translationList.map((translation) =>
+        translation.id === id
+          ? {
+              ...translation,
+              isFavorite: !translation.isFavorite,
+            }
+          : translation
+      )
+    );
+  }
+
   function handleDeleteEntry() {
     setToast("enter");
     setTranslationList(
@@ -80,14 +94,6 @@ export default function SingleWordPage({ availableVoices }) {
         )}
         {entry && (
           <>
-            {/* <SpeechSynthesisModule
-              word={entry.word}
-              selectedVoice={availableVoices.find(
-                (voice_) => voice_.voiceURI === entry.voiceURI
-              )}
-              availableVoices={availableVoices}
-              onSubmit={(event) => handleSelectSubmit(event)}
-            /> */}
             <SpeechSynthesis
               word={entry.word}
               selectedVoice={availableVoices.find(
@@ -96,23 +102,7 @@ export default function SingleWordPage({ availableVoices }) {
             />
             <SingleEntry
               entry={entry}
-              selectedVoice={availableVoices.find(
-                (voice_) => voice_.voiceURI === entry.voiceURI
-              )}
-              availableVoices={availableVoices}
-              onDeleteEntry={handleDeleteEntry}
-              onToggleFavorite={() =>
-                setTranslationList(
-                  translationList.map((translation) =>
-                    translation.id === id
-                      ? {
-                          ...translation,
-                          isFavorite: !translation.isFavorite,
-                        }
-                      : translation
-                  )
-                )
-              }
+              onToggleFavorite={() => handleToggleFavorite(entry.id)}
             />
           </>
         )}
@@ -130,6 +120,7 @@ export default function SingleWordPage({ availableVoices }) {
         </>
       )}
       {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
+      {entry && <DeleteButton onDeleteEntry={handleDeleteEntry} />}
     </main>
   );
 }
