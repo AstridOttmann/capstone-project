@@ -28,6 +28,7 @@ const MainNavigation = () => {
             />
           )}
         </Link>
+
         <Link href="/words">
           {currentRoute === "/words" || currentRoute === `/words/${id}` ? (
             <SVGIcon

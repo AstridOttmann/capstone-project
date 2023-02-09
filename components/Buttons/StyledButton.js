@@ -11,7 +11,7 @@ const StyledButton = styled.button`
         margin: 1em auto;
         padding: 0.7em;
         background: #04bf45;
-        color: whitesmoke;
+        color: white;
         width: 10rem;
       `;
     } else if (variant === "delete") {

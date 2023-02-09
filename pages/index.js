@@ -9,6 +9,7 @@ import SVGIcon from "@/components/Icons/SVGIcon";
 import SearchForm from "@/components/SearchForm";
 import StyledMessage from "@/components/List/Message/StyledMessage";
 import StyledTitle from "@/components/Header/StyledTitle";
+import TranslationForm from "@/components/TranslationForm";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -38,7 +39,7 @@ export default function HomePage() {
 
     if (newEntryExists.length === 0) {
       setTranslationList([
-        { id: nanoid(), ...newTranslation },
+        { id: nanoid(), voiceURI: newTranslation.voiceURI, ...newTranslation },
         ...translationList,
       ]);
       setIsFound(false);
@@ -76,6 +77,8 @@ export default function HomePage() {
         />
         <StyledTitle>Search word</StyledTitle>
         <SearchForm />
+        <StyledTitle>Translate word</StyledTitle>
+        <TranslationForm />
       </main>
     </>
   );

@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 const StyledForm = styled.form`
   display: flex;
-  ${({ type }) => {
-    if (type === "search") {
+  ${({ variant }) => {
+    if (variant === "search") {
       return css`
         flex-direction: row;
         justify-content: space-between;
@@ -10,14 +10,14 @@ const StyledForm = styled.form`
         gap: 0.2rem;
         margin-bottom: 1rem;
       `;
-    } else if (type === "add") {
+    } else if (variant === "add") {
       return css`
         position: relative;
         flex-direction: column;
         gap: 0.5em;
         margin-bottom: 3rem;
       `;
-    } else if (type === "edit") {
+    } else if (variant === "edit") {
       return css`
         position: absolute;
         top: 6rem;
@@ -29,6 +29,13 @@ const StyledForm = styled.form`
         margin-bottom: 3rem;
         background: whitesmoke;
         padding: 2rem;
+      `;
+    } else if (variant === "translate") {
+      return css`
+        position: relative;
+        flex-direction: column;
+        gap: 0.5em;
+        margin-bottom: 2.5rem;
       `;
     }
   }}

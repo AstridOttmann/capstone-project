@@ -28,7 +28,7 @@ export default function SearchForm({ selectedLanguage }) {
 
   return (
     <>
-      <StyledForm type="search">
+      <StyledForm variant="search">
         <StyledInputWrapper>
           <label htmlFor="searchValue"></label>
           <StyledInput

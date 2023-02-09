@@ -9,6 +9,7 @@ import SingleEntry from "@/components/SingleEntry";
 import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
 import SpeechSynthesisModule from "@/components/SpeechSynthesisModule";
+import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
@@ -19,22 +20,22 @@ export default function SingleWordPage({ availableVoices }) {
   const router = useRouter();
   const { id } = router.query;
 
-  // submits the selected language for SpeechSynthesis
-  function handleSelectSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const { voiceURI } = Object.fromEntries(formData);
-    setVoiceInput(voiceURI);
-  }
-  // sets the language for SpeechSynth
-  const selectedVoice = availableVoices.find(
-    (voice_) => voice_.name === voiceInput
-  );
-
   const entry = translationList.find((translation) => {
     return translation.id === id;
   });
+
+  // submits the selected language for SpeechSynthesis
+  // function handleSelectSubmit(event) {
+  //   event.preventDefault();
+
+  //   const formData = new FormData(event.target);
+  //   const { voiceURI } = Object.fromEntries(formData);
+  //   setVoiceInput(voiceURI);
+  // }
+  // sets the language for SpeechSynth
+  // const selectedVoice = availableVoices.find(
+  //   (voice_) => voice_.name === voiceInput
+  // );
 
   function handleEditEntry(editedEntry) {
     setTranslationList(
@@ -46,6 +47,7 @@ export default function SingleWordPage({ availableVoices }) {
             language: editedEntry.language,
             translated: editedEntry.translated,
             notes: editedEntry.notes,
+            voiceURI: editedEntry.voiceURI,
           };
         }
         return translation;
@@ -77,15 +79,25 @@ export default function SingleWordPage({ availableVoices }) {
         )}
         {entry && (
           <>
-            <SpeechSynthesisModule
+            {/* <SpeechSynthesisModule
               word={entry.word}
-              selectedVoice={selectedVoice}
+              selectedVoice={availableVoices.find(
+                (voice_) => voice_.voiceURI === entry.voiceURI
+              )}
               availableVoices={availableVoices}
               onSubmit={(event) => handleSelectSubmit(event)}
+            /> */}
+            <SpeechSynthesis
+              word={entry.word}
+              selectedVoice={availableVoices.find(
+                (voice_) => voice_.voiceURI === entry.voiceURI
+              )}
             />
             <SingleEntry
               entry={entry}
-              selectedVoice={selectedVoice}
+              selectedVoice={availableVoices.find(
+                (voice_) => voice_.voiceURI === entry.voiceURI
+              )}
               availableVoices={availableVoices}
               onDeleteEntry={handleDeleteEntry}
               onToggleFavorite={() =>
