@@ -71,6 +71,7 @@ export default function SingleWordPage({ availableVoices }) {
     <main>
       <>
         <h1>Word entry {!isShowMode && ": edit"}</h1>
+        {!entry && <p>Please choose a word</p>}
         <ToastMessage toast={toast} />
         {isShowMode ? (
           <EditButton onClick={() => setIsShowMode(false)} />
