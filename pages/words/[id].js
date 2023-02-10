@@ -14,7 +14,6 @@ import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis"
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(globalTranslations);
   const [isShowMode, setIsShowMode] = useState(true);
-  // const [voiceInput, setVoiceInput] = useState("");
   const [toast, setToast] = useState("exit");
 
   const router = useRouter();
@@ -23,19 +22,6 @@ export default function SingleWordPage({ availableVoices }) {
   const entry = translationList.find((translation) => {
     return translation.id === id;
   });
-
-  // submits the selected language for SpeechSynthesis
-  // function handleSelectSubmit(event) {
-  //   event.preventDefault();
-
-  //   const formData = new FormData(event.target);
-  //   const { voiceURI } = Object.fromEntries(formData);
-  //   setVoiceInput(voiceURI);
-  // }
-  // sets the language for SpeechSynth
-  // const selectedVoice = availableVoices.find(
-  //   (voice_) => voice_.name === voiceInput
-  // );
 
   function handleEditEntry(editedEntry) {
     setTranslationList(

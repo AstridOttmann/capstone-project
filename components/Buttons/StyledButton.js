@@ -18,13 +18,11 @@ const StyledButton = styled.button`
       return css`
         position: relative;
         right: rem;
-        _z-index: -1;
         background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
         margin-top: 1rem;
         left: 70%;
-        _transform: translateX(-50%);
       `;
     } else if (variant === "edit") {
       return css`
@@ -92,7 +90,6 @@ const StyledButton = styled.button`
         color: #04bf45;
         padding: 0.2rem 0.3rem 0 0.3rem;
         border: 2px solid #04bf45;
-        _border-radius: 50%;
       `;
     } else if (variant === "goBack") {
       return css`
@@ -104,8 +101,6 @@ const StyledButton = styled.button`
     } else if (variant === "speaker") {
       return css`
         position: relative;
-        _top: 0.2rem;
-        _right: 3.2rem;
         color: #04bf45;
         background: none;
         padding: 0;

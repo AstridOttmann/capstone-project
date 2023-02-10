@@ -8,9 +8,7 @@ import Link from "next/link";
 import SVGIcon from "@/components/Icons/SVGIcon";
 import SearchForm from "@/components/SearchForm";
 import StyledMessage from "@/components/List/Message/StyledMessage";
-import StyledTitle from "@/components/Header/StyledTitle";
 import TranslationForm from "@/components/TranslationForm";
-import StyledButton from "@/components/Buttons/StyledButton";
 import AddButton from "@/components/Buttons/AddButton";
 import SearchButton from "@/components/Buttons/SearchButton";
 import TranslateButton from "@/components/Buttons/TranslateButton";
@@ -51,7 +49,6 @@ export default function HomePage() {
       ]);
       setIsFound(false);
     } else {
-      //setTranslationList([...translationList]);
       setIsFound(true);
     }
   }
