@@ -10,6 +10,7 @@ import targetLanguages from "@/public/targetLanguages";
 export default function TranslationForm() {
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
+  const [wordInput, setWordInput] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -35,7 +36,7 @@ export default function TranslationForm() {
         setDetectedLanguage(
           result.requestedTranslation.translations[0].detected_source_language
         );
-
+        setWordInput(data.text);
         event.target.reset();
       } else console.error(`Error: ${response.status}`);
     } catch (error) {
@@ -70,7 +71,9 @@ export default function TranslationForm() {
       </StyledForm>
       {translation && (
         <StyledSection>
-          <StyledMessage>{translation}</StyledMessage>
+          <StyledMessage>
+            {wordInput} - {translation}
+          </StyledMessage>
           <small>lang: {detectedLanguage}</small>
           <StyledLink href="/">
             add to my words
