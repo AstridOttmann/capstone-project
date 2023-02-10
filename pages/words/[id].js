@@ -69,7 +69,7 @@ export default function SingleWordPage({ availableVoices }) {
     );
   }
 
-  function handleDeleteEntry() {
+  function handleDeleteEntry(id) {
     setToast("enter");
     setTranslationList(
       translationList.filter((translation) => translation.id !== id)
@@ -120,7 +120,9 @@ export default function SingleWordPage({ availableVoices }) {
         </>
       )}
       {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
-      {entry && <DeleteButton onDeleteEntry={handleDeleteEntry} />}
+      {entry && (
+        <DeleteButton onDeleteEntry={() => handleDeleteEntry(entry.id)} />
+      )}
     </main>
   );
 }

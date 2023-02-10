@@ -12,13 +12,13 @@ const StyledButton = styled.button`
         padding: 0.7em;
         background: #04bf45;
         color: white;
-        width: 10rem;
+        width: 8rem;
       `;
     } else if (variant === "delete") {
       return css`
         position: relative;
         right: rem;
-        z-index: -1;
+        _z-index: -1;
         background: none;
         color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
@@ -110,13 +110,26 @@ const StyledButton = styled.button`
         background: none;
         padding: 0;
       `;
-    } else if (variant === "show-hide") {
+    } else if (variant === "show") {
       return css`
         display: block;
         margin: 1em auto;
         padding: 0.7em;
         background: #f2ae30;
-        color: white;
+        color: #494fbf;
+        font-size: 1rem;
+        font-weight: bold;
+        width: 10rem;
+      `;
+    } else if (variant === "hide") {
+      return css`
+        display: block;
+        margin: 1em auto;
+        padding: 0.7em;
+        background: lightgrey;
+        color: #494fbf;
+        font-size: 1rem;
+        font-weight: bold;
         width: 10rem;
       `;
     }

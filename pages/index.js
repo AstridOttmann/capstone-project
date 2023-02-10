@@ -11,6 +11,9 @@ import StyledMessage from "@/components/List/Message/StyledMessage";
 import StyledTitle from "@/components/Header/StyledTitle";
 import TranslationForm from "@/components/TranslationForm";
 import StyledButton from "@/components/Buttons/StyledButton";
+import AddButton from "@/components/Buttons/AddButton";
+import SearchButton from "@/components/Buttons/SearchButton";
+import TranslateButton from "@/components/Buttons/TranslateButton";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -57,16 +60,14 @@ export default function HomePage() {
     <>
       <main>
         <div>
-          <StyledButton
-            type="button"
-            variant="show-hide"
+          <AddButton
+            isAddMode={isAddMode}
             onClick={() => {
               setIsAddMode(!isAddMode);
               setIsFound("");
             }}
-          >
-            {isAddMode ? "Close" : "Add word"}
-          </StyledButton>
+          />
+
           {isAddMode && (
             <Form
               isEditMode={false}
@@ -93,27 +94,21 @@ export default function HomePage() {
           </StyledSection>
         </div>
         <div>
-          <StyledButton
-            type="button"
-            variant="show-hide"
+          <SearchButton
+            isSearchMode={isSearchMode}
             onClick={() => {
               setIsSearchMode(!isSearchMode);
             }}
-          >
-            {isSearchMode ? "Close" : "Search word"}
-          </StyledButton>
+          />
           {isSearchMode && <SearchForm />}
         </div>
         <div>
-          <StyledButton
-            type="button"
-            variant="show-hide"
+          <TranslateButton
+            isTranslateMode={isTranslateMode}
             onClick={() => {
               setIsTranslateMode(!isTranslateMode);
             }}
-          >
-            {isTranslateMode ? "Close" : "Translate word"}
-          </StyledButton>
+          />
           {isTranslateMode && <TranslationForm />}
         </div>
       </main>
