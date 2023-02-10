@@ -3,22 +3,20 @@ import SVGIcon from "../Icons/SVGIcon";
 
 export default function AddButton({ isAddMode, onClick }) {
   return (
-    <>
-      <StyledButton
-        type="button"
-        variant={isAddMode ? "hide" : "show"}
-        onClick={onClick}
-      >
-        {isAddMode ? "Close" : "Add"}
-        {!isAddMode && (
-          <SVGIcon
-            variant="plus"
-            width="2rem"
-            color="#04BF45"
-            aria-label="plus"
-          />
-        )}
-      </StyledButton>
-    </>
+    <StyledButton
+      type="button"
+      variant={isAddMode ? "hide" : "show"}
+      onClick={onClick}
+    >
+      {isAddMode ? "Close" : "Add"}
+      {!isAddMode && (
+        <SVGIcon
+          variant="plus"
+          width="2rem"
+          color="#04BF45"
+          aria-label="plus"
+        />
+      )}
+    </StyledButton>
   );
 }

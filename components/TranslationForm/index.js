@@ -15,7 +15,7 @@ export default function TranslationForm() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("data", data);
+
     try {
       const response = await fetch(`/api/deepl`, {
         method: "POST",

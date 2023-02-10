@@ -12,8 +12,6 @@ export default function Form({
 }) {
   const router = useRouter();
 
-  console.log("avail", availableVoices);
-
   function handleSubmit(event) {
     event.preventDefault();
 
