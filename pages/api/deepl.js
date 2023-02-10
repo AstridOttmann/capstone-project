@@ -14,10 +14,10 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     try {
       const requestedTranslation = await result.json();
-      response.status(201).json({ requestedTranslation });
+      return response.status(201).json({ requestedTranslation });
     } catch (error) {
       console.error(error);
-      response.status(400).json({ error: error.message });
+      return response.status(400).json({ error: error.message });
     }
   }
   return response.status(405).json({ status: "Method not allowed" });
