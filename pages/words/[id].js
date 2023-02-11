@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 import { useAtom } from "jotai";
-import globalTranslations from "@/public/store";
+import translationListAtom from "@/public/store";
 import { useRouter } from "next/router";
 import CancelEditButton from "@/components/Buttons/CancelEditButton";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import DeleteButton from "@/components/Buttons/DeleteButton";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
 export default function SingleWordPage({ availableVoices }) {
-  const [translationList, setTranslationList] = useAtom(globalTranslations);
+  const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [isShowMode, setIsShowMode] = useState(true);
   const [toast, setToast] = useState("exit");
 

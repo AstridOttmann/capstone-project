@@ -2,7 +2,7 @@ import { useState } from "react";
 import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
-import globalTranslations from "@/public/store";
+import translationListAtom from "@/public/store";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
@@ -11,7 +11,7 @@ import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
 
 export default function SearchForm({ selectedLanguage }) {
-  const [translationList] = useAtom(globalTranslations);
+  const [translationList] = useAtom(translationListAtom);
   const [searchInput, setSearchInput] = useState("");
 
   const searchResults = translationList
@@ -59,13 +59,13 @@ export default function SearchForm({ selectedLanguage }) {
                   }}
                 >
                   <Message>
-                    {translation.word} -{" "}
+                    {translation.word} -
                     {!selectedLanguage ? (
                       <small>({translation.language}) - </small>
                     ) : (
                       ""
                     )}
-                    {translation.translated}{" "}
+                    {translation.translated}
                   </Message>
                   <RoutingLink href={`/words/${translation.id}`} />
                 </StyledSection>
@@ -76,19 +76,6 @@ export default function SearchForm({ selectedLanguage }) {
       )}
     </>
   );
-}
-
-{
-  /* <StyledLink href={`/words/${translation.id}`}>
-                      show entry
-                      <SVGIcon
-                        variant="arrow"
-                        width="2rem"
-                        color="#04BF45"
-                        aria-label="arrow"
-                      />
-                    </StyledLink>
- */
 }
 
 const StyledLink = styled(Link)`
