@@ -15,7 +15,7 @@ const StyledNav = styled.nav`
         display: flex;
         justify-content: space-evenly;
         background: #525af2;
-        margin: 0 auto;
+        _margin: 0 auto;
         padding: 0.1em 1em;
         border-radius: 5px;
       `;

@@ -5,13 +5,13 @@ import translationListAtom from "@/public/store";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
-import SVGIcon from "@/components/Icons/SVGIcon";
 import SearchForm from "@/components/SearchForm";
-import StyledMessage from "@/components/List/Message/StyledMessage";
+import Message from "@/components/Message";
 import TranslationForm from "@/components/TranslationForm";
 import AddButton from "@/components/Buttons/AddButton";
 import SearchButton from "@/components/Buttons/SearchButton";
 import TranslateButton from "@/components/Buttons/TranslateButton";
+import RoutingLink from "@/components/Message/RoutingLink";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -64,7 +64,6 @@ export default function HomePage() {
               setIsFound("");
             }}
           />
-
           {isAddMode && (
             <Form
               isEditMode={false}
@@ -73,19 +72,11 @@ export default function HomePage() {
             />
           )}
           <StyledSection>
-            {isFound && <StyledMessage>word already exists</StyledMessage>}
+            {isFound && <Message>word already exists</Message>}
             {isFound === false && (
               <>
-                <StyledMessage>added new word</StyledMessage>
-                <StyledLink href="/words">
-                  show entry
-                  <SVGIcon
-                    variant="arrow"
-                    width="2rem"
-                    color="#04BF45"
-                    aria-label="variant"
-                  />
-                </StyledLink>
+                <Message>added new word</Message>
+                <RoutingLink href="/words" />
               </>
             )}
           </StyledSection>

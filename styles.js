@@ -18,5 +18,6 @@ export default createGlobalStyle`
     margin: 0 auto;
     max-width: 368px;
     padding: 0.5em 1em;
+    word-wrap: break-word;
   }
 `;

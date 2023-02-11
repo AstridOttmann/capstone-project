@@ -10,7 +10,7 @@ const StyledToast = styled.div`
   right: 5rem;
   background: whitesmoke;
   color: red;
-  border: 2px dotted red;
+  border: 2px solid red;
   border-radius: 1rem;
   padding: 0.7rem;
   overflow: hidden;

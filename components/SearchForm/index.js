@@ -3,12 +3,12 @@ import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
 import globalTranslations from "@/public/store";
-import SVGIcon from "../Icons/SVGIcon";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
 import ResetButton from "../Buttons/ResetButton";
-import StyledMessage from "../List/Message/StyledMessage";
+import Message from "../Message";
+import RoutingLink from "../Message/RoutingLink";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(globalTranslations);
@@ -43,7 +43,7 @@ export default function SearchForm({ selectedLanguage }) {
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
         <StyledSection>
-          <StyledMessage>Not found</StyledMessage>
+          <Message>Not found</Message>
         </StyledSection>
       ) : null}
       {searchInput.length > 0 && (
@@ -58,7 +58,7 @@ export default function SearchForm({ selectedLanguage }) {
                     setSearchInput(translation.word);
                   }}
                 >
-                  <StyledMessage>
+                  <Message>
                     {translation.word} -{" "}
                     {!selectedLanguage ? (
                       <small>({translation.language}) - </small>
@@ -66,16 +66,8 @@ export default function SearchForm({ selectedLanguage }) {
                       ""
                     )}
                     {translation.translated}{" "}
-                    <StyledLink href={`/words/${translation.id}`}>
-                      show entry
-                      <SVGIcon
-                        variant="arrow"
-                        width="2rem"
-                        color="#04BF45"
-                        aria-label="arrow"
-                      />
-                    </StyledLink>
-                  </StyledMessage>
+                  </Message>
+                  <RoutingLink href={`/words/${translation.id}`} />
                 </StyledSection>
               );
             })}
@@ -84,6 +76,19 @@ export default function SearchForm({ selectedLanguage }) {
       )}
     </>
   );
+}
+
+{
+  /* <StyledLink href={`/words/${translation.id}`}>
+                      show entry
+                      <SVGIcon
+                        variant="arrow"
+                        width="2rem"
+                        color="#04BF45"
+                        aria-label="arrow"
+                      />
+                    </StyledLink>
+ */
 }
 
 const StyledLink = styled(Link)`

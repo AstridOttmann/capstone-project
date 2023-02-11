@@ -13,7 +13,7 @@ export default function TranslateButton({ isTranslateMode, onClick }) {
         <SVGIcon
           variant="translate"
           width="2rem"
-          color="#04BF45"
+          color="#494FBF"
           aria-label="translate"
         />
       )}

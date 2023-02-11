@@ -1,13 +1,18 @@
 import StyledForm from "../Form/StyledForm";
 import StyledButton from "../Buttons/StyledButton";
 import { useState } from "react";
-import StyledMessage from "../List/Message/StyledMessage";
 import styled from "styled-components";
 import Link from "next/link";
-import SVGIcon from "../Icons/SVGIcon";
 import targetLanguages from "@/public/targetLanguages";
+import ListEntry from "../ListEntry";
+import SaveButton from "../Buttons/SaveButton";
+import DeleteButton from "../Buttons/DeleteButton";
+import translationListAtom from "@/public/store";
+import { useAtom } from "jotai";
+import { nanoid } from "nanoid";
 
 export default function TranslationForm() {
+  const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
   const [wordInput, setWordInput] = useState("");
@@ -37,6 +42,7 @@ export default function TranslationForm() {
           result.requestedTranslation.translations[0].detected_source_language
         );
         setWordInput(data.text);
+
         event.target.reset();
       } else console.error(`Error: ${response.status}`);
     } catch (error) {
@@ -45,7 +51,7 @@ export default function TranslationForm() {
   }
 
   return (
-    <>
+    <StyledContainer>
       <StyledForm variant="translate" onSubmit={handleSubmit}>
         <label htmlFor="text">Enter word</label>
         <input
@@ -65,28 +71,38 @@ export default function TranslationForm() {
             );
           })}
         </select>
-        <StyledButton type="submit" variant="submit">
-          Translate
-        </StyledButton>
+        {!translation && (
+          <StyledButton type="submit" variant="submit">
+            Translate
+          </StyledButton>
+        )}
       </StyledForm>
       {translation && (
-        <StyledSection>
-          <StyledMessage>
-            {wordInput} - {translation}
-          </StyledMessage>
-          <small>lang: {detectedLanguage}</small>
-          <StyledLink href="/">
-            add to my words
-            <SVGIcon
-              variant="arrow_up"
-              width="2rem"
-              color="#04BF45"
-              aria-label="arrow"
-            />
-          </StyledLink>
-        </StyledSection>
+        <>
+          <ListEntry>
+            <StyledWordFields>{wordInput}</StyledWordFields>
+            <small>({detectedLanguage})</small>
+            <StyledWordFields>{translation}</StyledWordFields>
+          </ListEntry>
+          <DeleteButton onDeleteEntry={() => setTranslation("")} />
+          <SaveButton
+            onClick={() => {
+              setTranslationList([
+                {
+                  id: nanoid(),
+                  voiceURI: "",
+                  word: wordInput,
+                  language: detectedLanguage,
+                  translated: translation,
+                },
+                ...translationList,
+              ]);
+              setTranslation("");
+            }}
+          />
+        </>
       )}
-    </>
+    </StyledContainer>
   );
 }
 const StyledSection = styled.section`
@@ -106,4 +122,11 @@ const StyledLink = styled(Link)`
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
+`;
+const StyledWordFields = styled.p`
+  word-wrap: break-word;
+  white-space: pre-line;
+`;
+const StyledContainer = styled.div`
+  margin-bottom: 5rem;
 `;

@@ -13,7 +13,7 @@ export default function AddButton({ isAddMode, onClick }) {
         <SVGIcon
           variant="plus"
           width="2rem"
-          color="#04BF45"
+          color="#494FBF"
           aria-label="plus"
         />
       )}

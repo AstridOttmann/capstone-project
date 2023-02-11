@@ -7,4 +7,7 @@ const StyledMessage = styled.p`
   white-space: pre-line;
   _margin-bottom: 3rem;
 `;
-export default StyledMessage;
+
+export default function Message({ children }) {
+  return <StyledMessage>{children}</StyledMessage>;
+}
