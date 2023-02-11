@@ -7,21 +7,18 @@ const initialTranslations = [
     word: "verjaardag",
     language: "Dutch",
     translated: "Geburtstag",
-    voice: "Google Nederlands",
   },
   {
     id: "2",
     word: "uitnodigen",
     language: "Dutch",
     translated: "einladen",
-    voice: "Google Nederlands",
   },
   {
     id: "6",
     word: "come va",
     language: "Italian",
     translated: "wie geht es dir?",
-    voice: "Alice",
   },
   {
     id: "3",
@@ -105,7 +102,6 @@ const initialTranslations = [
     word: "skön",
     language: "Swedish",
     translated: "schön",
-    voice: "Google Nederlands",
   },
   {
     id: "16",
@@ -119,7 +115,7 @@ const initialTranslations = [
     word: "Hej, hvordan har du det?",
     language: "Danish",
     translated: "Hallo, wie geht es dir?",
-    voice: "Google Nederlands",
+    voice: "Sara",
   },
 ];
 

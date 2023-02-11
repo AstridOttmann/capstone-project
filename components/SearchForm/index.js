@@ -2,16 +2,16 @@ import { useState } from "react";
 import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
-import globalTranslations from "@/public/store";
-import SVGIcon from "../Icons/SVGIcon";
+import translationListAtom from "@/public/store";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
 import ResetButton from "../Buttons/ResetButton";
-import StyledMessage from "../List/Message/StyledMessage";
+import Message from "../Message";
+import RoutingLink from "../Message/RoutingLink";
 
 export default function SearchForm({ selectedLanguage }) {
-  const [translationList] = useAtom(globalTranslations);
+  const [translationList] = useAtom(translationListAtom);
   const [searchInput, setSearchInput] = useState("");
 
   const searchResults = translationList
@@ -28,7 +28,7 @@ export default function SearchForm({ selectedLanguage }) {
 
   return (
     <>
-      <StyledForm type="search">
+      <StyledForm variant="search">
         <StyledInputWrapper>
           <label htmlFor="searchValue"></label>
           <StyledInput
@@ -43,7 +43,7 @@ export default function SearchForm({ selectedLanguage }) {
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
         <StyledSection>
-          <StyledMessage>Not found</StyledMessage>
+          <Message>Not found</Message>
         </StyledSection>
       ) : null}
       {searchInput.length > 0 && (
@@ -53,29 +53,21 @@ export default function SearchForm({ selectedLanguage }) {
             .map((translation) => {
               return (
                 <StyledSection
-                  key={translation.word}
+                  key={translation.id}
                   onClick={() => {
                     setSearchInput(translation.word);
                   }}
                 >
-                  <StyledMessage>
-                    {translation.word} -{" "}
+                  <Message>
+                    {translation.word} -
                     {!selectedLanguage ? (
                       <small>({translation.language}) - </small>
                     ) : (
                       ""
                     )}
-                    {translation.translated}{" "}
-                    <StyledLink href={`/words/${translation.id}`}>
-                      show entry
-                      <SVGIcon
-                        variant="arrow"
-                        width="2rem"
-                        color="#04BF45"
-                        aria-label="arrow"
-                      />
-                    </StyledLink>
-                  </StyledMessage>
+                    {translation.translated}
+                  </Message>
+                  <RoutingLink href={`/words/${translation.id}`} />
                 </StyledSection>
               );
             })}

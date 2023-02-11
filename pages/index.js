@@ -5,14 +5,32 @@ import translationListAtom from "@/public/store";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Link from "next/link";
-import SVGIcon from "@/components/Icons/SVGIcon";
 import SearchForm from "@/components/SearchForm";
-import StyledMessage from "@/components/List/Message/StyledMessage";
-import StyledTitle from "@/components/Header/StyledTitle";
+import Message from "@/components/Message";
+import TranslationForm from "@/components/TranslationForm";
+import AddButton from "@/components/Buttons/AddButton";
+import SearchButton from "@/components/Buttons/SearchButton";
+import TranslateButton from "@/components/Buttons/TranslateButton";
+import RoutingLink from "@/components/Message/RoutingLink";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [isFound, setIsFound] = useState();
+  const [isAddMode, setIsAddMode] = useState(false);
+  const [isSearchMode, setIsSearchMode] = useState(false);
+  const [isTranslateMode, setIsTranslateMode] = useState(false);
+
+  translationList.sort((a, b) => {
+    const wordA = a.word.toLowerCase();
+    const wordB = b.word.toLowerCase();
+    if (wordA < wordB) {
+      return -1;
+    }
+    if (wordA > wordB) {
+      return 1;
+    }
+    return 0;
+  });
 
   function handleFirstInput() {
     setIsFound("");
@@ -24,26 +42,13 @@ export default function HomePage() {
         translation.word.toLowerCase() === newTranslation.word.toLowerCase()
     );
 
-    translationList.sort((a, b) => {
-      const wordA = a.word.toLowerCase();
-      const wordB = b.word.toLowerCase();
-      if (wordA < wordB) {
-        return -1;
-      }
-      if (wordA > wordB) {
-        return 1;
-      }
-      return 0;
-    });
-
     if (newEntryExists.length === 0) {
       setTranslationList([
-        { id: nanoid(), ...newTranslation },
+        { id: nanoid(), voiceURI: newTranslation.voiceURI, ...newTranslation },
         ...translationList,
       ]);
       setIsFound(false);
     } else {
-      //setTranslationList([...translationList]);
       setIsFound(true);
     }
   }
@@ -51,31 +56,49 @@ export default function HomePage() {
   return (
     <>
       <main>
-        <StyledTitle>Add word</StyledTitle>
-        <StyledSection>
-          {isFound && <StyledMessage>word already exists</StyledMessage>}
-          {isFound === false && (
-            <>
-              <StyledMessage>added new word</StyledMessage>
-              <StyledLink href="/words">
-                show entry
-                <SVGIcon
-                  variant="arrow"
-                  width="2rem"
-                  color="#04BF45"
-                  aria-label="variant"
-                />
-              </StyledLink>
-            </>
+        <div>
+          <AddButton
+            isAddMode={isAddMode}
+            onClick={() => {
+              setIsAddMode(!isAddMode);
+              setIsFound("");
+            }}
+          />
+          {isAddMode && (
+            <Form
+              isEditMode={false}
+              onSubmitEvent={handleAddTranslation}
+              onFirstInput={handleFirstInput}
+            />
           )}
-        </StyledSection>
-        <Form
-          isEditMode={false}
-          onSubmitEvent={handleAddTranslation}
-          onFirstInput={handleFirstInput}
-        />
-        <StyledTitle>Search word</StyledTitle>
-        <SearchForm />
+          <StyledSection>
+            {isFound && <Message>word already exists</Message>}
+            {isFound === false && (
+              <>
+                <Message>added new word</Message>
+                <RoutingLink href="/words" />
+              </>
+            )}
+          </StyledSection>
+        </div>
+        <div>
+          <SearchButton
+            isSearchMode={isSearchMode}
+            onClick={() => {
+              setIsSearchMode(!isSearchMode);
+            }}
+          />
+          {isSearchMode && <SearchForm />}
+        </div>
+        <div>
+          <TranslateButton
+            isTranslateMode={isTranslateMode}
+            onClick={() => {
+              setIsTranslateMode(!isTranslateMode);
+            }}
+          />
+          {isTranslateMode && <TranslationForm />}
+        </div>
       </main>
     </>
   );

@@ -6,7 +6,7 @@ import useVoices from "@/hooks/useVoices";
 
 export default function App({ Component, pageProps }) {
   const availableVoices = useVoices();
-  console.log("ava", availableVoices);
+
   return (
     <>
       <GlobalStyle />

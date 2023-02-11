@@ -1,6 +1,6 @@
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
-import globalTranslations from "@/public/store";
+import translationListAtom from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
 import { useEffect, useState } from "react";
@@ -11,9 +11,10 @@ import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
+import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 
-export default function WordsPage() {
-  const [translationList, setTranslationList] = useAtom(globalTranslations);
+export default function WordsPage({ availableVoices }) {
+  const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const router = useRouter();
   const { id } = router.query;
@@ -101,6 +102,12 @@ export default function WordsPage() {
             id={translation.id}
             isFavorite={translation.isFavorite}
           >
+            <SpeechSynthesis
+              word={translation.word}
+              selectedVoice={availableVoices.find(
+                (voice_) => voice_.voiceURI === translation.voiceURI
+              )}
+            />
             <FavoriteButton
               id={translation.id}
               isFavorite={translation.isFavorite}

@@ -469,3 +469,4 @@ const storedVoices = [
     default: false,
   },
 ];
+export default storedVoices;

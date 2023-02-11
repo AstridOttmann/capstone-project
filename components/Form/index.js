@@ -1,12 +1,14 @@
 import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
+import storedVoices from "@/public/voices";
 
 export default function Form({
   onSubmitEvent,
   onFirstInput,
   entry,
   isEditMode,
+  availableVoices,
 }) {
   const router = useRouter();
 
@@ -21,6 +23,7 @@ export default function Form({
       language: data.language,
       translated: data.translated,
       notes: data.notes,
+      voiceURI: data.voiceURI,
     });
     event.target.reset();
     event.target.elements.word.focus();
@@ -29,7 +32,7 @@ export default function Form({
   return (
     <>
       <StyledForm
-        type={isEditMode ? "edit" : "add"}
+        variant={isEditMode ? "edit" : "add"}
         onSubmit={(event) => handleSubmit(event)}
       >
         <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
@@ -55,6 +58,20 @@ export default function Form({
           pattern="^[^\s]\S+$"
           maxLength="12"
         />
+        <label>Choose voice for Speech Synthesis</label>
+        <select
+          name="voiceURI"
+          aria-label="select-voice"
+          defaultValue={isEditMode && entry.voiceURI}
+        >
+          {storedVoices.map((voice) => {
+            return (
+              <option key={voice.name} value={voice.name}>
+                {voice.name} {voice.lang}
+              </option>
+            );
+          })}
+        </select>
         <label htmlFor="translated">
           {isEditMode ? "Edit translation" : "Enter translation"}
         </label>
