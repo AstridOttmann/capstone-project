@@ -12,6 +12,7 @@ import SearchForm from "@/components/SearchForm";
 import StyledTitle from "@/components/Header/StyledTitle";
 import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
+import LearningFunction from "@/components/LearningFunction";
 
 export default function WordsPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -94,6 +95,7 @@ export default function WordsPage({ availableVoices }) {
         isActive={favoriteFilter === true}
         onShowFavorites={handleShowFavorites}
       />
+      <LearningFunction />
       <SearchForm selectedLanguage={selectedLanguage} />
       <StyledList>
         {filteredTranslations.map((translation) => (

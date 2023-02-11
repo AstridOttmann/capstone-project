@@ -127,6 +127,15 @@ const StyledButton = styled.button`
         font-weight: bold;
         width: 10rem;
       `;
+    } else if (variant === "close") {
+      return css`
+        position: absolute;
+        top: 7.3rem;
+        right: 1.3rem;
+        padding: 0.2rem 0.2rem 0 0.2rem;
+        color: #04bf45;
+        _border: 2px solid #04bf45;
+      `;
     }
   }}
 `;
