@@ -53,7 +53,7 @@ export default function SearchForm({ selectedLanguage }) {
             .map((translation) => {
               return (
                 <StyledSection
-                  key={translation.word}
+                  key={translation.id}
                   onClick={() => {
                     setSearchInput(translation.word);
                   }}

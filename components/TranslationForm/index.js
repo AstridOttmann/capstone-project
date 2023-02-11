@@ -36,7 +36,8 @@ export default function TranslationForm() {
 
       if (response.ok) {
         const result = await response.json();
-        console.log("result", result);
+        //    console.log("result", result);
+
         setTranslation(result.requestedTranslation.translations[0].text);
         setDetectedLanguage(
           result.requestedTranslation.translations[0].detected_source_language

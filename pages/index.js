@@ -20,6 +20,18 @@ export default function HomePage() {
   const [isSearchMode, setIsSearchMode] = useState(false);
   const [isTranslateMode, setIsTranslateMode] = useState(false);
 
+  translationList.sort((a, b) => {
+    const wordA = a.word.toLowerCase();
+    const wordB = b.word.toLowerCase();
+    if (wordA < wordB) {
+      return -1;
+    }
+    if (wordA > wordB) {
+      return 1;
+    }
+    return 0;
+  });
+
   function handleFirstInput() {
     setIsFound("");
   }
@@ -29,18 +41,6 @@ export default function HomePage() {
       (translation) =>
         translation.word.toLowerCase() === newTranslation.word.toLowerCase()
     );
-
-    translationList.sort((a, b) => {
-      const wordA = a.word.toLowerCase();
-      const wordB = b.word.toLowerCase();
-      if (wordA < wordB) {
-        return -1;
-      }
-      if (wordA > wordB) {
-        return 1;
-      }
-      return 0;
-    });
 
     if (newEntryExists.length === 0) {
       setTranslationList([
