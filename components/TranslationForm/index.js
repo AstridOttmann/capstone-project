@@ -9,6 +9,8 @@ import SaveButton from "../Buttons/SaveButton";
 import DeleteButton from "../Buttons/DeleteButton";
 import translationListAtom from "@/public/store";
 import { useAtom } from "jotai";
+import Message from "../Message";
+import RoutingLink from "../Message/RoutingLink";
 import { nanoid } from "nanoid";
 
 export default function TranslationForm() {
@@ -16,6 +18,7 @@ export default function TranslationForm() {
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
   const [wordInput, setWordInput] = useState("");
+  const [message, setMessage] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -60,6 +63,7 @@ export default function TranslationForm() {
           name="text"
           onChange={() => {
             setTranslation("");
+            setMessage("");
           }}
         />
         <label htmlFor="target_lang">Enter target language</label>
@@ -99,9 +103,16 @@ export default function TranslationForm() {
                 ...translationList,
               ]);
               setTranslation("");
+              setMessage(true);
             }}
           />
         </>
+      )}
+      {message && (
+        <Message>
+          added word
+          <RoutingLink href="/words" />
+        </Message>
       )}
     </StyledContainer>
   );

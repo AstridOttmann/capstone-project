@@ -64,7 +64,7 @@ export const paths = {
     viewbox: "0 0 24 24",
   },
   plus: {
-    path: "M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z",
+    path: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
     viewbox: "0 0 24 24",
   },
   translate: {

@@ -42,9 +42,9 @@ export default function SearchForm({ selectedLanguage }) {
         <ResetButton onClick={() => setSearchInput("")} />
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
-        <StyledSection>
+        <StyledArticle>
           <Message>Not found</Message>
-        </StyledSection>
+        </StyledArticle>
       ) : null}
       {searchInput.length > 0 && (
         <StyledList>
@@ -52,7 +52,7 @@ export default function SearchForm({ selectedLanguage }) {
             // .filter((translation) => translation.word.includes(searchInput))
             .map((translation) => {
               return (
-                <StyledSection
+                <StyledArticle
                   key={translation.id}
                   onClick={() => {
                     setSearchInput(translation.word);
@@ -68,7 +68,7 @@ export default function SearchForm({ selectedLanguage }) {
                     {translation.translated}
                   </Message>
                   <RoutingLink href={`/words/${translation.id}`} />
-                </StyledSection>
+                </StyledArticle>
               );
             })}
           <Divider />
@@ -86,10 +86,11 @@ const StyledLink = styled(Link)`
   font-size: 1rem;
 `;
 
-const StyledSection = styled.section`
+const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   background: whitesmoke;
