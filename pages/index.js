@@ -71,7 +71,7 @@ export default function HomePage() {
               onFirstInput={handleFirstInput}
             />
           )}
-          <StyledSection>
+          <StyledArticle>
             {isFound && <Message>word already exists</Message>}
             {isFound === false && (
               <>
@@ -79,7 +79,7 @@ export default function HomePage() {
                 <RoutingLink href="/words" />
               </>
             )}
-          </StyledSection>
+          </StyledArticle>
         </div>
         <div>
           <SearchButton
@@ -104,7 +104,7 @@ export default function HomePage() {
   );
 }
 
-const StyledSection = styled.section`
+const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
