@@ -5,13 +5,12 @@ import styled from "styled-components";
 import Link from "next/link";
 import targetLanguages from "@/public/targetLanguages";
 import ListEntry from "../ListEntry";
-import SaveButton from "../Buttons/SaveButton";
-import DeleteButton from "../Buttons/DeleteButton";
 import translationListAtom from "@/public/store";
 import { useAtom } from "jotai";
 import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
 import { nanoid } from "nanoid";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
 export default function TranslationForm() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -89,8 +88,18 @@ export default function TranslationForm() {
             <small>({detectedLanguage})</small>
             <StyledWordFields>{translation}</StyledWordFields>
           </ListEntry>
-          <DeleteButton onDeleteEntry={() => setTranslation("")} />
-          <SaveButton
+          <ButtonWithIcon
+            buttonVariant="delete"
+            someVariant="bin"
+            width="1.8rem"
+            aria-label="bin"
+            onClick={() => setTranslation("")}
+          />
+          <ButtonWithIcon
+            buttonVariant="basic"
+            someVariant="disc"
+            width="1.8rem"
+            aria-label="disc"
             onClick={() => {
               setTranslationList([
                 {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import StyledNav from "./StyledNavigation";
+import StyledNav from "../Navigation/StyledNavigation";
 import SVGIcon from "../Icons/SVGIcon";
 import { useRouter } from "next/router";
 
@@ -16,14 +16,14 @@ const MainNavigation = () => {
             <SVGIcon
               variant="homeActive"
               width="3rem"
-              color="#F27405"
+              color="var(--dark-primary-color)"
               aria-label="homeActive"
             />
           ) : (
             <SVGIcon
               variant="home"
+              color="var(--dark-primary-color)"
               width="3rem"
-              color="whitesmoke"
               aria-label="home"
             />
           )}
@@ -33,14 +33,14 @@ const MainNavigation = () => {
             <SVGIcon
               variant="wordsActive"
               width="3rem"
-              color="#F27405"
+              color="var(--dark-primary-color)"
               aria-label="wordsActive"
             />
           ) : (
             <SVGIcon
               variant="words"
+              color="var(--dark-primary-color)"
               width="3rem"
-              color="whitesmoke"
               aria-label="words"
             />
           )}

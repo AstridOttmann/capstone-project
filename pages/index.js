@@ -8,10 +8,10 @@ import Link from "next/link";
 import SearchForm from "@/components/SearchForm";
 import Message from "@/components/Message";
 import TranslationForm from "@/components/TranslationForm";
-import AddButton from "@/components/Buttons/AddButton";
-import SearchButton from "@/components/Buttons/SearchButton";
-import TranslateButton from "@/components/Buttons/TranslateButton";
 import RoutingLink from "@/components/Message/RoutingLink";
+import Layout from "@/components/Layout";
+import ToggleButton from "@/components/Buttons/ToggleButton";
+import Divider from "@/components/Divider";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -55,54 +55,66 @@ export default function HomePage() {
 
   return (
     <>
-      <main>
-        <div>
-          <AddButton
-            isAddMode={isAddMode}
-            onClick={() => {
-              setIsAddMode(!isAddMode);
-              setIsFound("");
-            }}
-          />
-          {isAddMode && (
-            <Form
-              isEditMode={false}
-              onSubmitEvent={handleAddTranslation}
-              onFirstInput={handleFirstInput}
-            />
-          )}
-          <StyledArticle>
-            {isFound && <Message>word already exists</Message>}
-            {isFound === false && (
-              <>
-                <Message>added new word</Message>
-                <RoutingLink href="/words" />
-              </>
-            )}
-          </StyledArticle>
-        </div>
-        <div>
-          <SearchButton
-            isSearchMode={isSearchMode}
+      <Layout>
+        <StyledSection>
+          <ToggleButton
+            someVariant={isSearchMode ? "close" : "search"}
+            isSomeMode={isSearchMode}
             onClick={() => {
               setIsSearchMode(!isSearchMode);
             }}
           />
           {isSearchMode && <SearchForm />}
-        </div>
-        <div>
-          <TranslateButton
-            isTranslateMode={isTranslateMode}
+        </StyledSection>
+        <Divider />{" "}
+        <StyledSection>
+          <ToggleButton
+            someVariant={isTranslateMode ? "close" : "translate"}
+            isSomeMode={isTranslateMode}
             onClick={() => {
               setIsTranslateMode(!isTranslateMode);
             }}
           />
           {isTranslateMode && <TranslationForm />}
-        </div>
-      </main>
+        </StyledSection>
+        <Divider />
+        <StyledSection>
+          <ToggleButton
+            someVariant={isAddMode ? "close" : "plus"}
+            isSomeMode={isAddMode}
+            onClick={() => {
+              setIsAddMode(!isAddMode);
+              setIsFound("");
+            }}
+          ></ToggleButton>
+          {isAddMode && (
+            <>
+              <Form
+                isEditMode={false}
+                onSubmitEvent={handleAddTranslation}
+                onFirstInput={handleFirstInput}
+              />
+              <StyledArticle>
+                {isFound && <Message>word already exists</Message>}
+                {isFound === false && (
+                  <>
+                    <Message>added new word</Message>
+                    <RoutingLink href="/words" />
+                  </>
+                )}
+              </StyledArticle>
+            </>
+          )}
+        </StyledSection>
+      </Layout>
     </>
   );
 }
+
+const StyledSection = styled.section`
+  position: relative;
+  padding: 2rem;
+`;
 
 const StyledArticle = styled.article`
   display: flex;

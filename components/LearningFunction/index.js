@@ -4,7 +4,7 @@ import styled from "styled-components";
 import translationListAtom from "@/public/store";
 import { useAtom } from "jotai";
 import { useState } from "react";
-import CloseButton from "../Buttons/CloseButton";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
 export default function LearningFunction({ selectedLanguage }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -24,7 +24,13 @@ export default function LearningFunction({ selectedLanguage }) {
       <RandomButton onClick={findRandomWord} />
       {randomEntry ? (
         <>
-          <CloseButton onClick={() => setRandomEntry()} />
+          <ButtonWithIcon
+            buttonVariant=""
+            someVariant="close"
+            width="0.75rem"
+            aria-label="close"
+            onClick={() => setRandomEntry()}
+          />
           <StyledSection>
             <p>{randomEntry.word}</p>
             <StyledButton

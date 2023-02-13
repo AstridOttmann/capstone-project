@@ -1,4 +1,4 @@
-import SpeakerButton from "../Buttons/SpeakerButton";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
 function handleSpeech(text, selectedVoice) {
   const utterance = new SpeechSynthesisUtterance(text);
@@ -9,8 +9,11 @@ function handleSpeech(text, selectedVoice) {
 export default function SpeechSynthesis({ word, selectedVoice }) {
   return (
     <>
-      <SpeakerButton
-        type="button"
+      <ButtonWithIcon
+        buttonVariant="speaker"
+        someVariant="speaker"
+        width="2rem"
+        aria-label="speaker"
         onClick={() => {
           handleSpeech(word, selectedVoice);
         }}

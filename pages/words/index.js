@@ -9,10 +9,10 @@ import { useRouter } from "next/router";
 import FavoriteButton from "@/components/Buttons/FavoriteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
-import StyledTitle from "@/components/Header/StyledTitle";
-import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
+import StyledTitle from "@/components/Titles/StyledTitle";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import LearningFunction from "@/components/LearningFunction";
+import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 
 export default function WordsPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -118,7 +118,11 @@ export default function WordsPage({ availableVoices }) {
             <StyledWordFields>{translation.word}</StyledWordFields>
             {!selectedLanguage ? <small>({translation.language})</small> : ""}
             <StyledWordFields>{translation.translated}</StyledWordFields>
-            <SeeMoreButton
+            <ButtonWithIcon
+              buttonVariant="seeMore"
+              someVariant="seeMore"
+              width="2rem"
+              aria-label="seeMore"
               onClick={() => router.push(`/words/${translation.id}`)}
             />
           </ListEntry>

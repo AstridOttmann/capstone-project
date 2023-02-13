@@ -6,8 +6,9 @@ export default function Divider() {
 
 const StyledDivider = styled.hr`
   border: none;
-  width: 80%;
-  margin: 2rem auto 0 auto;
-  height: 1px;
-  background: #494fbf;
+  border-radius: 50px;
+  width: 50%;
+  margin: 0.5rem auto 0.5rem auto;
+  height: 5px;
+  background: var(--dark-primary-color);
 `;

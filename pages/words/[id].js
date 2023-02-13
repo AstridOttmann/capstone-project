@@ -6,10 +6,9 @@ import CancelEditButton from "@/components/Buttons/CancelEditButton";
 import { useState } from "react";
 import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
-import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
-import DeleteButton from "@/components/Buttons/DeleteButton";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
+import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -105,9 +104,23 @@ export default function SingleWordPage({ availableVoices }) {
           )}
         </>
       )}
-      {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
+      {isShowMode && (
+        <ButtonWithIcon
+          buttonVariant="goBack"
+          someVariant="goBack"
+          width="2.3rem"
+          aria-label="goBack"
+          onClick={() => router.push("/words")}
+        />
+      )}
       {entry && (
-        <DeleteButton onDeleteEntry={() => handleDeleteEntry(entry.id)} />
+        <ButtonWithIcon
+          buttonVariant="delete"
+          someVariant="bin"
+          aria-label="bin"
+          width="1.8rem"
+          onClick={() => handleDeleteEntry(entry.id)}
+        />
       )}
     </main>
   );

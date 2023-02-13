@@ -6,9 +6,9 @@ import translationListAtom from "@/public/store";
 import styled from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
-import ResetButton from "../Buttons/ResetButton";
 import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(translationListAtom);
@@ -39,7 +39,13 @@ export default function SearchForm({ selectedLanguage }) {
             onChange={(event) => setSearchInput(event.target.value)}
           />
         </StyledInputWrapper>
-        <ResetButton onClick={() => setSearchInput("")} />
+        <ButtonWithIcon
+          buttonVariant="reset"
+          someVariant="reset"
+          width="1.5rem"
+          aria-label="reset"
+          onClick={() => setSearchInput("")}
+        />
       </StyledForm>
       {searchResults.length === 0 && searchInput.length > 0 ? (
         <StyledArticle>
