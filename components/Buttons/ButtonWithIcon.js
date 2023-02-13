@@ -7,9 +7,16 @@ export default function ButtonWithIcon({
   buttonVariant,
   width,
   aria_label,
+  type,
+  isActive,
 }) {
   return (
-    <StyledButton type="button" variant={buttonVariant} onClick={onClick}>
+    <StyledButton
+      type={type}
+      variant={buttonVariant}
+      onClick={onClick}
+      isActive={isActive}
+    >
       <SVGIcon variant={someVariant} width={width} aria-label={aria_label} />
     </StyledButton>
   );

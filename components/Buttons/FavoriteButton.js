@@ -6,13 +6,11 @@ export default function FavoriteButton({ id, isFavorite, onToggleFavorite }) {
     <StyledButton
       type="button"
       variant="favorite"
+      isFavorite={isFavorite}
       onClick={() => onToggleFavorite(id)}
     >
-      <SVGIcon
-        variant={isFavorite ? "likeActive" : "like"}
-        width="1.5rem"
-        aria-label="like"
-      />
+      <SVGIcon variant="likeActive" width="2rem" aria-label="like" />
     </StyledButton>
   );
 }
+// {isFavorite ? "likeActive" : "like"}

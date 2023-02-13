@@ -2,6 +2,7 @@ import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
 import storedVoices from "@/public/voices";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
 export default function Form({
   onSubmitEvent,
@@ -55,7 +56,8 @@ export default function Form({
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
-          pattern="^[^\s]\S+$"
+          pattern="^[^\s0-9].*$"
+          // pattern="^[^\s]\S+$"
           maxLength="12"
         />
         <label>Choose voice for Speech Synthesis</label>
@@ -95,9 +97,12 @@ export default function Form({
             ></textarea>
           </>
         )}
-        <StyledButton type="submit" variant="submit">
-          Save
-        </StyledButton>
+        <ButtonWithIcon
+          type="submit"
+          buttonVariant="basic"
+          someVariant="disc"
+          width="2.5rem"
+        />
       </StyledForm>
     </>
   );

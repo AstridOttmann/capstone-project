@@ -2,13 +2,12 @@ import Form from "@/components/Form";
 import { useAtom } from "jotai";
 import translationListAtom from "@/public/store";
 import { useRouter } from "next/router";
-import CancelEditButton from "@/components/Buttons/CancelEditButton";
 import { useState } from "react";
-import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
 import ToastMessage from "@/components/ToastMessage";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
+import StyledTitle from "@/components/Titles/StyledTitle";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -67,15 +66,29 @@ export default function SingleWordPage({ availableVoices }) {
   }
 
   return (
-    <main>
-      <>
-        <h1>Word entry {!isShowMode && ": edit"}</h1>
+    <>
+      <div>
+        <StyledTitle>Word entry {!isShowMode && ": edit"}</StyledTitle>
         {!entry && <p>Please choose a word</p>}
         <ToastMessage toast={toast} />
+      </div>
+      <div>
         {isShowMode ? (
-          <EditButton onClick={() => setIsShowMode(false)} />
+          <ButtonWithIcon
+            buttonVariant="edit"
+            someVariant="pencil"
+            width="1.8rem"
+            aria-label="pencil"
+            onClick={() => setIsShowMode(false)}
+          />
         ) : (
-          <CancelEditButton onClick={() => setIsShowMode(true)} />
+          <ButtonWithIcon
+            buttonVariant="discard"
+            someVariant="cancel"
+            width="2rem"
+            aria-label="cancel"
+            onClick={() => setIsShowMode(true)}
+          />
         )}
         {entry && (
           <>
@@ -91,37 +104,39 @@ export default function SingleWordPage({ availableVoices }) {
             />
           </>
         )}
-      </>
-      {!isShowMode && (
-        <>
-          {entry && (
-            <Form
-              type="edit"
-              entry={entry}
-              isEditMode={true}
-              onSubmitEvent={handleEditEntry}
-            />
-          )}
-        </>
-      )}
-      {isShowMode && (
-        <ButtonWithIcon
-          buttonVariant="goBack"
-          someVariant="goBack"
-          width="2.3rem"
-          aria-label="goBack"
-          onClick={() => router.push("/words")}
-        />
-      )}
-      {entry && (
-        <ButtonWithIcon
-          buttonVariant="delete"
-          someVariant="bin"
-          aria-label="bin"
-          width="1.8rem"
-          onClick={() => handleDeleteEntry(entry.id)}
-        />
-      )}
-    </main>
+      </div>
+      <div>
+        {!isShowMode && (
+          <>
+            {entry && (
+              <Form
+                type="edit"
+                entry={entry}
+                isEditMode={true}
+                onSubmitEvent={handleEditEntry}
+              />
+            )}
+          </>
+        )}
+        {isShowMode && (
+          <ButtonWithIcon
+            buttonVariant="goBack"
+            someVariant="goBack"
+            width="2.3rem"
+            aria-label="goBack"
+            onClick={() => router.push("/words")}
+          />
+        )}
+        {entry && (
+          <ButtonWithIcon
+            buttonVariant="delete"
+            someVariant="bin"
+            aria-label="bin"
+            width="1.8rem"
+            onClick={() => handleDeleteEntry(entry.id)}
+          />
+        )}
+      </div>
+    </>
   );
 }

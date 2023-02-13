@@ -6,11 +6,12 @@ function handleSpeech(text, selectedVoice) {
   speechSynthesis.speak(utterance);
 }
 
-export default function SpeechSynthesis({ word, selectedVoice }) {
+export default function SpeechSynthesis({ word, selectedVoice, isActive }) {
   return (
     <>
       <ButtonWithIcon
-        buttonVariant="speaker"
+        isActive={isActive}
+        buttonVariant="basic"
         someVariant="speaker"
         width="2rem"
         aria-label="speaker"

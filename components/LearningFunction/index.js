@@ -1,4 +1,3 @@
-import RandomButton from "../Buttons/RandomButton";
 import StyledButton from "../Buttons/StyledButton";
 import styled from "styled-components";
 import translationListAtom from "@/public/store";
@@ -21,7 +20,13 @@ export default function LearningFunction({ selectedLanguage }) {
 
   return (
     <StyledContainer>
-      <RandomButton onClick={findRandomWord} />
+      <ButtonWithIcon
+        buttonVariant="random"
+        someVariant="dices"
+        width="2rem"
+        aria-label="dices"
+        onClick={findRandomWord}
+      />
       {randomEntry ? (
         <>
           <ButtonWithIcon

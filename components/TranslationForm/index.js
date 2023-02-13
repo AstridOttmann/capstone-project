@@ -76,9 +76,12 @@ export default function TranslationForm() {
           })}
         </select>
         {!translation && (
-          <StyledButton type="submit" variant="submit">
-            Translate
-          </StyledButton>
+          <ButtonWithIcon
+            type="submit"
+            buttonVariant="basic"
+            someVariant="translate"
+            width="2.5rem"
+          />
         )}
       </StyledForm>
       {translation && (

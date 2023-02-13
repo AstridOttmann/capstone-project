@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 const StyledEntry = styled.li`
   position: relative;
-  border: 1px dashed black;
-  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 40px;
   margin: 1em;
   padding: 0.5em;
   list-style: none;

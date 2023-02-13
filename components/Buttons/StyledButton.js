@@ -6,14 +6,22 @@ const StyledButton = styled.button`
   background: var(--primary-color);
   font-family: inherit;
   border-radius: 50%;
-  border: 5px solid var(--dark-primary-color);
+  border: 4px solid var(--dark-primary-color);
   margin: 0 auto;
   cursor: pointer;
 
-  ${({ variant, isActive }) => {
+  ${({ variant, isFavorite, isActive }) => {
     if (variant === "basic") {
       return css`
         border: none;
+        background: none
+        margin: 0;
+        background: ${
+          isActive ? "var(--dark-primary-color)" : "var(--primary-color)"
+        };
+        color: ${
+          isActive ? "var(--primary-color)" : "var(--dark-primary-color)"
+        };
       `;
     }
     if (variant === "show") {
@@ -32,6 +40,7 @@ const StyledButton = styled.button`
     }
     if (variant === "language") {
       return css`
+        min-width: fit-content;
         text-transform: uppercase;
         border-radius: 90px;
         padding: 0.2rem 0.4rem;
@@ -63,17 +72,21 @@ const StyledButton = styled.button`
     }
     if (variant === "seeMore") {
       return css`
-        position: absolute;
-        right: 0.5rem;
-        bottom: 0.4rem;
+        _position: absolute;
+        _right: 0.5rem;
+        _bottom: 0.4rem;
         border: none;
+        margin: 0;
+        padding: 0;
       `;
     }
     if (variant === "edit") {
       return css`
-        position: absolute;
-        top: 1.7rem;
-        right: 2rem;
+        _position: absolute;
+        _top: 1.7rem;
+        _right: 2rem;
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
         padding: 0.6rem 0.6rem 0.2rem 0.6rem;
       `;
     }
@@ -87,13 +100,32 @@ const StyledButton = styled.button`
       `;
     }
 
-    if (variant === "submit") {
+    if (variant === "favorite") {
       return css`
-        margin: 1em auto;
-        padding: 0.7em;
-        background: #04bf45;
-        color: white;
-        width: 8rem;
+        _position: absolute;
+        right: 0.7rem;
+        top: 0.2rem;
+        padding: 0;
+        margin: 0;
+        border: none;
+        opacity: ${isFavorite ? 1 : 0.4};
+      `;
+    }
+    if (variant === "nav-favorite") {
+      return css`
+        position: absolute;
+        top: 3.5rem;
+        right: 0.1rem;
+        padding: 0;
+        margin: 0;
+        border: none;
+        opacity: ${isActive ? 1 : 0.4};
+      `;
+    }
+    if (variant === "single_page_bin") {
+      return css`
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
       `;
     }
 
@@ -102,30 +134,9 @@ const StyledButton = styled.button`
         position: relative;
         right: rem;
         background: none;
-        color: red;
         padding: 0.2rem 0.2rem 0 0.2rem;
         margin-top: 1rem;
         left: 70%;
-      `;
-    }
-
-    if (variant === "favorite") {
-      return css`
-        position: absolute;
-        right: 0.7rem;
-        top: 0.2rem;
-        padding: 0;
-        margin: 0;
-        border: none;
-      `;
-    }
-    if (variant === "nav-favorite") {
-      return css`
-        position: absolute;
-        top: 3.5rem;
-        right: 0.1rem;
-        padding: 0.4rem 0.4rem 0 0.4rem;
-        margin: 0;
       `;
     }
   }}
