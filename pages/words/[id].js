@@ -8,6 +8,7 @@ import ToastMessage from "@/components/ToastMessage";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 import StyledTitle from "@/components/Titles/StyledTitle";
+import styled from "styled-components";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -68,39 +69,41 @@ export default function SingleWordPage({ availableVoices }) {
   return (
     <>
       <div>
-        <StyledTitle>Word entry {!isShowMode && ": edit"}</StyledTitle>
-        {!entry && <p>Please choose a word</p>}
         <ToastMessage toast={toast} />
+        <StyledEntryHeader>
+          {entry ? (
+            <>
+              <StyledTitle page="single">
+                Word entry {!isShowMode && ": edit"}
+              </StyledTitle>
+              <StyledLanguageLine>{entry.language}</StyledLanguageLine>
+            </>
+          ) : (
+            <>
+              <ButtonWithIcon
+                buttonVariant="goBack"
+                someVariant="goBack"
+                width="2.3rem"
+                aria-label="goBack"
+                onClick={() => router.push("/words")}
+              />
+              <p>Please choose a word</p>
+            </>
+          )}
+        </StyledEntryHeader>
       </div>
       <div>
-        {isShowMode ? (
-          <ButtonWithIcon
-            buttonVariant="edit"
-            someVariant="pencil"
-            width="1.8rem"
-            aria-label="pencil"
-            onClick={() => setIsShowMode(false)}
-          />
-        ) : (
-          <ButtonWithIcon
-            buttonVariant="discard"
-            someVariant="cancel"
-            width="2rem"
-            aria-label="cancel"
-            onClick={() => setIsShowMode(true)}
-          />
-        )}
         {entry && (
           <>
-            <SpeechSynthesis
-              word={entry.word}
+            <SingleEntry
+              entry={entry}
+              isFavorite={entry.isFavorite}
               selectedVoice={availableVoices.find(
                 (voice_) => voice_.voiceURI === entry.voiceURI
               )}
-            />
-            <SingleEntry
-              entry={entry}
               onToggleFavorite={() => handleToggleFavorite(entry.id)}
+              onDeleteEntry={() => handleDeleteEntry(entry.id)}
+              onClick={() => setIsShowMode(false)}
             />
           </>
         )}
@@ -118,25 +121,23 @@ export default function SingleWordPage({ availableVoices }) {
             )}
           </>
         )}
-        {isShowMode && (
-          <ButtonWithIcon
-            buttonVariant="goBack"
-            someVariant="goBack"
-            width="2.3rem"
-            aria-label="goBack"
-            onClick={() => router.push("/words")}
-          />
-        )}
-        {entry && (
-          <ButtonWithIcon
-            buttonVariant="delete"
-            someVariant="bin"
-            aria-label="bin"
-            width="1.8rem"
-            onClick={() => handleDeleteEntry(entry.id)}
-          />
-        )}
       </div>
     </>
   );
 }
+const StyledLanguageLine = styled.small`
+  text-transform: uppercase;
+  max-width: 50%
+  min-with: fit-content;
+  border-radius: 90px;
+  padding: 0.2rem 0.4rem;
+  border: 3px solid var(--dark-primary-color);
+  font-size: 1.6rem;
+  text-align: center;
+`;
+const StyledEntryHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.3rem 3rem 1rem 3rem;
+  padding: 0 1rem 1rem 1rem;
+`;

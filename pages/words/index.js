@@ -119,6 +119,7 @@ export default function WordsPage({ availableVoices }) {
             </StyledContainer>
             <StyledContainer variant="icons">
               <FavoriteButton
+                variant="favorite"
                 id={translation.id}
                 isFavorite={translation.isFavorite}
                 onToggleFavorite={handleToggleFavorite}
@@ -169,6 +170,9 @@ const StyledContainer = styled.div`
         justify-content: flex-end;
         align-items: flex-end;
       `;
+    }
+    if (variant === "notes") {
+      return css``;
     }
   }}
 `;

@@ -1,11 +1,16 @@
 import StyledButton from "./StyledButton";
 import SVGIcon from "../Icons/SVGIcon";
 
-export default function FavoriteButton({ id, isFavorite, onToggleFavorite }) {
+export default function FavoriteButton({
+  id,
+  isFavorite,
+  onToggleFavorite,
+  variant,
+}) {
   return (
     <StyledButton
       type="button"
-      variant="favorite"
+      variant={variant}
       isFavorite={isFavorite}
       onClick={() => onToggleFavorite(id)}
     >

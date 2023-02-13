@@ -110,6 +110,7 @@ export default function HomePage() {
 }
 
 const StyledSection = styled.section`
+  margin-top: 1rem;
   position: relative;
   padding: 2rem;
 `;

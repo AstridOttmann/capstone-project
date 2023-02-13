@@ -50,6 +50,7 @@ const StyledButton = styled.button`
     }
     if (variant === "language-selected") {
       return css`
+        min-width: fit-content;
         text-transform: uppercase;
         border-radius: 90px;
         padding: 0.2rem 0.4rem;
@@ -58,7 +59,8 @@ const StyledButton = styled.button`
     }
     if (variant === "goBack") {
       return css`
-        margin-bottom: 5rem;
+        margin-bottom: 1rem;
+        border: none;
       `;
     }
     if (variant === "delete") {
@@ -105,6 +107,16 @@ const StyledButton = styled.button`
         _position: absolute;
         right: 0.7rem;
         top: 0.2rem;
+        padding: 0;
+        margin: 0;
+        border: none;
+        opacity: ${isFavorite ? 1 : 0.4};
+      `;
+    }
+    if (variant === "favorite_bright") {
+      return css`
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
         padding: 0;
         margin: 0;
         border: none;

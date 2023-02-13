@@ -10,6 +10,7 @@ export default function Form({
   entry,
   isEditMode,
   availableVoices,
+  onClick,
 }) {
   const router = useRouter();
 
@@ -95,6 +96,13 @@ export default function Form({
               rows="5"
               defaultValue={entry.notes}
             ></textarea>
+            <ButtonWithIcon
+              buttonVariant="discard"
+              someVariant="cancel"
+              width="2rem"
+              aria-label="cancel"
+              onClick={onClick}
+            />
           </>
         )}
         <ButtonWithIcon
