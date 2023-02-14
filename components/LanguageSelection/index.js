@@ -33,4 +33,21 @@ const StyledButtonWrapper = styled.div`
   justify-content: flex-start;
   gap: 0.3rem;
   overflow-x: scroll;
+
+  // &::-webkit-scrollbar {
+  //   width: 12px;
+
+  //   height: 2px;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   border-radius: 10px;
+  //   margin: 0 30px;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 200px;
+
+  //   background: var(--primary-color);
+  // }
 `;

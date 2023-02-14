@@ -23,9 +23,9 @@ const StyledForm = styled.form`
         width: 100%;
         flex-direction: column;
         gap: 0.5em;
-        margin-bottom: 1.5rem;
+        margin-bottom: -3rem;
         padding: 1.5rem;
-        opacity: 0.8;
+        _opacity: 0.8;
       `;
     }
     if (variant === "edit") {
@@ -37,6 +37,7 @@ const StyledForm = styled.form`
         top: 6.2rem;
         width: 90%;
         left: 50%;
+        _bottom: 3rem;
         transform: translateX(-50%);
         flex-direction: column;
         gap: 0.5em;
@@ -49,9 +50,10 @@ const StyledForm = styled.form`
         position: relative;
         flex-direction: column;
         gap: 0.5em;
+        padding: 1.5rem;
+        margin-bottom: -3rem;
         color: var(--dark-primary-color);
         background: var(--dark-primary-color);
-        opacity: 0.8;
       `;
     }
   }}

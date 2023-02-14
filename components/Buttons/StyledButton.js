@@ -65,10 +65,8 @@ const StyledButton = styled.button`
     }
     if (variant === "delete") {
       return css`
-        position: relative;
-        right: rem;
-        padding: 0.2rem 0.2rem 0 0.2rem;
-        left: 70%;
+        padding: 0;
+        margin: 0;
         border: none;
       `;
     }
@@ -154,6 +152,7 @@ const StyledButton = styled.button`
         background: var(--dark-primary-color);
         border: none;
         margin: 0;
+        padding-top: 0.8rem;
       `;
     }
   }}

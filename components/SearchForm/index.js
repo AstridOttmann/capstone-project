@@ -3,12 +3,14 @@ import StyledForm from "../Form/StyledForm";
 import StyledList from "../List/StyledList";
 import { atom, useAtom } from "jotai";
 import translationListAtom from "@/public/store";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import Divider from "../Divider";
 import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
+import { StyledArticle, StyledWordField } from "../StyledSearchResult";
+import ListEntry from "../ListEntry";
 
 export default function SearchForm({ selectedLanguage }) {
   const [translationList] = useAtom(translationListAtom);
@@ -65,15 +67,13 @@ export default function SearchForm({ selectedLanguage }) {
                   }}
                 >
                   <Message>
-                    {translation.word} -
-                    {!selectedLanguage ? (
-                      <small>({translation.language}) - </small>
-                    ) : (
-                      ""
-                    )}
+                    {translation.word} - {translation.language.toUpperCase()} -
                     {translation.translated}
                   </Message>
-                  <RoutingLink href={`/words/${translation.id}`} />
+                  <RoutingLink
+                    color="var(--primary-color)"
+                    href={`/words/${translation.id}`}
+                  />
                 </StyledArticle>
               );
             })}
@@ -92,20 +92,32 @@ const StyledLink = styled(Link)`
   font-size: 1rem;
 `;
 
-const StyledArticle = styled.article`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  background: whitesmoke;
-  _border: 1px dashed lightgrey;
-  border-radius: 5px;
-`;
+// const StyledArticle = styled.article`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   text-align: center;
+//   margin-bottom: 1rem;
+//   font-size: 1.2rem;
+//   background: whitesmoke;
+//   _border: 1px dashed lightgrey;
+//   border-radius: 5px;
+// `;
 
 const StyledInputWrapper = styled.div`
   flex-grow: 4;
+  ${({ variant, isFavorite, isActive }) => {
+    if (variant === "search_result") {
+      return css`
+        display: flex;
+
+        margin: 0;
+        background: var(--dark-primary-color);
+
+        color: var(--primary-color);
+      `;
+    }
+  }}
 `;
 const StyledInput = styled.input`
   font-family: inherit;

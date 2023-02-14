@@ -26,5 +26,13 @@ const StyledDivider = styled.hr`
         background: var(--primary-color);
       `;
     }
+    if (variant === "bottom_page") {
+      return css`
+        margin-bottom: 4rem;
+        display: block;
+        border: none;
+        background: var(--dark-primary-color);
+      `;
+    }
   }}
 `;

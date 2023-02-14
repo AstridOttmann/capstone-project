@@ -8,7 +8,7 @@ import ToastMessage from "@/components/ToastMessage";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 import StyledTitle from "@/components/Titles/StyledTitle";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -109,16 +109,16 @@ export default function SingleWordPage({ availableVoices }) {
           </>
         )}
       </div>
-      <div>
+      <StyledContainer variant="bottom_page">
         {!isShowMode && entry && (
           <Form
-            type="edit"
+            variant="edit"
             entry={entry}
             isEditMode={true}
             onSubmitEvent={handleEditEntry}
           />
         )}
-      </div>
+      </StyledContainer>
     </>
   );
 }
@@ -137,4 +137,30 @@ const StyledEntryHeader = styled.div`
   flex-direction: column;
   margin: 0.3rem 3rem 1rem 3rem;
   padding: 0 1rem 1rem 1rem;
+`;
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  _justify-content: fex-start;
+  _align-items: flex-start;
+
+  ${({ variant }) => {
+    if (variant === "text") {
+      return css`
+        justify-content: flex-start;
+        align-items: flex-start;
+      `;
+    }
+    if (variant === "icons") {
+      return css`
+        justify-content: flex-end;
+        align-items: flex-end;
+      `;
+    }
+    if (variant === "bottom_page") {
+      return css`
+        margin-bottom: 7rem;
+      `;
+    }
+  }}
 `;

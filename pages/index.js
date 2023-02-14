@@ -55,6 +55,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Divider />
       <StyledSection variant={isSearchMode ? "basic" : ""}>
         <ToggleButton
           someVariant={isSearchMode ? "close" : "search"}
@@ -85,7 +86,7 @@ export default function HomePage() {
             setIsAddMode(!isAddMode);
             setIsFound("");
           }}
-        ></ToggleButton>
+        />
         {isAddMode && (
           <>
             <Form
@@ -105,6 +106,7 @@ export default function HomePage() {
           </>
         )}
       </StyledSection>
+      <Divider variant="bottom_page" />
     </>
   );
 }
@@ -128,8 +130,10 @@ const StyledSection = styled.section`
         };
       `;
     }
-    if (variant === "") {
-      return css``;
+    if (variant === "Translation") {
+      return css`
+        padding-bottom: 3rem;
+      `;
     }
   }}
 `;
@@ -139,11 +143,12 @@ const StyledArticle = styled.article`
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
+  margin: 0;
   margin-bottom: 1rem;
-  font-size: 1.2rem;
-  background: whitesmoke;
-  _border: 1px dashed lightgrey;
-  border-radius: 5px;
+  padding-top: 3rem;
+  background: var(--primary-color);
+  border: 3px solid var(--dark-primary-color);
+  border-radius: 0 0 40px 40px;
 `;
 
 const StyledLink = styled(Link)`

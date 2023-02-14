@@ -1,7 +1,7 @@
 import StyledForm from "../Form/StyledForm";
 import StyledButton from "../Buttons/StyledButton";
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import targetLanguages from "@/public/targetLanguages";
 import ListEntry from "../ListEntry";
@@ -90,49 +90,75 @@ export default function TranslationForm({ isActive }) {
       </StyledForm>
       {translation && (
         <>
-          <ListEntry>
-            <StyledWordFields>{wordInput}</StyledWordFields>
-            <small>({detectedLanguage})</small>
-            <StyledWordFields>{translation}</StyledWordFields>
-          </ListEntry>
-          <ButtonWithIcon
-            buttonVariant="delete"
-            someVariant="bin"
-            width="1.8rem"
-            aria-label="bin"
-            onClick={() => setTranslation("")}
-          />
-          <ButtonWithIcon
-            buttonVariant="basic"
-            someVariant="content_save"
-            width="1.8rem"
-            aria-label="content_save"
-            onClick={() => {
-              setTranslationList([
-                {
-                  id: nanoid(),
-                  voiceURI: "",
-                  word: wordInput,
-                  language: detectedLanguage,
-                  translated: translation,
-                },
-                ...translationList,
-              ]);
-              setTranslation("");
-              setMessage(true);
-            }}
-          />
+          <StyledArticle>
+            <StyledContainer variant="translation_entry">
+              <StyledWordFields>{wordInput}</StyledWordFields>
+              <StyledLanguageField>{detectedLanguage}</StyledLanguageField>
+              <StyledWordFields>{translation}</StyledWordFields>
+            </StyledContainer>
+
+            <StyledButtonWrapper variant="message">
+              <ButtonWithIcon
+                buttonVariant="basic"
+                someVariant="content_save"
+                width="1.8rem"
+                aria-label="content_save"
+                onClick={() => {
+                  setTranslationList([
+                    {
+                      id: nanoid(),
+                      voiceURI: "",
+                      word: wordInput,
+                      language: detectedLanguage,
+                      translated: translation,
+                    },
+                    ...translationList,
+                  ]);
+                  setTranslation("");
+                  setMessage(true);
+                }}
+              />{" "}
+              <ButtonWithIcon
+                buttonVariant="delete"
+                someVariant="bin"
+                width="1.8rem"
+                aria-label="bin"
+                onClick={() => setTranslation("")}
+              />
+            </StyledButtonWrapper>
+          </StyledArticle>
         </>
       )}
       {message && (
-        <Message>
-          added word
-          <RoutingLink href="/words" />
-        </Message>
+        <StyledArticle>
+          <Message>
+            added word
+            <RoutingLink href="/words" />
+          </Message>
+        </StyledArticle>
       )}
     </StyledContainer>
   );
 }
+
+const StyledArticle = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  _margin: 0;
+  margin-bottom: 1rem;
+  padding: 3rem 0 0 0;
+  background: var(--primary-color);
+  border: 3px solid var(--dark-primary-color);
+  border-radius: 0 0 40px 40px;
+
+  ${({ variant }) => {
+    if (variant === "translation_entry") {
+      return css``;
+    }
+  }}
+`;
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -179,14 +205,59 @@ const StyledSelect = styled.select`
   padding: 0.5rem;
 `;
 const StyledWordFields = styled.p`
+  margin: 0;
+  padding-left: 1rem;
   word-wrap: break-word;
   white-space: pre-line;
 `;
-const StyledContainer = styled.div`
-  margin-bottom: 5rem;
+const StyledLanguageField = styled.small`
+  padding-left: 1rem;
 `;
+const StyledContainer = styled.div`
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  ${({ variant }) => {
+    if (variant === "text") {
+      return css`
+        justify-content: flex-start;
+        align-items: flex-start;
+      `;
+    }
+    if (variant === "icons") {
+      return css`
+        justify-content: flex-end;
+        align-items: flex-end;
+      `;
+    }
+    if (variant === "translation_entry") {
+      return css`
+        gap: 0.2rem;
+        justify-content: center;
+        align-items: flex-start;
+        border: 4px solid var(--dark-primary-color);
+        border-radius: 40px;
+        padding: 1rem;
+        margin: 1rem;
+        margin-bottom: 1rem;
+      `;
+    }
+  }}
+`;
+
 const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+
+  ${({ variant }) => {
+    if (variant === "message") {
+      return css`
+        border: none;
+        padding: 0 1.5rem 0.2rem 1.5rem;
+      `;
+    }
+  }}
 `;
