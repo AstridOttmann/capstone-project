@@ -13,6 +13,7 @@ const StyledForm = styled.form`
         align-items: center;
         gap: 0.2rem;
         margin-bottom: 1rem;
+        padding: 1rem 0 1rem 0;
       `;
     }
     if (variant === "add") {

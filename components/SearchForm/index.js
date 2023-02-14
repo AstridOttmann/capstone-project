@@ -128,4 +128,5 @@ const StyledInput = styled.input`
   border: 4px solid var(--dark-primary-color);
   border-radius: 50px;
   padding: 0.5rem;
+  outline: none;
 `;

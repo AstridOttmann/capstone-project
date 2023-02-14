@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   ${({ variant, isFavorite, isActive }) => {
-    // speaker button === basic
+    // dices button && speaker button === basic
     if (variant === "basic") {
       return css`
         border: none;
@@ -22,6 +22,14 @@ const StyledButton = styled.button`
         color: ${isActive
           ? "var(--primary-color)"
           : "var(--dark-primary-color)"};
+      `;
+    }
+    if (variant === "dices") {
+      return css`
+        position: absolute;
+        top: -3rem;
+        left: -0.5rem;
+        border: none;
       `;
     }
     if (variant === "show") {
@@ -38,12 +46,32 @@ const StyledButton = styled.button`
         border: none;
       `;
     }
+    if (variant === "close") {
+      return css`
+        position: absolute;
+        background: none;
+        top: -1.8rem;
+        right: -0.5rem;
+        border: none;
+      `;
+    }
+    if (variant === "eye") {
+      return css`
+        _position: absolute;
+        background: none;
+        color: var(--dark-primary-color)
+        top: 20rem;
+        left: 10rem;
+        border: none;
+      `;
+    }
     if (variant === "language") {
       return css`
         min-width: fit-content;
         text-transform: uppercase;
         border-radius: 90px;
         padding: 0.2rem 0.4rem;
+        margin-bottom: 0.3rem;
         border: 3px solid var(--dark-primary-color);
         opacity: ${isActive ? 1 : 0.4};
       `;

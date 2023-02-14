@@ -124,8 +124,8 @@ export default function SingleWordPage({ availableVoices }) {
 }
 const StyledLanguageLine = styled.small`
   text-transform: uppercase;
-  max-width: 50%
-  min-with: fit-content;
+  max-width: 50%;
+  min-width: fit-content;
   border-radius: 90px;
   padding: 0.2rem 0.4rem;
   border: 3px solid var(--dark-primary-color);
