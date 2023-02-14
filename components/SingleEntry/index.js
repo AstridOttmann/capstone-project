@@ -10,6 +10,7 @@ export default function SingleEntry({
   selectedVoice,
   onClick,
   onDeleteEntry,
+  isActive,
 }) {
   return (
     <>
@@ -19,7 +20,7 @@ export default function SingleEntry({
           <StyledVoiceContainer>
             <small>voice: {entry.voiceURI}</small>
             <SpeechSynthesis
-              isActive="true"
+              isActive={isActive}
               word={entry.word}
               selectedVoice={selectedVoice}
             />

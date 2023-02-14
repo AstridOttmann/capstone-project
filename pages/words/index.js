@@ -124,11 +124,7 @@ export default function WordsPage({ availableVoices }) {
                 isFavorite={translation.isFavorite}
                 onToggleFavorite={handleToggleFavorite}
               />
-              {!selectedLanguage ? (
-                <StyledLanguageLine>{translation.language}</StyledLanguageLine>
-              ) : (
-                ""
-              )}
+              <StyledLanguageLine>{translation.language}</StyledLanguageLine>
               <ButtonWithIcon
                 buttonVariant="seeMore"
                 someVariant="seeMore"

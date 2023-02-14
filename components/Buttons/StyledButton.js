@@ -32,7 +32,7 @@ const StyledButton = styled.button`
     }
     if (variant === "hide") {
       return css`
-        border: 4px solid var(--dark-primary-color);
+        border: none;
         position: absolute;
         top: 0rem;
         right: 1rem;

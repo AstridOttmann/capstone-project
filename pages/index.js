@@ -3,7 +3,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import translationListAtom from "@/public/store";
 import { atom, useAtom } from "jotai";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import SearchForm from "@/components/SearchForm";
 import Message from "@/components/Message";
@@ -55,7 +55,7 @@ export default function HomePage() {
 
   return (
     <>
-      <StyledSection>
+      <StyledSection variant={isSearchMode ? "basic" : ""}>
         <ToggleButton
           someVariant={isSearchMode ? "close" : "search"}
           isSomeMode={isSearchMode}
@@ -113,6 +113,26 @@ const StyledSection = styled.section`
   margin-top: 1rem;
   position: relative;
   padding: 2rem;
+
+  ${({ variant, isActive }) => {
+    if (variant === "basic") {
+      return css`
+      _width: 100%;
+        border: none;
+        background: none
+        margin: 0;
+        background: ${
+          isActive ? "var(--dark-primary-color)" : "var(--primary-color)"
+        };
+        color: ${
+          isActive ? "var(--primary-color)" : "var(--dark-primary-color)"
+        };
+      `;
+    }
+    if (variant === "") {
+      return css``;
+    }
+  }}
 `;
 
 const StyledArticle = styled.article`

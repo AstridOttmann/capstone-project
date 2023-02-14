@@ -21,7 +21,7 @@ export default function LearningFunction({ selectedLanguage }) {
   return (
     <StyledContainer>
       <ButtonWithIcon
-        buttonVariant="random"
+        buttonVariant="basic"
         someVariant="dices"
         width="2rem"
         aria-label="dices"
@@ -30,9 +30,9 @@ export default function LearningFunction({ selectedLanguage }) {
       {randomEntry ? (
         <>
           <ButtonWithIcon
-            buttonVariant=""
+            buttonVariant="basic"
             someVariant="close"
-            width="0.75rem"
+            width="1.5rem"
             aria-label="close"
             onClick={() => setRandomEntry()}
           />
@@ -40,7 +40,7 @@ export default function LearningFunction({ selectedLanguage }) {
             <p>{randomEntry.word}</p>
             <StyledButton
               type="button"
-              variant="submit"
+              variant="basic"
               onClick={() => {
                 setHideAnswer(!hideAnswer);
               }}

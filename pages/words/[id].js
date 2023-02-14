@@ -98,6 +98,7 @@ export default function SingleWordPage({ availableVoices }) {
             <SingleEntry
               entry={entry}
               isFavorite={entry.isFavorite}
+              isActive="true"
               selectedVoice={availableVoices.find(
                 (voice_) => voice_.voiceURI === entry.voiceURI
               )}
@@ -109,17 +110,13 @@ export default function SingleWordPage({ availableVoices }) {
         )}
       </div>
       <div>
-        {!isShowMode && (
-          <>
-            {entry && (
-              <Form
-                type="edit"
-                entry={entry}
-                isEditMode={true}
-                onSubmitEvent={handleEditEntry}
-              />
-            )}
-          </>
+        {!isShowMode && entry && (
+          <Form
+            type="edit"
+            entry={entry}
+            isEditMode={true}
+            onSubmitEvent={handleEditEntry}
+          />
         )}
       </div>
     </>

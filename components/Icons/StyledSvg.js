@@ -80,11 +80,6 @@
 </svg>;
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <title>plus-thick</title>
-  <path d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" />
-</svg>;
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <title>translate-variant</title>
   <path d="M11 1H3C1.9 1 1 1.9 1 3V15L4 12H9V11C9 8.8 10.79 7 13 7V3C13 1.9 12.1 1 11 1M11 4L9.5 4C9.16 5.19 8.54 6.3 7.68 7.26L7.66 7.28L8.92 8.53L8.55 9.54L7 8L4.5 10.5L3.81 9.77L6.34 7.28C5.72 6.59 5.22 5.82 4.86 5H5.85C6.16 5.6 6.54 6.17 7 6.68C7.72 5.88 8.24 4.97 8.57 4L3 4V3H6.5V2H7.5V3H11V4M21 9H13C11.9 9 11 9.9 11 11V18C11 19.1 11.9 20 13 20H20L23 23V11C23 9.9 22.1 9 21 9M19.63 19L18.78 16.75H15.22L14.38 19H12.88L16.25 10H17.75L21.13 19H19.63M17 12L18.22 15.25H15.79L17 12Z" />
 </svg>;
@@ -92,4 +87,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <title>content-save</title>
   <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+</svg>;
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>close-outline</title>
+  <path d="M3,16.74L7.76,12L3,7.26L7.26,3L12,7.76L16.74,3L21,7.26L16.24,12L21,16.74L16.74,21L12,16.24L7.26,21L3,16.74M12,13.41L16.74,18.16L18.16,16.74L13.41,12L18.16,7.26L16.74,5.84L12,10.59L7.26,5.84L5.84,7.26L10.59,12L5.84,16.74L7.26,18.16L12,13.41Z" />
+</svg>;
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>close-thick</title>
+  <path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" />
+</svg>;
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>plus-thick</title>
+  <path d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" />
+</svg>;
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>plus</title>
+  <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
 </svg>;

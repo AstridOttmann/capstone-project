@@ -12,7 +12,7 @@ export default function LanguageSelection({
         {usedLanguages.map((language) => {
           return (
             <StyledButton
-              key={language.id}
+              key={language}
               type="button"
               variant={
                 selectedLanguage === language ? "language-selected" : "language"

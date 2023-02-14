@@ -10,7 +10,7 @@ export default function ToggleButton({ isSomeMode, onClick, someVariant }) {
     >
       <SVGIcon
         variant={someVariant}
-        width={isSomeMode ? "0.75rem" : "3rem"}
+        width={isSomeMode ? "1.5rem" : "3rem"}
         color="var(--dark-primary-color)"
         aria-label={isSomeMode ? "close" : "plus"}
       />

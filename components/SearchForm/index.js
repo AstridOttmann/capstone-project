@@ -34,7 +34,7 @@ export default function SearchForm({ selectedLanguage }) {
           <StyledInput
             id="searchValue"
             name="searchValue"
-            placeholder="🔍"
+            placeholder="🔍 SEARCH WORD"
             value={searchInput}
             onChange={(event) => setSearchInput(event.target.value)}
           />
@@ -109,4 +109,8 @@ const StyledInputWrapper = styled.div`
 `;
 const StyledInput = styled.input`
   width: 100%;
+  background: var(--primary-color);
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 50px;
+  padding: 0.5rem;
 `;
