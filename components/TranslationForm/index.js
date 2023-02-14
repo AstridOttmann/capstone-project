@@ -12,7 +12,7 @@ import RoutingLink from "../Message/RoutingLink";
 import { nanoid } from "nanoid";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
-export default function TranslationForm() {
+export default function TranslationForm({ isActive }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
@@ -56,17 +56,18 @@ export default function TranslationForm() {
   return (
     <StyledContainer>
       <StyledForm variant="translate" onSubmit={handleSubmit}>
-        <label htmlFor="text">Enter word</label>
-        <input
+        <label htmlFor="text"></label>
+        <StyledInput
           id="text"
           name="text"
+          placeholder="ENTER WORD"
           onChange={() => {
             setTranslation("");
             setMessage("");
           }}
         />
-        <label htmlFor="target_lang">Enter target language</label>
-        <select name="target_lang" aria-label="target_language">
+        <StyledLabel htmlFor="target_lang">Enter target language</StyledLabel>
+        <StyledSelect name="target_lang" aria-label="target_language">
           {targetLanguages.map((language) => {
             return (
               <option key={language.target_lang} value={language.target_lang}>
@@ -74,14 +75,17 @@ export default function TranslationForm() {
               </option>
             );
           })}
-        </select>
+        </StyledSelect>
         {!translation && (
-          <ButtonWithIcon
-            type="submit"
-            buttonVariant="basic"
-            someVariant="translate"
-            width="2.5rem"
-          />
+          <StyledButtonWrapper>
+            <ButtonWithIcon
+              type="submit"
+              buttonVariant="translate"
+              isActive={isActive}
+              someVariant="translate"
+              width="2.5rem"
+            />
+          </StyledButtonWrapper>
         )}
       </StyledForm>
       {translation && (
@@ -100,9 +104,9 @@ export default function TranslationForm() {
           />
           <ButtonWithIcon
             buttonVariant="basic"
-            someVariant="disc"
+            someVariant="content_save"
             width="1.8rem"
-            aria-label="disc"
+            aria-label="content_save"
             onClick={() => {
               setTranslationList([
                 {
@@ -147,10 +151,42 @@ const StyledLink = styled(Link)`
   gap: 0.5rem;
   font-size: 1rem;
 `;
+const StyledInput = styled.input`
+  font-family: inherit;
+  color: var(--dark-primary-color);
+  font-size: 1rem;
+  width: 100%;
+  background: var(--primary-color);
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+`;
+const StyledLabel = styled.label`
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+`;
+const StyledSelect = styled.select`
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  width: 100%;
+  background: var(--primary-color);
+  border: none;
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+`;
 const StyledWordFields = styled.p`
   word-wrap: break-word;
   white-space: pre-line;
 `;
 const StyledContainer = styled.div`
   margin-bottom: 5rem;
+`;
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 `;

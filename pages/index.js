@@ -74,7 +74,7 @@ export default function HomePage() {
             setIsTranslateMode(!isTranslateMode);
           }}
         />
-        {isTranslateMode && <TranslationForm />}
+        {isTranslateMode && <TranslationForm isActive="true" />}
       </StyledSection>
       <Divider />
       <StyledSection>
@@ -112,12 +112,11 @@ export default function HomePage() {
 const StyledSection = styled.section`
   margin-top: 1rem;
   position: relative;
-  padding: 2rem;
+  padding: 2rem 0;
 
   ${({ variant, isActive }) => {
     if (variant === "basic") {
       return css`
-      _width: 100%;
         border: none;
         background: none
         margin: 0;

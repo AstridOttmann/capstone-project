@@ -1,27 +1,27 @@
 import styled, { css } from "styled-components";
 
 const StyledButton = styled.button`
+  font-family: inherit;
   width: fit-content;
   color: var(--dark-primary-color);
   background: var(--primary-color);
-  font-family: inherit;
   border-radius: 50%;
   border: 4px solid var(--dark-primary-color);
   margin: 0 auto;
   cursor: pointer;
 
   ${({ variant, isFavorite, isActive }) => {
+    // speaker button === basic
     if (variant === "basic") {
       return css`
         border: none;
-        background: none
         margin: 0;
-        background: ${
-          isActive ? "var(--dark-primary-color)" : "var(--primary-color)"
-        };
-        color: ${
-          isActive ? "var(--primary-color)" : "var(--dark-primary-color)"
-        };
+        background: ${isActive
+          ? "var(--dark-primary-color)"
+          : "var(--primary-color)"};
+        color: ${isActive
+          ? "var(--primary-color)"
+          : "var(--dark-primary-color)"};
       `;
     }
     if (variant === "show") {
@@ -32,10 +32,10 @@ const StyledButton = styled.button`
     }
     if (variant === "hide") {
       return css`
-        border: none;
         position: absolute;
         top: 0rem;
-        right: 1rem;
+        right: 0.5rem;
+        border: none;
       `;
     }
     if (variant === "language") {
@@ -48,15 +48,15 @@ const StyledButton = styled.button`
         opacity: ${isActive ? 1 : 0.4};
       `;
     }
-    if (variant === "language-selected") {
-      return css`
-        min-width: fit-content;
-        text-transform: uppercase;
-        border-radius: 90px;
-        padding: 0.2rem 0.4rem;
-        border: 3px solid var(--dark-primary-color);
-      `;
-    }
+    // if (variant === "language-selected") {
+    //   return css`
+    //     min-width: fit-content;
+    //     text-transform: uppercase;
+    //     border-radius: 90px;
+    //     padding: 0.2rem 0.4rem;
+    //     border: 3px solid var(--dark-primary-color);
+    //   `;
+    // }
     if (variant === "goBack") {
       return css`
         margin-bottom: 1rem;
@@ -96,8 +96,8 @@ const StyledButton = styled.button`
     if (variant === "discard") {
       return css`
         position: absolute;
-        top: 1.7rem;
-        right: 2rem;
+        top: 1rem;
+        right: 1rem;
         padding: 0.6rem 0.6rem 0.2rem 0.6rem;
       `;
     }
@@ -140,15 +140,20 @@ const StyledButton = styled.button`
         background: var(--dark-primary-color);
       `;
     }
-
-    if (variant === "button") {
+    if (variant === "save") {
       return css`
-        position: relative;
-        right: rem;
+        color: var(--primary-color);
         background: none;
-        padding: 0.2rem 0.2rem 0 0.2rem;
-        margin-top: 1rem;
-        left: 70%;
+        border: none;
+        margin: 0;
+      `;
+    }
+    if (variant === "translate") {
+      return css`
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
+        border: none;
+        margin: 0;
       `;
     }
   }}

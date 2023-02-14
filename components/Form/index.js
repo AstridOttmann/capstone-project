@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
 import storedVoices from "@/public/voices";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
+import styled from "styled-components";
 
 export default function Form({
   onSubmitEvent,
@@ -37,32 +38,43 @@ export default function Form({
         variant={isEditMode ? "edit" : "add"}
         onSubmit={(event) => handleSubmit(event)}
       >
-        <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
-        <input
+        <label htmlFor="word"></label>
+        <StyledInput
           type="text"
           id="word"
           name="word"
           required
           defaultValue={isEditMode ? entry.word : ""}
+          placeholder="ENTER WORD"
           pattern="^[^\s0-9].*$"
           maxLength="40"
           onChange={!isEditMode ? onFirstInput : () => {}}
         />
-        <label htmlFor="language">
-          {isEditMode ? "Edit source language" : "Enter source language"}
-        </label>
-        <input
+        <label htmlFor="language"></label>
+        <StyledInput
           type="text"
           id="language"
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
+          placeholder="ENTER SOURCE LANGUAGE"
           pattern="^[^\s0-9].*$"
           // pattern="^[^\s]\S+$"
           maxLength="12"
         />
-        <label>Choose voice for Speech Synthesis</label>
-        <select
+        <label htmlFor="translated"></label>
+        <StyledInput
+          type="text"
+          id="translated"
+          name="translated"
+          required
+          defaultValue={isEditMode ? entry.translated : ""}
+          placeholder="ENTER TRANSLATION"
+          pattern="^[^\s0-9].*$"
+          maxLength="40"
+        />
+        <StyledLabel>Choose voice for Speech Synthesis</StyledLabel>
+        <StyledSelect
           name="voiceURI"
           aria-label="select-voice"
           defaultValue={isEditMode && entry.voiceURI}
@@ -74,28 +86,17 @@ export default function Form({
               </option>
             );
           })}
-        </select>
-        <label htmlFor="translated">
-          {isEditMode ? "Edit translation" : "Enter translation"}
-        </label>
-        <input
-          type="text"
-          id="translated"
-          name="translated"
-          required
-          defaultValue={isEditMode ? entry.translated : ""}
-          pattern="^[^\s0-9].*$"
-          maxLength="40"
-        />
+        </StyledSelect>
+
         {isEditMode && (
           <>
-            <label htmlFor="notes">Add notes ...</label>
-            <textarea
+            <StyledLabel htmlFor="notes">notes: </StyledLabel>
+            <StyledTextarea
               id="notes"
               name="notes"
               rows="5"
               defaultValue={entry.notes}
-            ></textarea>
+            ></StyledTextarea>
             <ButtonWithIcon
               buttonVariant="discard"
               someVariant="cancel"
@@ -105,13 +106,58 @@ export default function Form({
             />
           </>
         )}
-        <ButtonWithIcon
-          type="submit"
-          buttonVariant="basic"
-          someVariant="disc"
-          width="2.5rem"
-        />
+        <StyledButtonWrapper>
+          <ButtonWithIcon
+            type="submit"
+            buttonVariant="save"
+            someVariant="content_save"
+            width="2rem"
+          />
+        </StyledButtonWrapper>
       </StyledForm>
     </>
   );
 }
+
+const StyledInput = styled.input`
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  width: 100%;
+  background: var(--primary-color);
+
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+`;
+const StyledLabel = styled.label`
+  color: var(--primary-color);
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+`;
+const StyledSelect = styled.select`
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  width: 100%;
+  background: var(--primary-color);
+
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+`;
+const StyledTextarea = styled.textarea`
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  background: var(--primary-color);
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 30px;
+  padding: 0.5rem;
+`;
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+`;

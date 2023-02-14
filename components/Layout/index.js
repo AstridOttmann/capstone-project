@@ -15,7 +15,8 @@ export default function Layout({ children }) {
 const StyledMain = styled.main`
   position: relative;
   top: 5rem;
-  bottom: 3rem;
+  bottom: 4rem;
+  _margin-bottom: 3rem;
   _padding: 0 30px 6rem 30px;
   word-wrap: break-word;
 `;

@@ -5,6 +5,7 @@ export default function LanguageSelection({
   onLanguageSelection,
   selectedLanguage,
   usedLanguages,
+  isActive,
 }) {
   return (
     <StyledNav variant="language">
@@ -14,9 +15,8 @@ export default function LanguageSelection({
             <StyledButton
               key={language}
               type="button"
-              variant={
-                selectedLanguage === language ? "language-selected" : "language"
-              }
+              variant="language"
+              isActive={selectedLanguage === language ? !isActive : isActive}
               onClick={() => onLanguageSelection(language)}
             >
               {language}
@@ -28,9 +28,9 @@ export default function LanguageSelection({
   );
 }
 const StyledButtonWrapper = styled.div`
-  marin: 0 auto;
+  margin: 0 auto;
   display: flex;
   justify-content: flex-start;
-  gap: 0.5em;
+  gap: 0.3rem;
   overflow-x: scroll;
 `;

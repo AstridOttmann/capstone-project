@@ -6,7 +6,7 @@ const StyledEntry = styled.li`
   justify-content: space-between;
   border: 4px solid var(--dark-primary-color);
   border-radius: 40px;
-  margin: 1em;
+  margin: 1em 0.5rem;
   padding: 0.5em;
   list-style: none;
 `;

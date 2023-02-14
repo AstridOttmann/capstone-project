@@ -153,6 +153,8 @@ const StyledLanguageLine = styled.small`
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  _justify-content: fex-start;
+  _align-items: flex-start;
 
   ${({ variant }) => {
     if (variant === "text") {

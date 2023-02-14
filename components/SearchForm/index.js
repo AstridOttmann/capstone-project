@@ -77,7 +77,7 @@ export default function SearchForm({ selectedLanguage }) {
                 </StyledArticle>
               );
             })}
-          <Divider />
+          {/* <Divider /> */}
         </StyledList>
       )}
     </>
@@ -108,6 +108,9 @@ const StyledInputWrapper = styled.div`
   flex-grow: 4;
 `;
 const StyledInput = styled.input`
+  font-family: inherit;
+  color: var(--dark-primary-color);
+  font-size: 1rem;
   width: 100%;
   background: var(--primary-color);
   border: 4px solid var(--dark-primary-color);
