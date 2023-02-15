@@ -94,10 +94,12 @@ export default function TranslationForm() {
       </StyledForm>
       {translation && (
         <>
-          <StyledMessageArticle>
+          <StyledMessageArticle variant="translate">
             <StyledContainer variant="translation_entry">
               <StyledWordFields>{wordInput}</StyledWordFields>
-              <StyledLanguageLine>{detectedLanguage}</StyledLanguageLine>
+              <StyledLanguageLine variant="translation_entry">
+                {detectedLanguage}
+              </StyledLanguageLine>
               <StyledWordFields>{translation}</StyledWordFields>
             </StyledContainer>
 

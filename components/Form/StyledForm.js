@@ -22,7 +22,6 @@ const StyledForm = styled.form`
         background: var(--dark-primary-color);
         border: 4px solid var(--dark-primary-color);
         position: relative;
-        width: 100%;
         flex-direction: column;
         gap: 0.5em;
         margin-bottom: -3rem;
@@ -49,13 +48,14 @@ const StyledForm = styled.form`
     }
     if (variant === "translate") {
       return css`
+        color: var(--dark-primary-color);
+        background: var(--dark-primary-color);
+        border: 4px solid var(--dark-primary-color);
         position: relative;
         flex-direction: column;
         gap: 0.5em;
-        padding: 1.5rem;
-        margin-bottom: -3rem;
-        color: var(--dark-primary-color);
-        background: var(--dark-primary-color);
+        _padding: 1.5rem;
+        margin-bottom: -1.9rem;
         box-shadow: 2px 2px 2px 2px var(--shadow-color);
       `;
     }

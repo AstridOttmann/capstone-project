@@ -41,15 +41,17 @@ export const StyledWordFields = styled.p`
 export const StyledLanguageLine = styled.small`
   word-wrap: break-word;
   text-transform: uppercase;
-  /* width: 100%;
-  overflow-y: scroll;
+  width: 100%;
+  text-align: end;
+  /* overflow-y: scroll;
   flex-shrink: 3; */
 
   ${({ variant }) => {
     if (variant === "translation_entry") {
       return css`
         border: none;
-        padding: 0 1.5rem 0.2rem 1.5rem;
+        /* padding: 0 1.5rem 0.2rem 0; */
+        text-align: start;
       `;
     }
   }}
@@ -84,9 +86,11 @@ export const StyledButtonWrapper = styled.div`
   ${({ variant }) => {
     if (variant === "translation_result") {
       return css`
+        justify-content: space-between;
         border: none;
-        padding: 0 1.5rem 0.2rem 1.5rem;
-        align-items: center;
+        padding: 0 2rem 1rem 2rem;
+        margin: 0;
+        gap: 1.5rem;
       `;
     }
   }}

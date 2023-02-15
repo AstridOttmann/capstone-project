@@ -34,5 +34,13 @@ const StyledDivider = styled.hr`
         background: var(--dark-primary-color);
       `;
     }
+    if (variant === "top_page") {
+      return css`
+        margin-top: 1.5rem;
+        display: block;
+        border: none;
+        background: var(--dark-primary-color);
+      `;
+    }
   }}
 `;
