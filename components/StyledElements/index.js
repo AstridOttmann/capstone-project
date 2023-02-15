@@ -25,12 +25,14 @@ export const StyledContainer = styled.div`
       return css`
         justify-content: flex-start;
         align-items: flex-start;
+        width: 70%;
       `;
     }
     if (variant === "entry_icons") {
       return css`
         justify-content: flex-end;
         align-items: flex-end;
+        width: 30%;
       `;
     }
     if (variant === "bottom_page") {

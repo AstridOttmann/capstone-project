@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <StyledHeader>
-        <StyledTitle>Language Helper</StyledTitle>
+        <StyledTitle>Pocket Languages</StyledTitle>
       </StyledHeader>
     </>
   );

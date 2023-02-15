@@ -41,6 +41,10 @@ export const StyledWordFields = styled.p`
 export const StyledLanguageLine = styled.small`
   word-wrap: break-word;
   text-transform: uppercase;
+  width: 100%;
+  overflow-y: scroll;
+  flex-shrink: 3;
+
   ${({ variant }) => {
     if (variant === "translation_entry") {
       return css`
