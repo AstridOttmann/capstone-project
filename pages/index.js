@@ -56,7 +56,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Divider />
+      <Divider variant="top_page" />
       <StyledSection>
         <ToggleButton
           someVariant={isSearchMode ? "close" : "search"}
@@ -68,7 +68,7 @@ export default function HomePage() {
         {isSearchMode && <SearchForm />}
       </StyledSection>
       <Divider />
-      <StyledSection>
+      <StyledSection variant="translate">
         <ToggleButton
           someVariant={isTranslateMode ? "close" : "translate"}
           isSomeMode={isTranslateMode}

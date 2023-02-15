@@ -13,6 +13,11 @@ export const StyledSection = styled.section`
         margin: 0;
       `;
     }
+    // if (variant === "translate") {
+    //   return css`
+    //     margin-bottom: 4rem;
+    //   `;
+    // }
   }}
 `;
 export const StyledContainer = styled.div`
@@ -66,6 +71,15 @@ export const StyledMessageArticle = styled.article`
   background: var(--primary-color);
   border: 3px solid var(--dark-primary-color);
   border-radius: 0 0 40px 40px;
+
+  ${({ variant }) => {
+    if (variant === "translate") {
+      return css`
+        margin-bottom: 1rem;
+        padding-top: 2rem;
+      `;
+    }
+  }}
 `;
 
 export const StyledArticle = styled.article`

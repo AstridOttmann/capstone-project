@@ -60,7 +60,11 @@ export default function TranslationForm() {
 
   return (
     <>
-      <StyledForm variant="translate" onSubmit={handleSubmit}>
+      <StyledForm
+        autoComplete="off"
+        variant="translate"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="text"></label>
         <StyledInput
           id="text"
@@ -94,10 +98,12 @@ export default function TranslationForm() {
       </StyledForm>
       {translation && (
         <>
-          <StyledMessageArticle>
+          <StyledMessageArticle variant="translate">
             <StyledContainer variant="translation_entry">
               <StyledWordFields>{wordInput}</StyledWordFields>
-              <StyledLanguageLine>{detectedLanguage}</StyledLanguageLine>
+              <StyledLanguageLine variant="translation_entry">
+                {detectedLanguage}
+              </StyledLanguageLine>
               <StyledWordFields>{translation}</StyledWordFields>
             </StyledContainer>
 

@@ -80,9 +80,9 @@ const StyledWordFields = styled.p`
 `;
 
 const StyledSingleEntry = styled.article`
-  width: 93%;
+  width: 100%;
   margin: 0 auto;
-  margin-bottom: 6rem;
+  margin-bottom: 7rem;
   text-align: center;
   color: var(--primary-color);
   background: var(--dark-primary-color);

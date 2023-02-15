@@ -16,7 +16,7 @@ const StyledButton = styled.button`
       return css`
         border: none;
         margin: 0;
-        /* padding: 0; */
+        padding: 0;
         background: ${isActive
           ? "var(--dark-primary-color)"
           : "var(--primary-color)"};
@@ -86,7 +86,8 @@ const StyledButton = styled.button`
     }
     if (variant === "delete") {
       return css`
-        padding-left: 1rem;
+        padding: 0;
+        /* padding-left: 1rem; */
         margin: 0;
         border: none;
       `;
@@ -102,7 +103,7 @@ const StyledButton = styled.button`
       return css`
         color: var(--primary-color);
         background: var(--dark-primary-color);
-        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
+        _padding: 0.6rem 0.6rem 0.2rem 0.6rem;
       `;
     }
 
@@ -130,7 +131,7 @@ const StyledButton = styled.button`
         color: var(--primary-color);
         background: var(--dark-primary-color);
         padding: 0;
-        margin: 0;
+        margin-right: 0.8rem;
         border: none;
         opacity: ${isFavorite ? 1 : 0.4};
       `;
@@ -158,6 +159,7 @@ const StyledButton = styled.button`
         background: none;
         border: none;
         margin: 0;
+        padding-top: 1rem;
       `;
     }
     if (variant === "translate") {

@@ -42,6 +42,7 @@ export default function Form({
   return (
     <>
       <StyledForm
+        autoComplete="off"
         variant={isEditMode ? "edit" : "add"}
         onSubmit={(event) => handleSubmit(event)}
       >
