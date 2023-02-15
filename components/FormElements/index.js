@@ -41,9 +41,9 @@ export const StyledWordFields = styled.p`
 export const StyledLanguageLine = styled.small`
   word-wrap: break-word;
   text-transform: uppercase;
-  width: 100%;
+  /* width: 100%;
   overflow-y: scroll;
-  flex-shrink: 3;
+  flex-shrink: 3; */
 
   ${({ variant }) => {
     if (variant === "translation_entry") {
@@ -86,6 +86,7 @@ export const StyledButtonWrapper = styled.div`
       return css`
         border: none;
         padding: 0 1.5rem 0.2rem 1.5rem;
+        align-items: center;
       `;
     }
   }}

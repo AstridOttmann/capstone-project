@@ -11,11 +11,12 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   ${({ variant, isFavorite, isActive }) => {
-    // dices button && speaker button === basic
+    // dices button && speaker button && save === basic
     if (variant === "basic") {
       return css`
         border: none;
         margin: 0;
+        /* padding: 0; */
         background: ${isActive
           ? "var(--dark-primary-color)"
           : "var(--primary-color)"};
@@ -85,7 +86,7 @@ const StyledButton = styled.button`
     }
     if (variant === "delete") {
       return css`
-        padding: 0;
+        padding-left: 1rem;
         margin: 0;
         border: none;
       `;
