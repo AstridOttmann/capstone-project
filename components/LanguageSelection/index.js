@@ -9,7 +9,7 @@ export default function LanguageSelection({
 }) {
   return (
     <StyledNav variant="language">
-      <StyledButtonWrapper>
+      <StyledNavButtonWrapper>
         {usedLanguages.map((language) => {
           return (
             <StyledButton
@@ -23,11 +23,11 @@ export default function LanguageSelection({
             </StyledButton>
           );
         })}
-      </StyledButtonWrapper>
+      </StyledNavButtonWrapper>
     </StyledNav>
   );
 }
-const StyledButtonWrapper = styled.div`
+const StyledNavButtonWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;

@@ -12,6 +12,7 @@ export default createGlobalStyle`
   :root{
     --dark-primary-color: #8b0000;
     --primary-color: #ffe4e1;
+    --shadow-color: #2f1614;
     --font-size: 20px;
    }
 

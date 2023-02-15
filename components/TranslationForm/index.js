@@ -1,18 +1,23 @@
 import StyledForm from "../Form/StyledForm";
-import StyledButton from "../Buttons/StyledButton";
 import { useState } from "react";
-import styled, { css } from "styled-components";
-import Link from "next/link";
 import targetLanguages from "@/public/targetLanguages";
-import ListEntry from "../ListEntry";
 import translationListAtom from "@/public/store";
 import { useAtom } from "jotai";
 import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
 import { nanoid } from "nanoid";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
+import {
+  StyledWordFields,
+  StyledSelect,
+  StyledInput,
+  StyledLabel,
+  StyledButtonWrapper,
+  StyledLanguageLine,
+} from "../FormElements";
+import { StyledMessageArticle, StyledContainer } from "../StyledElements";
 
-export default function TranslationForm({ isActive }) {
+export default function TranslationForm() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [translation, setTranslation] = useState("");
   const [detectedLanguage, setDetectedLanguage] = useState("");
@@ -54,7 +59,7 @@ export default function TranslationForm({ isActive }) {
   }
 
   return (
-    <StyledContainer>
+    <>
       <StyledForm variant="translate" onSubmit={handleSubmit}>
         <label htmlFor="text"></label>
         <StyledInput
@@ -81,7 +86,6 @@ export default function TranslationForm({ isActive }) {
             <ButtonWithIcon
               type="submit"
               buttonVariant="translate"
-              isActive={isActive}
               someVariant="translate"
               width="2.5rem"
             />
@@ -90,14 +94,14 @@ export default function TranslationForm({ isActive }) {
       </StyledForm>
       {translation && (
         <>
-          <StyledArticle>
+          <StyledMessageArticle>
             <StyledContainer variant="translation_entry">
               <StyledWordFields>{wordInput}</StyledWordFields>
-              <StyledLanguageField>{detectedLanguage}</StyledLanguageField>
+              <StyledLanguageLine>{detectedLanguage}</StyledLanguageLine>
               <StyledWordFields>{translation}</StyledWordFields>
             </StyledContainer>
 
-            <StyledButtonWrapper variant="message">
+            <StyledButtonWrapper variant="translation_result">
               <ButtonWithIcon
                 buttonVariant="basic"
                 someVariant="content_save"
@@ -126,138 +130,17 @@ export default function TranslationForm({ isActive }) {
                 onClick={() => setTranslation("")}
               />
             </StyledButtonWrapper>
-          </StyledArticle>
+          </StyledMessageArticle>
         </>
       )}
       {message && (
-        <StyledArticle>
+        <StyledMessageArticle>
           <Message>
             added word
             <RoutingLink href="/words" />
           </Message>
-        </StyledArticle>
+        </StyledMessageArticle>
       )}
-    </StyledContainer>
+    </>
   );
 }
-
-const StyledArticle = styled.article`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  _margin: 0;
-  margin-bottom: 1rem;
-  padding: 3rem 0 0 0;
-  background: var(--primary-color);
-  border: 3px solid var(--dark-primary-color);
-  border-radius: 0 0 40px 40px;
-
-  ${({ variant }) => {
-    if (variant === "translation_entry") {
-      return css``;
-    }
-  }}
-`;
-const StyledSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 4rem;
-  font-size: 1.2rem;
-  background: whitesmoke;
-  _border: 1px dashed lightgrey;
-  border-radius: 5px;
-`;
-const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-`;
-const StyledInput = styled.input`
-  font-family: inherit;
-  color: var(--dark-primary-color);
-  font-size: 1rem;
-  width: 100%;
-  background: var(--primary-color);
-  border: 4px solid var(--dark-primary-color);
-  border-radius: 50px;
-  padding: 0.5rem;
-`;
-const StyledLabel = styled.label`
-  color: var(--primary-color);
-  text-transform: uppercase;
-  font-size: 1rem;
-  text-align: center;
-`;
-const StyledSelect = styled.select`
-  font-family: inherit;
-  color: inherit;
-  font-size: 1rem;
-  width: 100%;
-  background: var(--primary-color);
-  border: none;
-  border: 4px solid var(--dark-primary-color);
-  border-radius: 50px;
-  padding: 0.5rem;
-`;
-const StyledWordFields = styled.p`
-  margin: 0;
-  padding-left: 1rem;
-  word-wrap: break-word;
-  white-space: pre-line;
-`;
-const StyledLanguageField = styled.small`
-  padding-left: 1rem;
-`;
-const StyledContainer = styled.div`
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-
-  ${({ variant }) => {
-    if (variant === "text") {
-      return css`
-        justify-content: flex-start;
-        align-items: flex-start;
-      `;
-    }
-    if (variant === "icons") {
-      return css`
-        justify-content: flex-end;
-        align-items: flex-end;
-      `;
-    }
-    if (variant === "translation_entry") {
-      return css`
-        gap: 0.2rem;
-        justify-content: center;
-        align-items: flex-start;
-        border: 4px solid var(--dark-primary-color);
-        border-radius: 40px;
-        padding: 1rem;
-        margin: 1rem;
-        margin-bottom: 1rem;
-      `;
-    }
-  }}
-`;
-
-const StyledButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-
-  ${({ variant }) => {
-    if (variant === "message") {
-      return css`
-        border: none;
-        padding: 0 1.5rem 0.2rem 1.5rem;
-      `;
-    }
-  }}
-`;

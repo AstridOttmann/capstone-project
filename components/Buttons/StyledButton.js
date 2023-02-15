@@ -76,15 +76,7 @@ const StyledButton = styled.button`
         opacity: ${isActive ? 1 : 0.4};
       `;
     }
-    // if (variant === "language-selected") {
-    //   return css`
-    //     min-width: fit-content;
-    //     text-transform: uppercase;
-    //     border-radius: 90px;
-    //     padding: 0.2rem 0.4rem;
-    //     border: 3px solid var(--dark-primary-color);
-    //   `;
-    // }
+
     if (variant === "goBack") {
       return css`
         margin-bottom: 1rem;
@@ -100,9 +92,6 @@ const StyledButton = styled.button`
     }
     if (variant === "seeMore") {
       return css`
-        _position: absolute;
-        _right: 0.5rem;
-        _bottom: 0.4rem;
         border: none;
         margin: 0;
         padding: 0;
@@ -110,9 +99,6 @@ const StyledButton = styled.button`
     }
     if (variant === "edit") {
       return css`
-        _position: absolute;
-        _top: 1.7rem;
-        _right: 2rem;
         color: var(--primary-color);
         background: var(--dark-primary-color);
         padding: 0.6rem 0.6rem 0.2rem 0.6rem;
@@ -130,7 +116,6 @@ const StyledButton = styled.button`
 
     if (variant === "favorite") {
       return css`
-        _position: absolute;
         right: 0.7rem;
         top: 0.2rem;
         padding: 0;
@@ -153,7 +138,7 @@ const StyledButton = styled.button`
       return css`
         position: absolute;
         top: 3.5rem;
-        right: 0.1rem;
+        right: 0.3rem;
         padding: 0;
         margin: 0;
         border: none;

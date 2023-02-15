@@ -3,15 +3,16 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import translationListAtom from "@/public/store";
 import { atom, useAtom } from "jotai";
-import styled, { css } from "styled-components";
-import Link from "next/link";
 import SearchForm from "@/components/SearchForm";
 import Message from "@/components/Message";
 import TranslationForm from "@/components/TranslationForm";
 import RoutingLink from "@/components/Message/RoutingLink";
-import Layout from "@/components/Layout";
 import ToggleButton from "@/components/Buttons/ToggleButton";
 import Divider from "@/components/Divider";
+import {
+  StyledMessageArticle,
+  StyledSection,
+} from "@/components/StyledElements";
 
 export default function HomePage() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -56,7 +57,7 @@ export default function HomePage() {
   return (
     <>
       <Divider />
-      <StyledSection variant={isSearchMode ? "basic" : ""}>
+      <StyledSection>
         <ToggleButton
           someVariant={isSearchMode ? "close" : "search"}
           isSomeMode={isSearchMode}
@@ -66,7 +67,7 @@ export default function HomePage() {
         />
         {isSearchMode && <SearchForm />}
       </StyledSection>
-      <Divider />{" "}
+      <Divider />
       <StyledSection>
         <ToggleButton
           someVariant={isTranslateMode ? "close" : "translate"}
@@ -75,7 +76,7 @@ export default function HomePage() {
             setIsTranslateMode(!isTranslateMode);
           }}
         />
-        {isTranslateMode && <TranslationForm isActive="true" />}
+        {isTranslateMode && <TranslationForm />}
       </StyledSection>
       <Divider />
       <StyledSection>
@@ -94,7 +95,7 @@ export default function HomePage() {
               onSubmitEvent={handleAddTranslation}
               onFirstInput={handleFirstInput}
             />
-            <StyledArticle>
+            <StyledMessageArticle>
               {isFound && <Message>word already exists</Message>}
               {isFound === false && (
                 <>
@@ -102,7 +103,7 @@ export default function HomePage() {
                   <RoutingLink href="/words" />
                 </>
               )}
-            </StyledArticle>
+            </StyledMessageArticle>
           </>
         )}
       </StyledSection>
@@ -110,51 +111,3 @@ export default function HomePage() {
     </>
   );
 }
-
-const StyledSection = styled.section`
-  margin-top: 1rem;
-  position: relative;
-  padding: 2rem 0;
-
-  ${({ variant, isActive }) => {
-    if (variant === "basic") {
-      return css`
-        border: none;
-        background: none
-        margin: 0;
-        background: ${
-          isActive ? "var(--dark-primary-color)" : "var(--primary-color)"
-        };
-        color: ${
-          isActive ? "var(--primary-color)" : "var(--dark-primary-color)"
-        };
-      `;
-    }
-    if (variant === "Translation") {
-      return css`
-        padding-bottom: 3rem;
-      `;
-    }
-  }}
-`;
-
-const StyledArticle = styled.article`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  margin: 0;
-  margin-bottom: 1rem;
-  padding-top: 3rem;
-  background: var(--primary-color);
-  border: 3px solid var(--dark-primary-color);
-  border-radius: 0 0 40px 40px;
-`;
-
-const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-`;

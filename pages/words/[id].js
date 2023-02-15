@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import SingleEntry from "@/components/SingleEntry";
 import ToastMessage from "@/components/ToastMessage";
-import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 import StyledTitle from "@/components/Titles/StyledTitle";
 import styled, { css } from "styled-components";
+import { StyledContainer } from "@/components/StyledElements";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -76,7 +76,7 @@ export default function SingleWordPage({ availableVoices }) {
               <StyledTitle page="single">
                 Word entry {!isShowMode && ": edit"}
               </StyledTitle>
-              <StyledLanguageLine>{entry.language}</StyledLanguageLine>
+              <StyledLanguageTitle>{entry.language}</StyledLanguageTitle>
             </>
           ) : (
             <>
@@ -122,12 +122,13 @@ export default function SingleWordPage({ availableVoices }) {
     </>
   );
 }
-const StyledLanguageLine = styled.small`
+const StyledLanguageTitle = styled.small`
   text-transform: uppercase;
   max-width: 50%;
   min-width: fit-content;
   border-radius: 90px;
   padding: 0.2rem 0.4rem;
+  margin: 0 auto;
   border: 3px solid var(--dark-primary-color);
   font-size: 1.6rem;
   text-align: center;
@@ -137,30 +138,4 @@ const StyledEntryHeader = styled.div`
   flex-direction: column;
   margin: 0.3rem 3rem 1rem 3rem;
   padding: 0 1rem 1rem 1rem;
-`;
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  _justify-content: fex-start;
-  _align-items: flex-start;
-
-  ${({ variant }) => {
-    if (variant === "text") {
-      return css`
-        justify-content: flex-start;
-        align-items: flex-start;
-      `;
-    }
-    if (variant === "icons") {
-      return css`
-        justify-content: flex-end;
-        align-items: flex-end;
-      `;
-    }
-    if (variant === "bottom_page") {
-      return css`
-        margin-bottom: 7rem;
-      `;
-    }
-  }}
 `;

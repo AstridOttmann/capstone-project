@@ -1,5 +1,4 @@
 import { atom, useAtom } from "jotai";
-import styled, { css } from "styled-components";
 import translationListAtom from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
@@ -14,6 +13,11 @@ import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis"
 import LearningFunction from "@/components/LearningFunction";
 import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 import Divider from "@/components/Divider";
+import {
+  StyledWordFields,
+  StyledLanguageLine,
+} from "@/components/FormElements";
+import { StyledContainer } from "@/components/StyledElements";
 
 export default function WordsPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -105,7 +109,7 @@ export default function WordsPage({ availableVoices }) {
             id={translation.id}
             isFavorite={translation.isFavorite}
           >
-            <StyledContainer variant="text">
+            <StyledContainer variant="entry_text">
               <StyledWordFields>{translation.word}</StyledWordFields>
               <SpeechSynthesis
                 isActive={false}
@@ -117,7 +121,7 @@ export default function WordsPage({ availableVoices }) {
               <Divider variant="list_entry" />
               <StyledWordFields>{translation.translated}</StyledWordFields>
             </StyledContainer>
-            <StyledContainer variant="icons">
+            <StyledContainer variant="entry_icons">
               <FavoriteButton
                 variant="favorite"
                 id={translation.id}
@@ -139,38 +143,3 @@ export default function WordsPage({ availableVoices }) {
     </>
   );
 }
-const StyledWordFields = styled.p`
-  padding: 0;
-  margin: 0;
-  word-wrap: break-word;
-  white-space: pre-line;
-`;
-const StyledLanguageLine = styled.small`
-  text-transform: uppercase;
-  _padding: 0;
-  _margin: 0;
-`;
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  _justify-content: fex-start;
-  _align-items: flex-start;
-
-  ${({ variant }) => {
-    if (variant === "text") {
-      return css`
-        justify-content: flex-start;
-        align-items: flex-start;
-      `;
-    }
-    if (variant === "icons") {
-      return css`
-        justify-content: flex-end;
-        align-items: flex-end;
-      `;
-    }
-    if (variant === "notes") {
-      return css``;
-    }
-  }}
-`;

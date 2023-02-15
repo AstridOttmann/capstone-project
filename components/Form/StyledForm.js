@@ -20,13 +20,14 @@ const StyledForm = styled.form`
       return css`
         color: var(--dark-primary-color);
         background: var(--dark-primary-color);
+        border: 4px solid var(--dark-primary-color);
         position: relative;
         width: 100%;
         flex-direction: column;
         gap: 0.5em;
         margin-bottom: -3rem;
         padding: 1.5rem;
-        _opacity: 0.8;
+        box-shadow: 2px 2px 2px 2px var(--shadow-color);
       `;
     }
     if (variant === "edit") {
@@ -38,12 +39,12 @@ const StyledForm = styled.form`
         top: 6.2rem;
         width: 90%;
         left: 50%;
-        _bottom: 3rem;
         transform: translateX(-50%);
         flex-direction: column;
         gap: 0.5em;
         padding: 2rem;
         border-radius: 40px;
+        box-shadow: 2px 2px 2px 2px var(--shadow-color);
       `;
     }
     if (variant === "translate") {
@@ -55,6 +56,7 @@ const StyledForm = styled.form`
         margin-bottom: -3rem;
         color: var(--dark-primary-color);
         background: var(--dark-primary-color);
+        box-shadow: 2px 2px 2px 2px var(--shadow-color);
       `;
     }
   }}

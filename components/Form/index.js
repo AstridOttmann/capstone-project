@@ -4,6 +4,13 @@ import StyledForm from "./StyledForm";
 import storedVoices from "@/public/voices";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 import styled from "styled-components";
+import {
+  StyledInput,
+  StyledLabel,
+  StyledButtonWrapper,
+  StyledSelect,
+  StyledTextarea,
+} from "../FormElements";
 
 export default function Form({
   onSubmitEvent,
@@ -118,46 +125,3 @@ export default function Form({
     </>
   );
 }
-
-const StyledInput = styled.input`
-  font-family: inherit;
-  color: inherit;
-  font-size: 1rem;
-  width: 100%;
-  background: var(--primary-color);
-
-  border: 4px solid var(--dark-primary-color);
-  border-radius: 50px;
-  padding: 0.5rem;
-`;
-const StyledLabel = styled.label`
-  color: var(--primary-color);
-  font-size: 1rem;
-  text-align: center;
-  text-transform: uppercase;
-`;
-const StyledSelect = styled.select`
-  font-family: inherit;
-  color: inherit;
-  font-size: 1rem;
-  width: 100%;
-  background: var(--primary-color);
-
-  border: 4px solid var(--dark-primary-color);
-  border-radius: 50px;
-  padding: 0.5rem;
-`;
-const StyledTextarea = styled.textarea`
-  font-family: inherit;
-  color: inherit;
-  font-size: 1rem;
-  background: var(--primary-color);
-  border: 4px solid var(--dark-primary-color);
-  border-radius: 30px;
-  padding: 0.5rem;
-`;
-const StyledButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-`;

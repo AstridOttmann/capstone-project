@@ -5,11 +5,10 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon";
 
-export default function LearningFunction({ selectedLanguage }) {
+export default function LearningFunction({}) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [randomEntry, setRandomEntry] = useState(false);
   const [hideAnswer, setHideAnswer] = useState(true);
-  //const [showLearning, setShowLearning] = useState(false);
 
   function findRandomWord() {
     const randomWordEntry =
@@ -17,16 +16,7 @@ export default function LearningFunction({ selectedLanguage }) {
 
     setRandomEntry(randomWordEntry);
     setHideAnswer(true);
-    // setShowLearning(true);
   }
-
-  // function handleOpenLearning() {
-  //   setShowLearning(true);
-  // }
-
-  // function handleCloseLearning() {
-  //   setShowLearning(false);
-  // }
 
   return (
     <StyledLearningSection randomEntry={randomEntry}>

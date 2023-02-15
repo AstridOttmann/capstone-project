@@ -15,7 +15,7 @@ const StyledDivider = styled.hr`
   ${({ variant }) => {
     if (variant === "list_entry") {
       return css`
-        width: 70%;
+        width: 11rem;
         margin: 0;
       `;
     }
