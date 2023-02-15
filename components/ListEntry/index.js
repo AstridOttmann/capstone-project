@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 const StyledEntry = styled.li`
   position: relative;
-  border: 1px dashed black;
-  border-radius: 10px;
-  margin: 1em;
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 40px;
+  margin: 1em 0.5rem;
   padding: 0.5em;
   list-style: none;
 `;

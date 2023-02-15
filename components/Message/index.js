@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledMessage = styled.p`
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0.5rem;
   word-wrap: break-word;
   white-space: pre-line;

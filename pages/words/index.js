@@ -1,5 +1,4 @@
 import { atom, useAtom } from "jotai";
-import styled from "styled-components";
 import translationListAtom from "@/public/store";
 import ListEntry from "@/components/ListEntry";
 import StyledList from "@/components/List/StyledList";
@@ -9,10 +8,16 @@ import { useRouter } from "next/router";
 import FavoriteButton from "@/components/Buttons/FavoriteButton";
 import ShowFavoritesButton from "@/components/Buttons/ShowFavoritesButton";
 import SearchForm from "@/components/SearchForm";
-import StyledTitle from "@/components/Header/StyledTitle";
-import SeeMoreButton from "@/components/Buttons/SeeMoreButton";
+import StyledTitle from "@/components/Titles/StyledTitle";
 import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
 import LearningFunction from "@/components/LearningFunction";
+import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
+import Divider from "@/components/Divider";
+import {
+  StyledWordFields,
+  StyledLanguageLine,
+} from "@/components/FormElements";
+import { StyledContainer } from "@/components/StyledElements";
 
 export default function WordsPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -83,7 +88,7 @@ export default function WordsPage({ availableVoices }) {
     });
 
   return (
-    <main>
+    <>
       <LanguageSelection
         usedLanguages={usedLanguages}
         selectedLanguage={selectedLanguage}
@@ -104,30 +109,37 @@ export default function WordsPage({ availableVoices }) {
             id={translation.id}
             isFavorite={translation.isFavorite}
           >
-            <SpeechSynthesis
-              word={translation.word}
-              selectedVoice={availableVoices.find(
-                (voice_) => voice_.voiceURI === translation.voiceURI
-              )}
-            />
-            <FavoriteButton
-              id={translation.id}
-              isFavorite={translation.isFavorite}
-              onToggleFavorite={handleToggleFavorite}
-            />
-            <StyledWordFields>{translation.word}</StyledWordFields>
-            {!selectedLanguage ? <small>({translation.language})</small> : ""}
-            <StyledWordFields>{translation.translated}</StyledWordFields>
-            <SeeMoreButton
-              onClick={() => router.push(`/words/${translation.id}`)}
-            />
+            <StyledContainer variant="entry_text">
+              <StyledWordFields>{translation.word}</StyledWordFields>
+              <SpeechSynthesis
+                isActive={false}
+                word={translation.word}
+                selectedVoice={availableVoices.find(
+                  (voice_) => voice_.voiceURI === translation.voiceURI
+                )}
+              />
+              <Divider variant="list_entry" />
+              <StyledWordFields>{translation.translated}</StyledWordFields>
+            </StyledContainer>
+            <StyledContainer variant="entry_icons">
+              <FavoriteButton
+                variant="favorite"
+                id={translation.id}
+                isFavorite={translation.isFavorite}
+                onToggleFavorite={handleToggleFavorite}
+              />
+              <StyledLanguageLine>{translation.language}</StyledLanguageLine>
+              <ButtonWithIcon
+                buttonVariant="seeMore"
+                someVariant="seeMore"
+                width="2.5rem"
+                aria-label="seeMore"
+                onClick={() => router.push(`/words/${translation.id}`)}
+              />
+            </StyledContainer>
           </ListEntry>
         ))}
       </StyledList>
-    </main>
+    </>
   );
 }
-const StyledWordFields = styled.p`
-  word-wrap: break-word;
-  white-space: pre-line;
-`;

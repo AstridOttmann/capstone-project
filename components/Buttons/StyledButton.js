@@ -1,140 +1,172 @@
 import styled, { css } from "styled-components";
 
 const StyledButton = styled.button`
+  font-family: inherit;
   width: fit-content;
-  border-radius: 5px;
-  border: none;
+  color: var(--dark-primary-color);
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 4px solid var(--dark-primary-color);
+  margin: 0 auto;
+  cursor: pointer;
 
-  ${({ variant }) => {
-    if (variant === "submit") {
+  ${({ variant, isFavorite, isActive }) => {
+    // dices button && speaker button && save === basic
+    if (variant === "basic") {
       return css`
-        margin: 1em auto;
-        padding: 0.7em;
-        background: #04bf45;
-        color: white;
-        width: 8rem;
+        border: none;
+        margin: 0;
+        /* padding: 0; */
+        background: ${isActive
+          ? "var(--dark-primary-color)"
+          : "var(--primary-color)"};
+        color: ${isActive
+          ? "var(--primary-color)"
+          : "var(--dark-primary-color)"};
       `;
-    } else if (variant === "delete") {
+    }
+    if (variant === "dices") {
       return css`
-        position: relative;
-        right: rem;
+        position: absolute;
+        top: -3rem;
+        left: -0.5rem;
+        border: none;
+      `;
+    }
+    if (variant === "show") {
+      return css`
+        display: block;
+        border: none;
+      `;
+    }
+    if (variant === "hide") {
+      return css`
+        position: absolute;
+        top: 0rem;
+        right: 0.5rem;
+        border: none;
+      `;
+    }
+    if (variant === "close") {
+      return css`
+        position: absolute;
         background: none;
-        color: red;
-        padding: 0.2rem 0.2rem 0 0.2rem;
-        margin-top: 1rem;
-        left: 70%;
+        top: -1.8rem;
+        right: -0.5rem;
+        border: none;
       `;
-    } else if (variant === "edit") {
+    }
+    if (variant === "eye") {
       return css`
-        position: absolute;
-        top: 1.7rem;
-        right: 2rem;
-        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
-        color: #04bf45;
-        border: 2px solid #04bf45;
+        _position: absolute;
+        background: none;
+        color: var(--dark-primary-color)
+        top: 20rem;
+        left: 10rem;
+        border: none;
       `;
-    } else if (variant === "discard") {
+    }
+    if (variant === "language") {
       return css`
-        position: absolute;
-        top: 1.7rem;
-        right: 2rem;
-        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
-        color: #f27405;
-        border: 2px solid #f27405;
+        min-width: fit-content;
+        text-transform: uppercase;
+        border-radius: 90px;
+        padding: 0.2rem 0.4rem;
+        margin-bottom: 0.3rem;
+        border: 3px solid var(--dark-primary-color);
+        opacity: ${isActive ? 1 : 0.4};
       `;
-    } else if (variant === "language") {
+    }
+
+    if (variant === "goBack") {
       return css`
-        background: whitesmoke;
-        color: #f27405;
+        margin-bottom: 1rem;
+        border: none;
+      `;
+    }
+    if (variant === "delete") {
+      return css`
+        padding-left: 1rem;
         margin: 0;
-        padding: 0.6rem;
-        border: 2px solid #f27405;
+        border: none;
       `;
-    } else if (variant === "language-selected") {
+    }
+    if (variant === "seeMore") {
       return css`
-        background: #f27405;
-        color: whitesmoke;
+        border: none;
         margin: 0;
-        padding: 0.6rem;
-        border: 2px solid #f27405;
+        padding: 0;
       `;
-    } else if (variant === "favorite") {
+    }
+    if (variant === "edit") {
+      return css`
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
+        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
+      `;
+    }
+
+    if (variant === "discard") {
       return css`
         position: absolute;
-        color: #f27405;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 0.6rem 0.2rem 0.6rem;
+      `;
+    }
+
+    if (variant === "favorite") {
+      return css`
         right: 0.7rem;
         top: 0.2rem;
         padding: 0;
         margin: 0;
-        color: #f27405;
-        background: none;
+        border: none;
+        opacity: ${isFavorite ? 1 : 0.4};
       `;
-    } else if (variant === "nav-favorite") {
+    }
+    if (variant === "favorite_bright") {
+      return css`
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
+        padding: 0;
+        margin: 0;
+        border: none;
+        opacity: ${isFavorite ? 1 : 0.4};
+      `;
+    }
+    if (variant === "nav-favorite") {
       return css`
         position: absolute;
         top: 3.5rem;
-        right: 0.1rem;
-        padding: 0.4rem 0.4rem 0 0.4rem;
-        margin: 0;
-        border: 1px solid #f27405;
-        color: #f27405;
-      `;
-    } else if (variant === "seeMore") {
-      return css`
-        position: absolute;
-        right: 0.5rem;
-        bottom: 0.4rem;
-        z-index: 0;
-        overflow: hidden;
-        background: whitesmoke;
-        color: #04bf45;
-        padding: 0.2rem 0.3rem 0 0.3rem;
-        border: 2px solid #04bf45;
-      `;
-    } else if (variant === "goBack") {
-      return css`
-        padding: 0.4rem 0.4rem 0 0.4rem;
-        color: #04bf45;
-        border: 2px solid #04bf45;
-        margin-bottom: 5rem;
-      `;
-    } else if (variant === "speaker") {
-      return css`
-        position: relative;
-        color: #04bf45;
-        background: none;
+        right: 0.3rem;
         padding: 0;
+        margin: 0;
+        border: none;
+        opacity: ${isActive ? 1 : 0.4};
       `;
-    } else if (variant === "show") {
+    }
+    if (variant === "single_page_bin") {
       return css`
-        display: block;
-        margin: 1em auto;
-        padding: 0.7em;
-        background: #f2ae30;
-        color: #494fbf;
-        font-size: 1rem;
-        font-weight: bold;
-        width: 10rem;
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
       `;
-    } else if (variant === "hide") {
+    }
+    if (variant === "save") {
       return css`
-        display: block;
-        margin: 1em auto;
-        padding: 0.7em;
-        background: lightgrey;
-        color: #494fbf;
-        font-size: 1rem;
-        font-weight: bold;
-        width: 10rem;
+        color: var(--primary-color);
+        background: none;
+        border: none;
+        margin: 0;
       `;
-    } else if (variant === "close") {
+    }
+    if (variant === "translate") {
       return css`
-        position: absolute;
-        top: 7.3rem;
-        right: 1.3rem;
-        padding: 0.2rem 0.2rem 0 0.2rem;
-        color: #04bf45;
-        _border: 2px solid #04bf45;
+        color: var(--primary-color);
+        background: var(--dark-primary-color);
+        border: none;
+        margin: 0;
+        padding-top: 0.8rem;
       `;
     }
   }}

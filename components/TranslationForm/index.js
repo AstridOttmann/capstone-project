@@ -1,17 +1,21 @@
 import StyledForm from "../Form/StyledForm";
-import StyledButton from "../Buttons/StyledButton";
 import { useState } from "react";
-import styled from "styled-components";
-import Link from "next/link";
 import targetLanguages from "@/public/targetLanguages";
-import ListEntry from "../ListEntry";
-import SaveButton from "../Buttons/SaveButton";
-import DeleteButton from "../Buttons/DeleteButton";
 import translationListAtom from "@/public/store";
 import { useAtom } from "jotai";
 import Message from "../Message";
 import RoutingLink from "../Message/RoutingLink";
 import { nanoid } from "nanoid";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
+import {
+  StyledWordFields,
+  StyledSelect,
+  StyledInput,
+  StyledLabel,
+  StyledButtonWrapper,
+  StyledLanguageLine,
+} from "../FormElements";
+import { StyledMessageArticle, StyledContainer } from "../StyledElements";
 
 export default function TranslationForm() {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -55,19 +59,20 @@ export default function TranslationForm() {
   }
 
   return (
-    <StyledContainer>
+    <>
       <StyledForm variant="translate" onSubmit={handleSubmit}>
-        <label htmlFor="text">Enter word</label>
-        <input
+        <label htmlFor="text"></label>
+        <StyledInput
           id="text"
           name="text"
+          placeholder="ENTER WORD"
           onChange={() => {
             setTranslation("");
             setMessage("");
           }}
         />
-        <label htmlFor="target_lang">Enter target language</label>
-        <select name="target_lang" aria-label="target_language">
+        <StyledLabel htmlFor="target_lang">Enter target language</StyledLabel>
+        <StyledSelect name="target_lang" aria-label="target_language">
           {targetLanguages.map((language) => {
             return (
               <option key={language.target_lang} value={language.target_lang}>
@@ -75,70 +80,67 @@ export default function TranslationForm() {
               </option>
             );
           })}
-        </select>
+        </StyledSelect>
         {!translation && (
-          <StyledButton type="submit" variant="submit">
-            Translate
-          </StyledButton>
+          <StyledButtonWrapper>
+            <ButtonWithIcon
+              type="submit"
+              buttonVariant="translate"
+              someVariant="translate"
+              width="2.5rem"
+            />
+          </StyledButtonWrapper>
         )}
       </StyledForm>
       {translation && (
         <>
-          <ListEntry>
-            <StyledWordFields>{wordInput}</StyledWordFields>
-            <small>({detectedLanguage})</small>
-            <StyledWordFields>{translation}</StyledWordFields>
-          </ListEntry>
-          <DeleteButton onDeleteEntry={() => setTranslation("")} />
-          <SaveButton
-            onClick={() => {
-              setTranslationList([
-                {
-                  id: nanoid(),
-                  voiceURI: "",
-                  word: wordInput,
-                  language: detectedLanguage,
-                  translated: translation,
-                },
-                ...translationList,
-              ]);
-              setTranslation("");
-              setMessage(true);
-            }}
-          />
+          <StyledMessageArticle>
+            <StyledContainer variant="translation_entry">
+              <StyledWordFields>{wordInput}</StyledWordFields>
+              <StyledLanguageLine>{detectedLanguage}</StyledLanguageLine>
+              <StyledWordFields>{translation}</StyledWordFields>
+            </StyledContainer>
+
+            <StyledButtonWrapper variant="translation_result">
+              <ButtonWithIcon
+                buttonVariant="basic"
+                someVariant="content_save"
+                width="1.8rem"
+                aria-label="content_save"
+                onClick={() => {
+                  setTranslationList([
+                    {
+                      id: nanoid(),
+                      voiceURI: "",
+                      word: wordInput,
+                      language: detectedLanguage,
+                      translated: translation,
+                    },
+                    ...translationList,
+                  ]);
+                  setTranslation("");
+                  setMessage(true);
+                }}
+              />{" "}
+              <ButtonWithIcon
+                buttonVariant="delete"
+                someVariant="bin"
+                width="1.8rem"
+                aria-label="bin"
+                onClick={() => setTranslation("")}
+              />
+            </StyledButtonWrapper>
+          </StyledMessageArticle>
         </>
       )}
       {message && (
-        <Message>
-          added word
-          <RoutingLink href="/words" />
-        </Message>
+        <StyledMessageArticle>
+          <Message>
+            added word
+            <RoutingLink href="/words" />
+          </Message>
+        </StyledMessageArticle>
       )}
-    </StyledContainer>
+    </>
   );
 }
-const StyledSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 4rem;
-  font-size: 1.2rem;
-  background: whitesmoke;
-  _border: 1px dashed lightgrey;
-  border-radius: 5px;
-`;
-const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-`;
-const StyledWordFields = styled.p`
-  word-wrap: break-word;
-  white-space: pre-line;
-`;
-const StyledContainer = styled.div`
-  margin-bottom: 5rem;
-`;

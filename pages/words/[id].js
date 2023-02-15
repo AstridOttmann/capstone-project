@@ -2,14 +2,13 @@ import Form from "@/components/Form";
 import { useAtom } from "jotai";
 import translationListAtom from "@/public/store";
 import { useRouter } from "next/router";
-import CancelEditButton from "@/components/Buttons/CancelEditButton";
 import { useState } from "react";
-import EditButton from "@/components/Buttons/EditButton";
 import SingleEntry from "@/components/SingleEntry";
-import GoBackButton from "@/components/Buttons/GoBackButton";
 import ToastMessage from "@/components/ToastMessage";
-import DeleteButton from "@/components/Buttons/DeleteButton";
-import SpeechSynthesis from "@/components/SpeechSynthesisModule/SpeechSynthesis";
+import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
+import StyledTitle from "@/components/Titles/StyledTitle";
+import styled, { css } from "styled-components";
+import { StyledContainer } from "@/components/StyledElements";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
@@ -68,47 +67,75 @@ export default function SingleWordPage({ availableVoices }) {
   }
 
   return (
-    <main>
-      <>
-        <h1>Word entry {!isShowMode && ": edit"}</h1>
-        {!entry && <p>Please choose a word</p>}
+    <>
+      <div>
         <ToastMessage toast={toast} />
-        {isShowMode ? (
-          <EditButton onClick={() => setIsShowMode(false)} />
-        ) : (
-          <CancelEditButton onClick={() => setIsShowMode(true)} />
-        )}
+        <StyledEntryHeader>
+          {entry ? (
+            <>
+              <StyledTitle page="single">
+                Word entry {!isShowMode && ": edit"}
+              </StyledTitle>
+              <StyledLanguageTitle>{entry.language}</StyledLanguageTitle>
+            </>
+          ) : (
+            <>
+              <ButtonWithIcon
+                buttonVariant="goBack"
+                someVariant="goBack"
+                width="2.3rem"
+                aria-label="goBack"
+                onClick={() => router.push("/words")}
+              />
+              <p>Please choose a word</p>
+            </>
+          )}
+        </StyledEntryHeader>
+      </div>
+      <div>
         {entry && (
           <>
-            <SpeechSynthesis
-              word={entry.word}
+            <SingleEntry
+              entry={entry}
+              isFavorite={entry.isFavorite}
+              isActive="true"
               selectedVoice={availableVoices.find(
                 (voice_) => voice_.voiceURI === entry.voiceURI
               )}
-            />
-            <SingleEntry
-              entry={entry}
               onToggleFavorite={() => handleToggleFavorite(entry.id)}
+              onDeleteEntry={() => handleDeleteEntry(entry.id)}
+              onClick={() => setIsShowMode(false)}
             />
           </>
         )}
-      </>
-      {!isShowMode && (
-        <>
-          {entry && (
-            <Form
-              type="edit"
-              entry={entry}
-              isEditMode={true}
-              onSubmitEvent={handleEditEntry}
-            />
-          )}
-        </>
-      )}
-      {isShowMode && <GoBackButton onClick={() => router.push("/words")} />}
-      {entry && (
-        <DeleteButton onDeleteEntry={() => handleDeleteEntry(entry.id)} />
-      )}
-    </main>
+      </div>
+      <StyledContainer variant="bottom_page">
+        {!isShowMode && entry && (
+          <Form
+            variant="edit"
+            entry={entry}
+            isEditMode={true}
+            onSubmitEvent={handleEditEntry}
+          />
+        )}
+      </StyledContainer>
+    </>
   );
 }
+const StyledLanguageTitle = styled.small`
+  text-transform: uppercase;
+  max-width: 50%;
+  min-width: fit-content;
+  border-radius: 90px;
+  padding: 0.2rem 0.4rem;
+  margin: 0 auto;
+  border: 3px solid var(--dark-primary-color);
+  font-size: 1.6rem;
+  text-align: center;
+`;
+const StyledEntryHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.3rem 3rem 1rem 3rem;
+  padding: 0 1rem 1rem 1rem;
+`;

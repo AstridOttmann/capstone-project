@@ -2,6 +2,15 @@ import StyledButton from "../Buttons/StyledButton";
 import { useRouter } from "next/router";
 import StyledForm from "./StyledForm";
 import storedVoices from "@/public/voices";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon";
+import styled from "styled-components";
+import {
+  StyledInput,
+  StyledLabel,
+  StyledButtonWrapper,
+  StyledSelect,
+  StyledTextarea,
+} from "../FormElements";
 
 export default function Form({
   onSubmitEvent,
@@ -9,6 +18,7 @@ export default function Form({
   entry,
   isEditMode,
   availableVoices,
+  onClick,
 }) {
   const router = useRouter();
 
@@ -35,31 +45,43 @@ export default function Form({
         variant={isEditMode ? "edit" : "add"}
         onSubmit={(event) => handleSubmit(event)}
       >
-        <label htmlFor="word">{isEditMode ? "Edit word" : "Enter word"}</label>
-        <input
+        <label htmlFor="word"></label>
+        <StyledInput
           type="text"
           id="word"
           name="word"
           required
           defaultValue={isEditMode ? entry.word : ""}
+          placeholder="ENTER WORD"
           pattern="^[^\s0-9].*$"
           maxLength="40"
           onChange={!isEditMode ? onFirstInput : () => {}}
         />
-        <label htmlFor="language">
-          {isEditMode ? "Edit source language" : "Enter source language"}
-        </label>
-        <input
+        <label htmlFor="language"></label>
+        <StyledInput
           type="text"
           id="language"
           name="language"
           required
           defaultValue={isEditMode ? entry.language : ""}
-          pattern="^[^\s]\S+$"
+          placeholder="ENTER SOURCE LANGUAGE"
+          pattern="^[^\s0-9].*$"
+          // pattern="^[^\s]\S+$"
           maxLength="12"
         />
-        <label>Choose voice for Speech Synthesis</label>
-        <select
+        <label htmlFor="translated"></label>
+        <StyledInput
+          type="text"
+          id="translated"
+          name="translated"
+          required
+          defaultValue={isEditMode ? entry.translated : ""}
+          placeholder="ENTER TRANSLATION"
+          pattern="^[^\s0-9].*$"
+          maxLength="40"
+        />
+        <StyledLabel>Choose voice for Speech Synthesis</StyledLabel>
+        <StyledSelect
           name="voiceURI"
           aria-label="select-voice"
           defaultValue={isEditMode && entry.voiceURI}
@@ -71,33 +93,34 @@ export default function Form({
               </option>
             );
           })}
-        </select>
-        <label htmlFor="translated">
-          {isEditMode ? "Edit translation" : "Enter translation"}
-        </label>
-        <input
-          type="text"
-          id="translated"
-          name="translated"
-          required
-          defaultValue={isEditMode ? entry.translated : ""}
-          pattern="^[^\s0-9].*$"
-          maxLength="40"
-        />
+        </StyledSelect>
+
         {isEditMode && (
           <>
-            <label htmlFor="notes">Add notes ...</label>
-            <textarea
+            <StyledLabel htmlFor="notes">notes: </StyledLabel>
+            <StyledTextarea
               id="notes"
               name="notes"
               rows="5"
               defaultValue={entry.notes}
-            ></textarea>
+            ></StyledTextarea>
+            <ButtonWithIcon
+              buttonVariant="discard"
+              someVariant="cancel"
+              width="2rem"
+              aria-label="cancel"
+              onClick={onClick}
+            />
           </>
         )}
-        <StyledButton type="submit" variant="submit">
-          Save
-        </StyledButton>
+        <StyledButtonWrapper>
+          <ButtonWithIcon
+            type="submit"
+            buttonVariant="save"
+            someVariant="content_save"
+            width="2rem"
+          />
+        </StyledButtonWrapper>
       </StyledForm>
     </>
   );

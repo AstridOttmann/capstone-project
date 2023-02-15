@@ -1,7 +1,6 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import Header from "@/components/Header";
-import MainNavigation from "@/components/MainNavigation";
+import Layout from "@/components/Layout";
 import useVoices from "@/hooks/useVoices";
 
 export default function App({ Component, pageProps }) {
@@ -13,9 +12,9 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Header />
-      <Component {...pageProps} availableVoices={availableVoices} />
-      <MainNavigation />
+      <Layout>
+        <Component {...pageProps} availableVoices={availableVoices} />
+      </Layout>
     </>
   );
 }
