@@ -34,6 +34,7 @@ export default function SearchForm({ selectedLanguage }) {
           <StyledInput
             id="searchValue"
             name="searchValue"
+            autoComplete="off"
             placeholder="🔍 SEARCH WORD"
             value={searchInput}
             onChange={(event) => setSearchInput(event.target.value)}

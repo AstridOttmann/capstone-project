@@ -60,7 +60,11 @@ export default function TranslationForm() {
 
   return (
     <>
-      <StyledForm variant="translate" onSubmit={handleSubmit}>
+      <StyledForm
+        autoComplete="off"
+        variant="translate"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="text"></label>
         <StyledInput
           id="text"
