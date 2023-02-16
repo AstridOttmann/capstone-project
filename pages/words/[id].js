@@ -9,10 +9,12 @@ import ButtonWithIcon from "@/components/Buttons/ButtonWithIcon";
 import StyledTitle from "@/components/Titles/StyledTitle";
 import styled, { css } from "styled-components";
 import { StyledContainer } from "@/components/StyledElements";
+import { StyledButtonWrapper } from "@/components/FormElements";
 
 export default function SingleWordPage({ availableVoices }) {
   const [translationList, setTranslationList] = useAtom(translationListAtom);
   const [isShowMode, setIsShowMode] = useState(true);
+  const [popUp, setPopUp] = useState(false);
   const [toast, setToast] = useState("exit");
 
   const router = useRouter();
@@ -103,9 +105,37 @@ export default function SingleWordPage({ availableVoices }) {
                 (voice_) => voice_.voiceURI === entry.voiceURI
               )}
               onToggleFavorite={() => handleToggleFavorite(entry.id)}
-              onDeleteEntry={() => handleDeleteEntry(entry.id)}
+              onDeleteEntry={() => setPopUp(true)}
               onClick={() => setIsShowMode(false)}
             />
+            {popUp && (
+              <StyledPopUpContainer>
+                <p>Do you want to delete your entry?</p>
+                <StyledButtonWrapper variant="delete_popup">
+                  <ButtonWithIcon
+                    buttonVariant="basic"
+                    someVariant="yes"
+                    width="2.3rem"
+                    aria-label="yes"
+                    onClick={() => {
+                      handleDeleteEntry(entry.id);
+                      setPopUp(false);
+                    }}
+                  >
+                    NO
+                  </ButtonWithIcon>
+                  <ButtonWithIcon
+                    buttonVariant="basic"
+                    someVariant="cancel"
+                    width="2.3rem"
+                    aria-label="cancel"
+                    onClick={() => setPopUp(false)}
+                  >
+                    YES
+                  </ButtonWithIcon>
+                </StyledButtonWrapper>
+              </StyledPopUpContainer>
+            )}
           </>
         )}
       </div>
@@ -138,4 +168,14 @@ const StyledEntryHeader = styled.div`
   flex-direction: column;
   margin: 0.3rem 3rem 1rem 3rem;
   padding: 0 1rem 1rem 1rem;
+`;
+const StyledPopUpContainer = styled.div`
+  background: var(--primary-color);
+  border: 4px solid var(--dark-primary-color);
+  border-radius: 40px;
+  padding: 0.5rem;
+  text-align: center;
+  position: absolute;
+  bottom: 15rem;
+  z-index: 2;
 `;

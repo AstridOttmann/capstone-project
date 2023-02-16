@@ -93,5 +93,14 @@ export const StyledButtonWrapper = styled.div`
         gap: 1.5rem;
       `;
     }
+    if (variant === "delete_popup") {
+      return css`
+        justify-content: space-around;
+        _border: none;
+        _padding: 0 2rem 1rem 2rem;
+        margin: 0;
+        _gap: 1.5rem;
+      `;
+    }
   }}
 `;
