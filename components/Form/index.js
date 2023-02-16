@@ -107,9 +107,9 @@ export default function Form({
             ></StyledTextarea>
             <ButtonWithIcon
               buttonVariant="discard"
-              someVariant="cancel"
+              someVariant="cancel_edit"
               width="2rem"
-              aria-label="cancel"
+              aria-label="cancel-edit"
               onClick={onClick}
             />
           </>
