@@ -74,8 +74,18 @@ export default function TranslationForm() {
             setTranslation("");
             setMessage("");
           }}
+        />{" "}
+        <label htmlFor="language"></label>
+        <StyledInput
+          type="text"
+          id="language"
+          name="language"
+          placeholder="ENTER SOURCE LANGUAGE - optional -"
+          pattern="^[^\s0-9].*$"
+          // pattern="^[^\s]\S+$"
+          maxLength="12"
         />
-        <StyledLabel htmlFor="target_lang">Enter target language</StyledLabel>
+        <StyledLabel htmlFor="target_lang">Choose target language</StyledLabel>
         <StyledSelect name="target_lang" aria-label="target_language">
           {targetLanguages.map((language) => {
             return (
