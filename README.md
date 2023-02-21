@@ -8,7 +8,7 @@ Capstone Project of the Web Development Bootcamp
 you can translate unknown words and store them, 
 search in your words, 
 add and edit vocabulary, 
-listen to the pronunciation 
+hear the pronunciation of a native spaeaker 
 and learn. 
 Furthermore you can store as many languages as you want to so you don't need various apps anymore.
 
@@ -20,6 +20,7 @@ Furthermore you can store as many languages as you want to so you don't need var
 - Node.js
 - DeepL-API
 - Styled Components
+
 
 
 # New Project
