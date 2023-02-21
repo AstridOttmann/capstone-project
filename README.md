@@ -1,5 +1,7 @@
 # Pocket Languages 
 
+![Screenshot 2023-02-21 at 12 24 18 PM](https://user-images.githubusercontent.com/118136613/220332324-737b449a-6817-46e9-9660-d922ba066713.png)
+
 Capstone Project of the Web Development Bootcamp
 
 ## Description
