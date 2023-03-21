@@ -69,24 +69,39 @@ export default function TranslationForm() {
         <StyledInput
           id="text"
           name="text"
+          required
           placeholder="ENTER WORD"
           onChange={() => {
             setTranslation("");
             setMessage("");
           }}
         />{" "}
-        <label htmlFor="language"></label>
+        {/* <label htmlFor="language"></label>
         <StyledInput
           type="text"
           id="language"
-          name="language"
+          name="source_lang"
           placeholder="ENTER SOURCE LANGUAGE - optional -"
           pattern="^[^\s0-9].*$"
           // pattern="^[^\s]\S+$"
           maxLength="12"
-        />
-        <StyledLabel htmlFor="target_lang">Choose target language</StyledLabel>
-        <StyledSelect name="target_lang" aria-label="target_language">
+        /> */}
+        <StyledLabel htmlFor="source_lang">
+          Choose source language - optional -
+        </StyledLabel>
+        <StyledSelect name="source_lang" aria-label="source-language">
+          {targetLanguages.map((language) => {
+            return (
+              <option key={language.source_lang} value={language.source_lang}>
+                {language.source_lang} {language.language}
+              </option>
+            );
+          })}
+        </StyledSelect>
+        <StyledLabel htmlFor="target_lang">
+          Choose target language - required -{" "}
+        </StyledLabel>
+        <StyledSelect name="target_lang" aria-label="target-language">
           {targetLanguages.map((language) => {
             return (
               <option key={language.target_lang} value={language.target_lang}>
