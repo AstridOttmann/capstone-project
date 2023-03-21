@@ -69,6 +69,7 @@ export default function TranslationForm() {
         <StyledInput
           id="text"
           name="text"
+          required
           placeholder="ENTER WORD"
           onChange={() => {
             setTranslation("");
@@ -86,7 +87,7 @@ export default function TranslationForm() {
           maxLength="12"
         /> */}
         <StyledLabel htmlFor="source_lang">
-          Choose source language - optional -{" "}
+          Choose source language - optional -
         </StyledLabel>
         <StyledSelect name="source_lang" aria-label="source-language">
           {targetLanguages.map((language) => {

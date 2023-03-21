@@ -60,7 +60,8 @@ export default function SingleEntry({
   );
 }
 const StyledNotesContainer = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2.5rem;
   text-align: start;
   word-wrap: break-word;
   white-space: pre-line;
